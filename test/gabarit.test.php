@@ -16,8 +16,9 @@
 
 			<h2>Connection DB</h2>
 			<?php
-
+	
 			$connect = MonSQL::getInstance();
+
 			if ($connect != null) {
 				echo "Connection mysqli fonctionnelle";
 			} else {

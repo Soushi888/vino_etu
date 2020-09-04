@@ -1,9 +1,9 @@
 <?php
 	// Remplir et renommer dataconf.php
-	define("BASEURL", "");
+	define("BASEURL", "vino-etu");
 
 	define('HOST', 'localhost');
-	define('USER', '');
+	define('USER', 'root');
 	define('PASSWORD', '');
-	define('DATABASE', '');
+	define('DATABASE', 'vinodb');
 ?>
