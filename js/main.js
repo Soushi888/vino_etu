@@ -1,3 +1,4 @@
+import {rafraichir} from "./utilitaire.js";
 /**
  * @file Script contenant les fonctions de base
  * @author Jonathan Martel (jmartel@cmaisonneuve.qc.ca)
@@ -8,8 +9,9 @@
  *
  */
 
+
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-const BaseURL = document.baseURI;
+const BaseURL = "";
 console.log(BaseURL);
 window.addEventListener('load', function() {
     console.log("load");
@@ -29,6 +31,7 @@ window.addEventListener('load', function() {
               })
               .then(response => {
                 console.debug(response);
+                rafraichir();
               }).catch(error => {
                 console.error(error);
               });
@@ -39,9 +42,11 @@ window.addEventListener('load', function() {
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
+          
             let id = evt.target.parentElement.dataset.id;
-            let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
-
+            
+            let requete = new Request("index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
+            console.log(requete)
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
@@ -52,11 +57,13 @@ window.addEventListener('load', function() {
               })
               .then(response => {
                 console.debug(response);
+                rafraichir();                
               }).catch(error => {
                 console.error(error);
               });
+              
         })
-
+        
     });
    
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
@@ -139,7 +146,6 @@ window.addEventListener('load', function() {
                   })
                   .then(response => {
                     console.log(response);
-                  
                   }).catch(error => {
                     console.error(error);
                   });
