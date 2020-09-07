@@ -1,111 +1,94 @@
+-- -----------------------------------------------------
+-- Schema vinodb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema vinodb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `vinodb` DEFAULT CHARACTER SET utf8;
 
--- phpMyAdmin SQL Dump
--- version 2.11.11.3
--- http://www.phpmyadmin.net
---
--- Serveur: 68.178.143.142
--- Généré le : Lun 21 Janvier 2019 à 14:04
--- Version du serveur: 5.5.43
--- Version de PHP: 5.1.6
+USE `vinodb`;
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `vinodb`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `vino_bouteille`
---
-
-DROP TABLE IF EXISTS `vino_bouteille`;
-CREATE TABLE `vino_bouteille` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(200) DEFAULT NULL,
-  `image` varchar(200) DEFAULT NULL,
-  `code_saq` varchar(50) DEFAULT NULL,
-  `pays` varchar(50) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `prix_saq` float DEFAULT NULL,
-  `url_saq` varchar(200) DEFAULT NULL,
-  `url_img` varchar(200) DEFAULT NULL,
-  `format` varchar(20) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `vinodb`.`vino_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vinodb`.`vino_type` (
+  `id` INT(11) NOT NULL,
+  `type` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE = InnoDB DEFAULT CHARACTER SET = latin1;
 
---
--- Contenu de la table `vino_bouteille`
---
+-- -----------------------------------------------------
+-- Table `vinodb`.`vino_bouteille`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vinodb`.`vino_bouteille` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(200) NOT NULL,
+  `image` VARCHAR(200) NOT NULL,
+  `code_saq` VARCHAR(50) NOT NULL,
+  `pays` VARCHAR(50) NOT NULL,
+  `description` VARCHAR(200) NOT NULL,
+  `prix_saq` FLOAT NOT NULL,
+  `url_saq` VARCHAR(200) NOT NULL,
+  `url_img` VARCHAR(200) NOT NULL,
+  `format` VARCHAR(20) NOT NULL,
+  `vino_type_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vino_bouteille_vino_type1_idx` (`vino_type_id` ASC)
+) ENGINE = InnoDB AUTO_INCREMENT = 11 DEFAULT CHARACTER SET = latin1;
 
-INSERT INTO `vino_bouteille` VALUES(1, 'Borsao Seleccion', '//s7d9.scene7.com/is/image/SAQ/10324623_is?$saq-rech-prod-gril$', '10324623', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 10324623', 11, 'https://www.saq.com/page/fr/saqcom/vin-rouge/borsao-seleccion/10324623', '//s7d9.scene7.com/is/image/SAQ/10324623_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(2, 'Monasterio de Las Vinas Gran Reserva', '//s7d9.scene7.com/is/image/SAQ/10359156_is?$saq-rech-prod-gril$', '10359156', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 10359156', 19, 'https://www.saq.com/page/fr/saqcom/vin-rouge/monasterio-de-las-vinas-gran-reserva/10359156', '//s7d9.scene7.com/is/image/SAQ/10359156_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(3, 'Castano Hecula', '//s7d9.scene7.com/is/image/SAQ/11676671_is?$saq-rech-prod-gril$', '11676671', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11676671', 12, 'https://www.saq.com/page/fr/saqcom/vin-rouge/castano-hecula/11676671', '//s7d9.scene7.com/is/image/SAQ/11676671_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(4, 'Campo Viejo Tempranillo Rioja', '//s7d9.scene7.com/is/image/SAQ/11462446_is?$saq-rech-prod-gril$', '11462446', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11462446', 14, 'https://www.saq.com/page/fr/saqcom/vin-rouge/campo-viejo-tempranillo-rioja/11462446', '//s7d9.scene7.com/is/image/SAQ/11462446_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(5, 'Bodegas Atalaya Laya 2017', '//s7d9.scene7.com/is/image/SAQ/12375942_is?$saq-rech-prod-gril$', '12375942', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 12375942', 17, 'https://www.saq.com/page/fr/saqcom/vin-rouge/bodegas-atalaya-laya-2017/12375942', '//s7d9.scene7.com/is/image/SAQ/12375942_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(6, 'Vin Vault Pinot Grigio', '//s7d9.scene7.com/is/image/SAQ/13467048_is?$saq-rech-prod-gril$', '13467048', 'États-Unis', 'Vin blanc\r\n         \r\n      \r\n      \r\n      États-Unis, 3 L\r\n      \r\n      \r\n      Code SAQ : 13467048', NULL, 'https://www.saq.com/page/fr/saqcom/vin-blanc/vin-vault-pinot-grigio/13467048', '//s7d9.scene7.com/is/image/SAQ/13467048_is?$saq-rech-prod-gril$', ' 3 L', 2);
-INSERT INTO `vino_bouteille` VALUES(7, 'Huber Riesling Engelsberg 2017', '//s7d9.scene7.com/is/image/SAQ/13675841_is?$saq-rech-prod-gril$', '13675841', 'Autriche', 'Vin blanc\r\n         \r\n      \r\n      \r\n      Autriche, 750 ml\r\n      \r\n      \r\n      Code SAQ : 13675841', 22, 'https://www.saq.com/page/fr/saqcom/vin-blanc/huber-riesling-engelsberg-2017/13675841', '//s7d9.scene7.com/is/image/SAQ/13675841_is?$saq-rech-prod-gril$', ' 750 ml', 2);
-INSERT INTO `vino_bouteille` VALUES(8, 'Dominio de Tares Estay Castilla y Léon 2015', '//s7d9.scene7.com/is/image/SAQ/13802571_is?$saq-rech-prod-gril$', '13802571', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 13802571', 18, 'https://www.saq.com/page/fr/saqcom/vin-rouge/dominio-de-tares-estay-castilla-y-leon-2015/13802571', '//s7d9.scene7.com/is/image/SAQ/13802571_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(9, 'Tessellae Old Vines Côtes du Roussillon 2016', '//s7d9.scene7.com/is/image/SAQ/12216562_is?$saq-rech-prod-gril$', '12216562', 'France', 'Vin rouge\r\n         \r\n      \r\n      \r\n      France, 750 ml\r\n      \r\n      \r\n      Code SAQ : 12216562', 21, 'https://www.saq.com/page/fr/saqcom/vin-rouge/tessellae-old-vines-cotes-du-roussillon-2016/12216562', '//s7d9.scene7.com/is/image/SAQ/12216562_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-INSERT INTO `vino_bouteille` VALUES(10, 'Tenuta Il Falchetto Bricco Paradiso -... 2015', '//s7d9.scene7.com/is/image/SAQ/13637422_is?$saq-rech-prod-gril$', '13637422', 'Italie', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Italie, 750 ml\r\n      \r\n      \r\n      Code SAQ : 13637422', 34, 'https://www.saq.com/page/fr/saqcom/vin-rouge/tenuta-il-falchetto-bricco-paradiso---barbera-dasti-superiore-docg-2015/13637422', '//s7d9.scene7.com/is/image/SAQ/13637422_is?$saq-rech-prod-gril$', ' 750 ml', 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `vino_cellier`
---
-
-DROP TABLE IF EXISTS `vino_cellier`;
-CREATE TABLE `vino_cellier` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_bouteille` int(11) DEFAULT NULL,
-  `date_achat` date DEFAULT NULL,
-  `garde_jusqua` varchar(200) DEFAULT NULL,
-  `notes` varchar(200) DEFAULT NULL,
-  `prix` float DEFAULT NULL,
-  `quantite` int(11) DEFAULT NULL,
-  `millesime` int(11) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `vinodb`.`vino_adresse`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vinodb`.`vino_adresse` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `rue` VARCHAR(255) NOT NULL,
+  `ville` VARCHAR(255) NOT NULL,
+  `pays` VARCHAR(255) NOT NULL,
+  `cp` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE = InnoDB;
 
---
--- Contenu de la table `vino_cellier`
---
+-- -----------------------------------------------------
+-- Table `vinodb`.`vino_utilisateur`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vinodb`.`vino_utilisateur` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `prenom` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `mdp` VARCHAR(255) NOT NULL,
+  `telephone` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(255) NOT NULL,
+  `adresse_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vino_utilisateur_adresse1_idx` (`adresse_id` ASC)
+) ENGINE = InnoDB;
 
-INSERT INTO `vino_cellier` VALUES(1, 10, '0000-00-00', '', '', 0, 3, 0);
-INSERT INTO `vino_cellier` VALUES(2, 10, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino_cellier` VALUES(3, 5, '2019-01-16', '2020', '2019-01-16', 22, 10, 1999);
-INSERT INTO `vino_cellier` VALUES(4, 5, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino_cellier` VALUES(5, 5, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino_cellier` VALUES(6, 0, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino_cellier` VALUES(7, 0, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino_cellier` VALUES(8, 5, '0000-00-00', '', '', 0, 10, 2000);
-INSERT INTO `vino_cellier` VALUES(9, 3, '2019-01-26', 'non', '2019-01-26', 23.52, 1, 2015);
+-- -----------------------------------------------------
+-- Table `vinodb`.`vino_cellier`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vinodb`.`vino_cellier` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(45) NOT NULL,
+  `vino_utilisateur_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vino_cellier_vino_utilisateur1_idx` (`vino_utilisateur_id` ASC),
+  CONSTRAINT `fk_vino_cellier_vino_utilisateur1` FOREIGN KEY (`vino_utilisateur_id`) REFERENCES `vinodb`.`vino_utilisateur` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 10 DEFAULT CHARACTER SET = latin1;
 
--- --------------------------------------------------------
-
---
--- Structure de la table `vino_type`
---
-
-DROP TABLE IF EXISTS `vino_type`;
-CREATE TABLE `vino_type` (
-  `id` int(11) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `vino_type`
---
-
-INSERT INTO `vino_type` VALUES(1, 'Vin rouge');
-INSERT INTO `vino_type` VALUES(2, 'Vin blanc');
+-- -----------------------------------------------------
+-- Table `vinodb`.`vino_cellier_has_vino_bouteille`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vinodb`.`vino_cellier_has_vino_bouteille` (
+  `vino_cellier_id` INT(11) NOT NULL,
+  `vino_bouteille_id` INT(11) NOT NULL,
+  `quantite` VARCHAR(255) NOT NULL,
+  `date_achat` TIMESTAMP NOT NULL,
+  `garde_jusqua` TIMESTAMP NOT NULL,
+  `notes` VARCHAR(255) NOT NULL,
+  `prix` FLOAT NOT NULL,
+  `millesime` YEAR NOT NULL,
+  PRIMARY KEY (`vino_cellier_id`, `vino_bouteille_id`),
+  INDEX `fk_vino_cellier_has_vino_bouteille_vino_bouteille1_idx` (`vino_bouteille_id` ASC),
+  INDEX `fk_vino_cellier_has_vino_bouteille_vino_cellier1_idx` (`vino_cellier_id` ASC)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = latin1;
