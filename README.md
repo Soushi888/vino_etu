@@ -21,11 +21,11 @@ API faite avec Laravel et front end en AJAX.
 2. Indiquez-y vos informations pour connecter votre base de données
 3. Exécutez les commandes suivantes :
 
-Pour installer les dépendances :
+Pour installer les dépendances, si pas déjà fait, installer [Composer](https://getcomposer.org/download/) puis :
 
     $ composer install
 
-Générer le APP_KEY (encrypté les cookies) :
+Générer le APP_KEY (encrypter les cookies) :
 
     $ php artisan key:generate
 
