@@ -25,7 +25,7 @@ Pour installer les dépendances, si pas déjà fait, installer [Composer](https:
 
     $ composer install
 
-Générer le APP_KEY (encrypté les cookies) :
+Générer le APP_KEY (encrypter les cookies) :
 
     $ php artisan key:generate
 
