@@ -2,6 +2,8 @@
 # ignore IDE/hidden/OS cache files
 .*
 *~
+
+.env
 nbproject
 nb-configuration.xml
 Session.vim
@@ -18,6 +20,7 @@ vendor
 /bower_components/*
 
 # keep some hiddens
+!.env.example
 !.htaccess
 !/.gitignore
 !/.travis.yml
