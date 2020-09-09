@@ -13,7 +13,7 @@ class CreateVinoBouteilleTable extends Migration
      */
     public function up()
     {
-        Schema::create('vino_bouteille', function (Blueprint $table) {
+        Schema::create('bouteille', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
             $table->string("image");
@@ -24,8 +24,8 @@ class CreateVinoBouteilleTable extends Migration
             $table->string("url_saq");
             $table->string("image_url");
             $table->string("format");
-            $table->unsignedBigInteger('vino_type_id');
-            $table->foreign("vino_type_id")->references('id')->on('vino_type');
+            $table->unsignedBigInteger('type_id');
+            $table->foreign("type_id")->references('id')->on('type');
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ class CreateVinoBouteilleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vino_bouteille');
+        Schema::dropIfExists('bouteille');
     }
 }

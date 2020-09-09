@@ -13,11 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('vino_utilisateur', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->foreignId("vino_adresse_id")->references("id")->on("vino_adresse");
+            $table->foreignId("adresse_id")->nullable()->references("id")->on("adresse");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

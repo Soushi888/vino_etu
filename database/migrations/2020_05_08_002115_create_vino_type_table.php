@@ -13,7 +13,7 @@ class CreateVinoTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('vino_type', function (Blueprint $table) {
+        Schema::create('type', function (Blueprint $table) {
             $table->id(); 
             $table->string("type"); 
         });
@@ -27,6 +27,6 @@ class CreateVinoTypeTable extends Migration
     public function down()
     {
      
-        Schema::dropIfExists('vino_type');
+        Schema::dropIfExists('type');
     }
 }

@@ -13,9 +13,9 @@ class CreateVinoCellierHasVinoBouteilleTable extends Migration
      */
     public function up()
     {
-        Schema::create('vino_cellier_has_vino_bouteille', function (Blueprint $table) {
-            $table->foreignId('vino_bouteille_id')->references("id")->on("vino_bouteille");
-            $table->foreignId('vino_cellier_id')->references("id")->on("vino_cellier");
+        Schema::create('cellier_has_bouteille', function (Blueprint $table) {
+            $table->foreignId('bouteille_id')->references("id")->on("bouteille");
+            $table->foreignId('cellier_id')->references("id")->on("cellier");
             $table->bigInteger("quantité");
             $table->timestamp("date_achat")->nullable();
             $table->timestamp("garde_jusqua")->nullable();
@@ -33,6 +33,6 @@ class CreateVinoCellierHasVinoBouteilleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vino_cellier_has_vino_bouteille');
+        Schema::dropIfExists('cellier_has_bouteille');
     }
 }
