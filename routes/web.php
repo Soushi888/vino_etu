@@ -16,16 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pageAuthentification');
 });
-
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/test2', function () {
-    return view('test2');
-});
- /*    Route::view('/test','test');
-    Route::view('/test2','test2'); */
-
-
-
