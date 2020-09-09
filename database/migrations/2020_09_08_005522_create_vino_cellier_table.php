@@ -16,7 +16,7 @@ class CreateVinoCellierTable extends Migration
         Schema::create('cellier', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
-            $table->foreignId("utilisateur_id")->references('id')->on('utilisateur');
+            $table->foreignId("user_id")->references('id')->on('users');
             $table->foreignId("adresse_id")->references('id')->on('adresse');
             $table->timestamps();
         });
