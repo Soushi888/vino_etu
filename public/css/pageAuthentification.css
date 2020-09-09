@@ -1,0 +1,56 @@
+
+
+body{
+    background-image: url("../img/bg.jpg");
+     display: grid;
+    grid-template-columns: repeat(5,20%);
+    grid-template-rows: 20% 20% 20% 20% 20%; 
+    height: 100%;
+    /* width: 100%; */
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+#pageAuthentification-main{    
+    width:100%;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 5;
+     
+}
+#pageAuthentification-main>img{
+    margin-left:20%;
+}
+#pageAuthentification-main>form>input{
+    border-radius: 10px; 
+    padding: 1rem;
+    color: white;
+    text-align:center;
+    margin: 2%;
+
+}
+
+#bouton-bleu-main{
+    background-color:blue;
+    border-radius: 10px; 
+    padding: 1rem;
+    color: white;
+    margin: 2%;
+    padding-right: 150px;
+    text-align:center;
+    
+}
+
+#bouton-rouge-main{
+    background-color:red;
+    border-radius: 10px; 
+    padding: 1rem;
+    color: white;
+    
+    margin: 2%;
+    padding-right: 133px;
+    text-align:center;
+}
