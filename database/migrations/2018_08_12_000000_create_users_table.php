@@ -17,12 +17,16 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->foreignId("adresse_id")->nullable()->references("id")->on("adresse");
+            $table->foreignId("adresse_id")->nullable()->references("id")->on("adresses");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        // Génère des données de test
+        factory(App\User::class, 2)->create();
+
     }
 
     /**

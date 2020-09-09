@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVinoBouteilleTable extends Migration
+class CreateBouteillesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVinoBouteilleTable extends Migration
      */
     public function up()
     {
-        Schema::create('bouteille', function (Blueprint $table) {
+        Schema::create('bouteilles', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
             $table->string("image");
@@ -24,10 +24,12 @@ class CreateVinoBouteilleTable extends Migration
             $table->string("url_saq");
             $table->string("image_url");
             $table->string("format");
-            $table->unsignedBigInteger('type_id');
-            $table->foreign("type_id")->references('id')->on('type');
+            $table->foreignId("type_id")->references('id')->on('types');
             $table->timestamps();
         });
+
+        // Génère des données de test
+        factory(App\Bouteille::class, 20)->create();
     }
 
     /**
@@ -37,6 +39,6 @@ class CreateVinoBouteilleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bouteille');
+        Schema::dropIfExists('bouteilles');
     }
 }
