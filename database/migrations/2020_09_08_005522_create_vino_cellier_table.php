@@ -13,11 +13,11 @@ class CreateVinoCellierTable extends Migration
      */
     public function up()
     {
-        Schema::create('vino_cellier', function (Blueprint $table) {
+        Schema::create('cellier', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
-            $table->foreignId("vino_utilisateur_id")->references('id')->on('vino_utilisateur');
-            $table->foreignId("vino_adresse_id")->references('id')->on('vino_adresse');
+            $table->foreignId("utilisateur_id")->references('id')->on('utilisateur');
+            $table->foreignId("adresse_id")->references('id')->on('adresse');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateVinoCellierTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vino_cellier');
+        Schema::dropIfExists('cellier');
     }
 }

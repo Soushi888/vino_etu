@@ -13,7 +13,7 @@ class CreateVinoAdressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vino_adresse', function (Blueprint $table) {
+        Schema::create('adresse', function (Blueprint $table) {
             $table->id();
             $table->string("rue");
             $table->string("ville");
@@ -30,6 +30,6 @@ class CreateVinoAdressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vino_adresses');
+        Schema::dropIfExists('adresses');
     }
 }
