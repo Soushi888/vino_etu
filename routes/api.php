@@ -20,10 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // // Utilisateur API
 // Route::get('/utilisateurs', 'UtilisateurController@index');
-// Route::get('/utilisateurs/{id}', 'UtilisateurController@show');
+// Route::get('/utilisateurs/{utilisateur}', 'UtilisateurController@show');
 // Route::post('/utilisateurs', 'UtilisateurController@store');
-// Route::put('/utilisateurs/{id}', 'UtilisateurController@update');
-// Route::delete('/utilisateurs/{id}', 'UtilisateurController@destroy');
+// Route::put('/utilisateurs/{utilisateur}', 'UtilisateurController@update');
+// Route::delete('/utilisateurs/{utilisateur}', 'UtilisateurController@destroy');
 // // End Utilisateur API
 
 // // SAQ API
@@ -33,34 +33,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // // Adresse API
 // Route::get('/adresses', 'AdresseController@index');
-// Route::get('/adresses/{id}', 'AdresseController@show');
+// Route::get('/adresses/{adresse}', 'AdresseController@show');
 // Route::post('/adresses', 'AdresseController@store');
-// Route::put('/adresses/{id}', 'AdresseController@update');
-// Route::delete('/adresses/{id}', 'AdresseController@destroy');
+// Route::put('/adresses/{adresse}', 'AdresseController@update');
+// Route::delete('/adresses/{adresse}', 'AdresseController@destroy');
 // // End Adresse API
 
 // // Bouteille API
-// Route::get('/bouteilles', 'BouteilleController@index');
-// Route::get('/bouteilles/{id}', 'BouteilleController@show');
-// Route::post('/bouteilles', 'BouteilleController@store');
-// Route::put('/bouteilles/{id}', 'BouteilleController@update');
-// Route::delete('/bouteilles/{id}', 'BouteilleController@destroy');
+Route::get('/bouteilles', 'BouteilleController@index');
+Route::get('/bouteilles/{bouteille}', 'BouteilleController@show');
+Route::post('/bouteilles', 'BouteilleController@store');
+// Route::put('/bouteilles/{bouteille}', 'BouteilleController@update');
+// Route::delete('/bouteilles/{bouteille}', 'BouteilleController@destroy');
 // // End Bouteille API
 
 // // Cellier API
 // Route::get('/celliers', 'CellierController@index');
-// Route::get('/celliers/{id}', 'CellierController@show');
+// Route::get('/celliers/{cellier', 'CellierController@show');
 // Route::post('/celliers', 'CellierController@store');
-// Route::put('/celliers/{id}', 'CellierController@update');
-// Route::delete('/celliers/{id}', 'CellierController@destroy');
+// Route::put('/celliers/{cellier', 'CellierController@update');
+// Route::delete('/celliers/{cellier', 'CellierController@destroy');
 // // End Cellier API
 
 // // CelliersBouteille API
 // Route::get('/celliers/bouteilles', 'CellierBouteilleController@index');
-// Route::get('/celliers/bouteilles/{id}', 'CellierBouteilleController@show');
+// Route::get('/celliers/bouteilles/{cellierBouteille}', 'CellierBouteilleController@show');
 // Route::post('/celliers/bouteilles', 'CellierBouteilleController@store');
-// Route::put('/celliers/bouteilles/{id}', 'CellierBouteilleController@update');
-// Route::delete('/celliers/bouteilles/{id}', 'CellierBouteilleController@destroy');
+// Route::put('/celliers/bouteilles/{cellierBouteille}', 'CellierBouteilleController@update');
+// Route::delete('/celliers/bouteilles/{cellierBouteille}', 'CellierBouteilleController@destroy');
 // // End CelliersBouteille API
 
 
