@@ -51,11 +51,12 @@ Compiler le dossier ressources/ à chaque sauvegarde dedans :
 
     $ npm run watch
 
-Les fichiers fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets pré-compilés dans leurs sous-dossiers dans `/ressources` et les assets compilés se retrouve dans `/public`.
+Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets pré-compilés dans leurs sous-dossiers dans `/ressources` et les assets compilés se retrouve dans `/public`.
 
 ## Routes
 ### Public
 
+- `/` : Page d'Accueil
 - `/` : Page d'Accueil
 
 ### API
@@ -64,72 +65,45 @@ Les routes de l'api se trouve dans le fichier routes/api.php
 
 #### Utilisateurs
 
-`GET`       - `api/utilisateurs`                   : Retourner tout les utilisateurs
-
-`GET`       - `api/utilisateurs/{id}`              : Retourner un utilisateur
-
-`POST`      - `api/utilisateurs`                   : Ajouter un utilisateur 
-
-`PUT`       - `api/utilisateurs/{id}`              : Modifier un utilisateur
-
-`DELETE`    - `api/utilisateurs/{id}`              : Supprimer un utilisateur
+- `GET`       - `api/utilisateurs`                   : Retourner tout les utilisateurs
+- `GET`       - `api/utilisateurs/{id}`              : Retourner un utilisateur
+- `POST`      - `api/utilisateurs`                   : Ajouter un utilisateur 
+- `PUT`       - `api/utilisateurs/{id}`              : Modifier un utilisateur
+- `DELETE`    - `api/utilisateurs/{id}`              : Supprimer un utilisateur
 
  #### adresses      
 
-`GET`       - `api/adresses`                       : Retourner toutes les adresses
-
-`GET`       - `api/adresses/{id}`                  : Retourner une adresse
-
-`POST`      - `api/adresses`                       : Ajouter une adresse 
-
-`PUT`       - `api/adresses/{id}`                  : Modifier une adresse
-
-`DELETE`    - `api/adresses/{id}`                  : Supprimer une adresse
+- `GET`       - `api/adresses`                       : Retourner toutes les adresses
+- `GET`       - `api/adresses/{id}`                  : Retourner une adresse
+- `POST`      - `api/adresses`                       : Ajouter une adresse 
+- `PUT`       - `api/adresses/{id}`                  : Modifier une adresse
+- `DELETE`    - `api/adresses/{id}`                  : Supprimer une adresse
 
 #### bouteilles
 
-`GET`       - `api/bouteilles`                     : Retourner toutes les bouteilles
-
-`GET`       - `api/bouteilles/{id}`                : Retourner une bouteille
-
-`POST`      - `api/bouteilles`                     : Ajouter une bouteille 
-
-`PUT`       - `api/bouteilles/{id}`                : Modifier une bouteille
-
-`DELETE`    - `api/bouteilles/{id}`                : Supprimer une bouteille
+- `GET`       - `api/bouteilles`                     : Retourner toutes les bouteilles
+- `GET`       - `api/bouteilles/{id}`                : Retourner une bouteille
+- `POST`      - `api/bouteilles`                     : Ajouter une bouteille 
+- `PUT`       - `api/bouteilles/{id}`                : Modifier une bouteille
+- `DELETE`    - `api/bouteilles/{id}`                : Supprimer une bouteille
 
 #### celliers
 
-`GET`       - `api/celliers`                       : Retourner tout les celliers
-
-`GET`       - `api/celliers/{id}`                  : Retourner un cellier
-
-`POST`      - `api/celliers`                       : Ajouter un cellier 
-
-`PUT`       - `api/celliers/{id}`                  : Modifier un cellier
-
-`DELETE`    - `api/celliers/{id}`                  : Supprimer un cellier
+- `GET`       - `api/celliers`                       : Retourner tout les celliers
+- `GET`       - `api/celliers/{id}`                  : Retourner un cellier
+- `POST`      - `api/celliers`                       : Ajouter un cellier 
+- `PUT`       - `api/celliers/{id}`                  : Modifier un cellier
+- `DELETE`    - `api/celliers/{id}`                  : Supprimer un cellier
 
 #### celliers/bouteilles
 
-`GET`       - `api/celliers/{id}/bouteilles`       : Retourner toutes les bouteilles d'un celliers 
-
-`GET`       - `api/celliers/{id}/bouteilles/{id}`  : Retourner une bouteille d'un celliers 
-
-`POST`      - `api/celliers/{id}/bouteilles`       : Ajouter une bouteille dans un cellier 
-
-`PUT`       - `api/celliers/{id}/bouteilles`       : Modifier une bouteille d'un cellier
-
-`DELETE`    - `api/celliers/{id}/bouteilles`       : Supprimer une bouteille d'un cellier
+- `GET`       - `api/celliers/{id}/bouteilles`       : Retourner toutes les bouteilles d'un celliers 
+- `GET`       - `api/celliers/{id}/bouteilles/{id}`  : Retourner une bouteille d'un celliers 
+- `POST`      - `api/celliers/{id}/bouteilles`       : Ajouter une bouteille dans un cellier 
+- `PUT`       - `api/celliers/{id}/bouteilles`       : Modifier une bouteille d'un cellier
+- `DELETE`    - `api/celliers/{id}/bouteilles`       : Supprimer une bouteille d'un cellier
 
 #### saq
 
-`GET`       - `api/saq`                            : Retourner les données de la saq
-
-`POST`      - `api/saq`                            : Mettre a jours la table bouteilles avec les données de la saq
-
-
-
-
-
-
+- `GET`       - `api/saq`                            : Retourner les données de la saq
+- `POST`      - `api/saq`                            : Mettre a jours la table bouteilles avec les données de la saq
