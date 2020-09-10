@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVinoAdressesTable extends Migration
+class CreateAdressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVinoAdressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('adresse', function (Blueprint $table) {
+        Schema::create('adresses', function (Blueprint $table) {
             $table->id();
             $table->string("rue");
             $table->string("ville");
@@ -21,6 +21,10 @@ class CreateVinoAdressesTable extends Migration
             $table->string("cp");
             $table->timestamps();
         });
+
+
+        // Génère des données de test
+        factory(App\Adresse::class, 2)->create();
     }
 
     /**
@@ -30,6 +34,6 @@ class CreateVinoAdressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adresses');
+        Schema::dropIfExists('adresse');
     }
 }
