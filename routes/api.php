@@ -32,11 +32,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // End SAQ API
 
 // Adresse API
-// Route::get('/adresses', 'AdresseController@index');
-// Route::get('/adresses/{adresse}', 'AdresseController@show');
-// Route::post('/adresses', 'AdresseController@store');
-// Route::put('/adresses/{adresse}', 'AdresseController@update');
-// Route::delete('/adresses/{adresse}', 'AdresseController@destroy');
+Route::get('/adresses', 'AdresseController@index');
+Route::get('/adresses/{adresse}', 'AdresseController@show');
+Route::post('/adresses', 'AdresseController@store');
+Route::put('/adresses/{adresse}', 'AdresseController@update');
+Route::delete('/adresses/{adresse}', 'AdresseController@destroy');
 // End Adresse API
 
 // Bouteille API
