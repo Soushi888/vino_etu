@@ -57,7 +57,7 @@ Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets
 ### Public
 
 - `/` : Page d'Accueil
-- `/` : Page d'Accueil
+- `/login` : Écran de connection
 
 ### API
 
