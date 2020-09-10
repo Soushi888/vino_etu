@@ -43,8 +43,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/bouteilles', 'BouteilleController@index');
 Route::get('/bouteilles/{bouteille}', 'BouteilleController@show');
 Route::post('/bouteilles', 'BouteilleController@store');
-// Route::put('/bouteilles/{bouteille}', 'BouteilleController@update');
-// Route::delete('/bouteilles/{bouteille}', 'BouteilleController@destroy');
+Route::put('/bouteilles/{bouteille}', 'BouteilleController@update');
+Route::delete('/bouteilles/{bouteille}', 'BouteilleController@destroy');
 // // End Bouteille API
 
 // // Cellier API
