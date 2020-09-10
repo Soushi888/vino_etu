@@ -63,7 +63,7 @@ Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets
 
 Les routes de l'api se trouve dans le fichier routes/api.php
 
-#### Utilisateurs
+#### utilisateurs
 
 - `GET`       - `api/utilisateurs`                   : Retourner tout les utilisateurs
 - `GET`       - `api/utilisateurs/{id}`              : Retourner un utilisateur
@@ -71,7 +71,7 @@ Les routes de l'api se trouve dans le fichier routes/api.php
 - `PUT`       - `api/utilisateurs/{id}`              : Modifier un utilisateur
 - `DELETE`    - `api/utilisateurs/{id}`              : Supprimer un utilisateur
 
- #### adresses      
+#### adresses      
 
 - `GET`       - `api/adresses`                       : Retourner toutes les adresses
 - `GET`       - `api/adresses/{id}`                  : Retourner une adresse
