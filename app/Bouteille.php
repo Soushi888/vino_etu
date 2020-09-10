@@ -10,4 +10,9 @@ class Bouteille extends Model
     protected $fillable = [
         'nom', 'image', 'code_saq', "pays",  "description", 'prix_saq', 'url_saq', "image_url","format","type_id"
     ];
+
+    public function celliers() {
+        return $this->belongsToMany(Cellier::class);
+    }
+
 }

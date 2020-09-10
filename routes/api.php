@@ -56,11 +56,11 @@ Route::delete('/celliers/{cellier}', 'CellierController@destroy');
 // End Cellier API
 
 // CelliersBouteille API
-// Route::get('/celliers/bouteilles', 'CellierBouteilleController@index');
-// Route::get('/celliers/bouteilles/{cellierBouteille}', 'CellierBouteilleController@show');
-// Route::post('/celliers/bouteilles', 'CellierBouteilleController@store');
-// Route::put('/celliers/bouteilles/{cellierBouteille}', 'CellierBouteilleController@update');
-// Route::delete('/celliers/bouteilles/{cellierBouteille}', 'CellierBouteilleController@destroy');
+Route::get('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@index');
+Route::get('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@show');
+Route::post('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@store');
+Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
+Route::delete('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@destroy');
 // End CelliersBouteille API
 
 
