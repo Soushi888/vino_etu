@@ -71,12 +71,11 @@ class SAQController extends Controller
         $info = new stdClass();
         $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
         
-       
-        $urlLongueur = strpos($info->img , "?" ) ;
-        var_dump($urlLongueur );
+        // $urlLongueur = strpos($info->img , "?" ) ;
+        // var_dump($urlLongueur );
         
-        $imgUrl = str_split($info->img, $urlLongueur );
-        $info->img = $imgUrl[0];
+        // $imgUrl = str_split($info->img, $urlLongueur );
+        // $info->img = $imgUrl[0];
 
         $a_titre = $noeud->getElementsByTagName("a")->item(0);
         $info->url = $a_titre->getAttribute('href');
