@@ -38,7 +38,9 @@ class SAQController extends Controller
         curl_setopt($s, CURLOPT_URL, $url);
         curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($s, CURLOPT_FOLLOWLOCATION, 1);
-
+        curl_setopt($s, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($s, CURLOPT_SSL_VERIFYPEER, FALSE);
+        
         self::$_webpage = curl_exec($s);
         self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
         curl_close($s);
