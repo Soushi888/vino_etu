@@ -15,6 +15,40 @@ API faite avec Laravel et front end en AJAX.
 - Samuel St-Jean
 - Sacha Pignot
 
+## Démo
+
+
+
+#### Fonctionnalités disponibles
+- [Page `/`](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/) - Écran de connexion **OU** Page d'accueil (actuellement liste des bouteilles).
+  
+#### API
+
+Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme **POSTMAN**.
+
+##### SAQ
+
+[`GET` - api/saq](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/saq)
+
+##### adresses
+
+[`GET` - api/adresses](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/adresses)
+
+[`GET` - api/saq/adresses/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/adresses/1)
+
+##### bouteilles
+
+[`GET` - api/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles)
+
+[`GET` - api/saq/bouteilles/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles/1)
+
+##### celliers
+
+[`GET` - api/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers)
+
+[`GET` - api/saq/celliers/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1)
+
+
 ## Installation en local
 
 1. Copiez le fichier .env.example et renommez le .env
