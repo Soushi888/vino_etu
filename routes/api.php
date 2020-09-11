@@ -27,8 +27,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // End Utilisateur API
 
 // SAQ API
-// Route::get('/saq', 'SAQController@index');
-// Route::post('/saq', 'SAQController@store');
+Route::get('/saq', 'SAQController@getProduits');
+Route::put('/saq', 'SAQController@update');
 // End SAQ API
 
 // Adresse API

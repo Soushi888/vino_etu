@@ -56,12 +56,14 @@ Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets
 ## Routes
 ### Public
 
+Les routes publiques se trouvent dans le fichier routes/web.php
+
 - `/` : Page d'Accueil
 - `/login` : Écran de connection
 
 ### API
 
-Les routes de l'api se trouve dans le fichier routes/api.php
+Les routes de l'api se trouvent dans le fichier routes/api.php
 
 #### utilisateurs
 
