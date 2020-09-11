@@ -153,7 +153,5 @@ window.addEventListener('load', function() {
         });
       } 
   }
-    
-
 });
 
