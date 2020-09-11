@@ -16,7 +16,6 @@ class CreateBouteillesTable extends Migration
         Schema::create('bouteilles', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
-            $table->string("image");
             $table->string("code_saq");
             $table->string("pays");
             $table->text("description");

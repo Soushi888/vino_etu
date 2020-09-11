@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DOMDocument;
+use Illuminate\Support\Facades\Response;
 use stdClass;
 
 class SAQController extends Controller
@@ -44,37 +45,19 @@ class SAQController extends Controller
         libxml_use_internal_errors(true);
         $doc->loadHTML(self::$_webpage);
 
-        
         $elements = $doc->getElementsByTagName("li");
         $i = 0;
         
         $infos = [];
         
-        foreach ($elements as $key => $noeud) {
-            //var_dump($noeud -> getAttribute('class')) ;
-            //if ("resultats_product" == str$noeud -> getAttribute('class')) {
-                dd($key);
+        foreach ($elements as $key => $noeud) { 
             if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
-                
-                //echo $this->get_inner_html($noeud);
                 $info = self::recupereInfo($noeud);
                 array_push($infos, $info);
             }
         }
-        
-        return $infos;
+        return response()->json($infos);
 
-    }
-
-    private function get_inner_html($node)
-    {
-        $innerHTML = '';
-        $children = $node->childNodes;
-        foreach ($children as $child) {
-            $innerHTML .= $child->ownerDocument->saveXML($child);
-        }
-
-        return $innerHTML;
     }
 
     static private function nettoyerEspace($chaine)
@@ -87,7 +70,14 @@ class SAQController extends Controller
 
         $info = new stdClass();
         $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
-        ;
+        
+       
+        $urlLongueur = strpos($info->img , "?" ) ;
+        var_dump($urlLongueur );
+        
+        $imgUrl = str_split($info->img, $urlLongueur );
+        $info->img = $imgUrl[0];
+
         $a_titre = $noeud->getElementsByTagName("a")->item(0);
         $info->url = $a_titre->getAttribute('href');
 
@@ -132,7 +122,7 @@ class SAQController extends Controller
         return $info;
     }
 
-    private function ajouteProduit($bte)
+    private function ajouteProduits($bte)
     {
         $retour = new stdClass();
         $retour->succes = false;
