@@ -16,13 +16,12 @@ class CreateBouteillesTable extends Migration
         Schema::create('bouteilles', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
-            $table->string("image");
             $table->string("code_saq");
             $table->string("pays");
             $table->text("description");
             $table->float("prix_saq");
             $table->string("url_saq");
-            $table->string("image_url");
+            $table->string("url_image");
             $table->string("format");
             $table->foreignId("type_id")->references('id')->on('types');
             $table->timestamps();

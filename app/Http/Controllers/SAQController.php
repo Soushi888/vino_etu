@@ -4,31 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DOMDocument;
+use Illuminate\Support\Facades\Response;
 use stdClass;
 
+/**
+ * Interragit avec le site web de la SAQ pour extraire des données du DOM puis les formater JSON.
+ * Methode GET et POST
+ * @package App\Http\Controllers
+ */
 class SAQController extends Controller
 {
-
     const DUPLICATION = 'duplication';
     const ERREURDB = 'erreurdb';
     const INSERE = 'Nouvelle bouteille insérée';
 
+    /**
+     * @var $_webpage DOMDocument le DOM de la page du site web de la SAQ qui sera parsé
+     */
     private static $_webpage;
-    private static $_status;
-    private $stmt;
-
-    // public function __construct() {
-    // 	parent::__construct();
-    // 	if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino_bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-    // 		echo "Echec de la préparation : (" . $mysqli -> errno . ") " . $mysqli -> error;
-    // 	}
-    // }
 
     /**
-     * getProduits
-     * @param int $nombre
-     * @param int $debut
-     * @throws \Exception
+     * @var $_status int Code HTTP
+     */
+    private static $_status;
+
+    /**
+     * Retourne la liste des vins rouges
+     * @param int $nombre Nombre de vins par page de recherche
+     * @param int $page Nombre de page de recherche
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getProduits($nombre = 24, $page = 1)
     {
@@ -44,63 +48,54 @@ class SAQController extends Controller
         self::$_webpage = curl_exec($s);
         self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
         curl_close($s);
-
+     
         $doc = new DOMDocument("", "");
         $doc->recover = true;
         $doc->strictErrorChecking = false;
         libxml_use_internal_errors(true);
         $doc->loadHTML(self::$_webpage);
+
         $elements = $doc->getElementsByTagName("li");
         $i = 0;
-
+        
+        $infos = [];
+        
         foreach ($elements as $key => $noeud) {
-            //var_dump($noeud -> getAttribute('class')) ;
-            //if ("resultats_product" == str$noeud -> getAttribute('class')) {
             if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
-
-                //echo $this->get_inner_html($noeud);
                 $info = self::recupereInfo($noeud);
-                dd($info);
-                echo "<p>" . $info->nom;
-                $retour = $this->ajouteProduit($info);
-                echo "<br>Code de retour : " . $retour->raison . "<br>";
-                if ($retour->succes == false) {
-                    echo "<pre>";
-                    var_dump($info);
-                    echo "</pre>";
-                    echo "<br>";
-                } else {
-                    $i++;
-                }
-                echo "</p>";
+                array_push($infos, $info);
             }
         }
+        return response()->json($infos);
 
-        return $i;
     }
 
-    private function get_inner_html($node)
-    {
-        $innerHTML = '';
-        $children = $node->childNodes;
-        foreach ($children as $child) {
-            $innerHTML .= $child->ownerDocument->saveXML($child);
-        }
-
-        return $innerHTML;
-    }
-
+    /**
+     * Supprime les espaces d'une chaîne de caractère donnée
+     * @param $chaine
+     * @return string|string[]|null
+     */
     static private function nettoyerEspace($chaine)
     {
         return preg_replace('/\s+/', ' ', $chaine);
     }
 
+    /**
+     * Formate le noeud HTML en paramètre pour en extraire le lien de l'image, l'url, le nom, la description, le type, le format, le pays, le code SAQ et le prix.
+     * @param $noeud DOMNode Noeud HTML <li>
+     * @return stdClass
+     */
     static private function recupereInfo($noeud)
     {
-
         $info = new stdClass();
         $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
-        ;
+        
+        // $urlLongueur = strpos($info->img , "?" ) ;
+        // var_dump($urlLongueur );
+        
+        // $imgUrl = str_split($info->img, $urlLongueur );
+        // $info->img = $imgUrl[0];
+
         $a_titre = $noeud->getElementsByTagName("a")->item(0);
         $info->url = $a_titre->getAttribute('href');
 
@@ -145,7 +140,13 @@ class SAQController extends Controller
         return $info;
     }
 
-    private function ajouteProduit($bte)
+    // TODO : Methode à corriger
+    /**
+     * Ajoute un produit dans la table bouteille.
+     * @param $bte
+     * @return stdClass
+     */
+    private function ajouteProduits($bte)
     {
         $retour = new stdClass();
         $retour->succes = false;

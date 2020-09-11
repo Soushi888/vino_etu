@@ -7,34 +7,63 @@ use Illuminate\Support\Facades\Response;
 use App\Cellier;
 
 
+/**
+ * Gère l'API celliers
+ * @package App\Http\Controllers
+ */
 class CellierController extends Controller
 {
+    /**
+     * Retourne toutes les celliers
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index() {
 
         return Response::json(Cellier::all());
     }
 
-  
 
-   public function show(Cellier $cellier)
+    /**
+     * Retourne un cellier
+     * @param Cellier $cellier
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Cellier $cellier)
    {
        return Response::json($cellier);
    }
 
-  
-   public function store(Request $request)
+
+    /**
+     * Enregistre un cellier
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
    {
        return Response::json(cellier::create($request->all()), 201);
    }
 
- 
-   public function update(Request $request, Cellier $cellier)
+
+    /**
+     * Modifie un cellier
+     * @param Request $request
+     * @param Cellier $cellier
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, Cellier $cellier)
    {
        return Response::json($cellier->update($request->all()), 200);
    }
-  
 
-   public function destroy(Cellier $cellier)
+
+    /**
+     * Supprime un cellier
+     * @param Cellier $cellier
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(Cellier $cellier)
    {
        $cellier->delete();
 
