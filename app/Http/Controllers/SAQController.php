@@ -7,22 +7,32 @@ use DOMDocument;
 use Illuminate\Support\Facades\Response;
 use stdClass;
 
+/**
+ * Interragit avec le site web de la SAQ pour extraire des données du DOM puis les formater JSON.
+ * Methode GET et POST
+ * @package App\Http\Controllers
+ */
 class SAQController extends Controller
 {
-
     const DUPLICATION = 'duplication';
     const ERREURDB = 'erreurdb';
     const INSERE = 'Nouvelle bouteille insérée';
 
+    /**
+     * @var $_webpage DOMDocument le DOM de la page du site web de la SAQ qui sera parsé
+     */
     private static $_webpage;
-    private static $_status;
-    private $stmt;
 
     /**
-     * getProduits
-     * @param int $nombre
-     * @param int $debut
-     * @throws \Exception
+     * @var $_status int Code HTTP
+     */
+    private static $_status;
+
+    /**
+     * Retourne la liste des vins rouges
+     * @param int $nombre Nombre de vins par page de recherche
+     * @param int $page Nombre de page de recherche
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getProduits($nombre = 24, $page = 1)
     {
@@ -50,7 +60,7 @@ class SAQController extends Controller
         
         $infos = [];
         
-        foreach ($elements as $key => $noeud) { 
+        foreach ($elements as $key => $noeud) {
             if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
                 $info = self::recupereInfo($noeud);
                 array_push($infos, $info);
@@ -60,14 +70,23 @@ class SAQController extends Controller
 
     }
 
+    /**
+     * Supprime les espaces d'une chaîne de caractère donnée
+     * @param $chaine
+     * @return string|string[]|null
+     */
     static private function nettoyerEspace($chaine)
     {
         return preg_replace('/\s+/', ' ', $chaine);
     }
 
+    /**
+     * Formate le noeud HTML en paramètre pour en extraire le lien de l'image, l'url, le nom, la description, le type, le format, le pays, le code SAQ et le prix.
+     * @param $noeud DOMNode Noeud HTML <li>
+     * @return stdClass
+     */
     static private function recupereInfo($noeud)
     {
-
         $info = new stdClass();
         $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
         
@@ -121,6 +140,12 @@ class SAQController extends Controller
         return $info;
     }
 
+    // TODO : Methode à corriger
+    /**
+     * Ajoute un produit dans la table bouteille.
+     * @param $bte
+     * @return stdClass
+     */
     private function ajouteProduits($bte)
     {
         $retour = new stdClass();
