@@ -17,13 +17,6 @@ class SAQController extends Controller
     private static $_status;
     private $stmt;
 
-    // public function __construct() {
-    // 	parent::__construct();
-    // 	if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino_bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-    // 		echo "Echec de la préparation : (" . $mysqli -> errno . ") " . $mysqli -> error;
-    // 	}
-    // }
-
     /**
      * getProduits
      * @param int $nombre
@@ -38,43 +31,39 @@ class SAQController extends Controller
         curl_setopt($s, CURLOPT_URL, $url);
         curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($s, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($s, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($s, CURLOPT_SSL_VERIFYPEER, FALSE);
 
         self::$_webpage = curl_exec($s);
         self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
         curl_close($s);
-
+     
         $doc = new DOMDocument("", "");
         $doc->recover = true;
         $doc->strictErrorChecking = false;
         libxml_use_internal_errors(true);
         $doc->loadHTML(self::$_webpage);
+
+        
         $elements = $doc->getElementsByTagName("li");
         $i = 0;
-
+        
+        $infos = [];
+        
         foreach ($elements as $key => $noeud) {
             //var_dump($noeud -> getAttribute('class')) ;
             //if ("resultats_product" == str$noeud -> getAttribute('class')) {
+                dd($key);
             if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
-
+                
                 //echo $this->get_inner_html($noeud);
                 $info = self::recupereInfo($noeud);
-                dd($info);
-                echo "<p>" . $info->nom;
-                $retour = $this->ajouteProduit($info);
-                echo "<br>Code de retour : " . $retour->raison . "<br>";
-                if ($retour->succes == false) {
-                    echo "<pre>";
-                    var_dump($info);
-                    echo "</pre>";
-                    echo "<br>";
-                } else {
-                    $i++;
-                }
-                echo "</p>";
+                array_push($infos, $info);
             }
         }
+        
+        return $infos;
 
-        return $i;
     }
 
     private function get_inner_html($node)
