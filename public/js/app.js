@@ -23,5 +23,20 @@ function afficheLesBouteilles(bouteilles){
 reponseJson.then(afficheLesBouteilles);
 
 
+/* ar reponse = fetch("api/saq");
+var reponseJson = reponse.then(function(res){
+    return res.json();
+});
+
+
+function afficheSaq(saq){
+    console.log(saq);
+
+};
+
+reponseJson.then(afficheSaq);
+ */
+
+
 
 
