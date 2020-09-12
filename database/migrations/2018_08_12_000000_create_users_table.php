@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
 //            $table->string('prenom');
             $table->string('email')->unique();
             $table->foreignId("adresse_id")->nullable()->references("id")->on("adresses");
-            $table->foreignId("default_cellier_id")->nullable()->references("id")->on("celliers");
+            $table->bigInteger("cellier_id")->nullable();
             $table->timestamp('email_verified_at')->nullable();
 //            $table->string('type');
             $table->string('password');
