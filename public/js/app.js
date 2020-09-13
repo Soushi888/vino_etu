@@ -8,7 +8,7 @@
 
 // function afficheLesBouteilles(bouteilles){
 //     console.log(bouteilles);
-    
+
 //     let pageAcceuil = document.querySelector("#pageAcceuil>h1");
 //         for(let i=0; i<bouteilles.length;i++){
 //         let eUl = document.createElement("ul");
@@ -24,49 +24,55 @@
 
 
 var reponse = fetch("api/saq");
-var reponseJson = reponse.then(function(res){
+var reponseJson = reponse.then(function (res) {
     return res.json();
 });
 
- let tableauSaq = ["desc","img","nom","prix","url"]; 
- let tableauSaqDesc = ["code_SAQ","format","pays","texte","type"]
+let tableauSaq = ["desc", "img", "nom", "prix", "url"];
+let tableauSaqDesc = ["code_SAQ", "format", "pays", "texte", "type"]
 
 
-function afficheSaq(saq){
-    //console.log(saq[0]);
+function afficheSaq(saq) {
+    //console.log(saq);
 
     let pageAcceuil = document.querySelector("#pageAcceuil");
-    for(let i=0; i<saq.length;i++){
-    let eUl = document.createElement("ul");
-        for(let j=0;j<tableauSaq.length;j++){
-            if(tableauSaq[j] === "desc"){
-                for(let k=0;k<tableauSaqDesc.length; k++){
+    for (let i = 0; i < saq.length; i++) {
+        //console.log(saq);
+        let eUl = document.createElement("ul");
+        for (let j = 0; j < tableauSaq.length; j++) {
+            if (tableauSaq[j] === "desc") {
+                for (let k = 0; k < tableauSaqDesc.length; k++) {
                     let eLi = document.createElement("li");
                     let eTexteDesc = document.createTextNode(saq[i].desc[tableauSaqDesc[k]]);
                     eLi.appendChild(eTexteDesc);
                     eUl.appendChild(eLi)
-                    
-                } 
+
+                }
             }
 
-        let eLi = document.createElement("li");
+            let eLi = document.createElement("li");
 
-        let eTexte = document.createTextNode(saq[i][tableauSaq[j]]);
-        eLi.appendChild(eTexte);
+            if (tableauSaq[j] === tableauSaq[1]) {
+                let eImg = document.createElement("img");
+                eImg.setAttribute("src", saq[i].img)
+                console.log(eImg);
+                eLi.appendChild(eImg);
 
-         eUl.appendChild(eLi)  
-         pageAcceuil.appendChild(eUl)
+            }else{
+                let eTexte = document.createTextNode(saq[i][tableauSaq[j]]);
+                eLi.appendChild(eTexte);
+            }
+
+
+
+            eUl.appendChild(eLi)
+            pageAcceuil.appendChild(eUl)
+
+        }
 
     }
-
-}
 
 
 };
 
 reponseJson.then(afficheSaq);
- 
-
-
-
-
