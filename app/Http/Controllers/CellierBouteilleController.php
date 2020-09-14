@@ -18,9 +18,11 @@ class CellierBouteilleController extends Controller
      * @param $Cellier
      * @return JsonResponse
      */
-    public function index($Cellier) {
+    public function index($Cellier)
+    {
+        $bouteilles = CellierBouteille::where('cellier_id', request('cellier'))->get();
 
-        return Response::json(CellierBouteille::all());
+        return Response::json($bouteilles);
     }
 
 
@@ -30,9 +32,12 @@ class CellierBouteilleController extends Controller
      * @return JsonResponse
      */
     public function show(CellierBouteille $CellierBouteille)
-   {
-       return Response::json($CellierBouteille);
-   }
+    {
+        $bouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('id', request('bouteille'))->get();
+
+
+        return Response::json($bouteille);
+    }
 
 
     /**
@@ -41,9 +46,9 @@ class CellierBouteilleController extends Controller
      * @return JsonResponse
      */
     public function store(Request $request)
-   {
-       return Response::json(CellierBouteille::create($request->all()), 201);
-   }
+    {
+        return Response::json(CellierBouteille::create($request->all()), 201);
+    }
 
 
     /**
@@ -53,9 +58,11 @@ class CellierBouteilleController extends Controller
      * @return JsonResponse
      */
     public function update(Request $request, CellierBouteille $CellierBouteille)
-   {
-       return Response::json($CellierBouteille->update($request->all()), 200);
-   }
+    {
+        $bouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('bouteille_id', request('bouteille'))->get();
+
+        return Response::json($bouteille->update($request->all()), 200);
+    }
 
 
     /**
@@ -64,10 +71,11 @@ class CellierBouteilleController extends Controller
      * @return JsonResponse
      * @throws \Exception
      */
-    public function destroy(CellierBouteille $CellierBouteille)
-   {
-       $CellierBouteille->delete();
+    public
+    function destroy(CellierBouteille $CellierBouteille)
+    {
+        $CellierBouteille->delete();
 
-       return Response::json(null, 204);
-   }
+        return Response::json(null, 204);
+    }
 }

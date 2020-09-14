@@ -14,7 +14,8 @@ class CreateCellierBouteillesTable extends Migration
     public function up()
     {
         Schema::create('cellier_bouteilles', function (Blueprint $table) {
-            $table->foreignId('bouteille_id')->references("id")->on("bouteilles");
+            $table->id();
+            $table->foreignId('bouteille_id')->nullable()->references("id")->on("bouteilles");
             $table->foreignId('cellier_id')->references("id")->on("celliers");
             $table->bigInteger("quantite");
             $table->timestamp("date_achat")->nullable();
