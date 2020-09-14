@@ -17,8 +17,6 @@ API faite avec Laravel et front end en AJAX.
 
 ## Démo
 
-
-
 #### Fonctionnalités disponibles
 - [Page `/`](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/) - Écran de connexion **OU** Page d'accueil (actuellement liste des bouteilles).
   
@@ -51,46 +49,42 @@ Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme **PO
 
 ## Installation en local
 
+
+
 1. Copiez le fichier .env.example et renommez le .env
 2. Indiquez-y vos informations pour connecter votre base de données
 3. Exécutez les commandes suivantes :
 
 Pour installer les dépendances, si pas déjà fait, installer [Composer](https://getcomposer.org/download/) puis :
 
-    $ composer install
+    > composer install
 
 Générer le APP_KEY (encrypter les cookies) :
 
-    $ php artisan key:generate
+    > php artisan key:generate
 
 Nettoyer le cache et les configues
 
-    $ php artisan cache:clear
+    > php artisan cache:clear
 
-    $ php artisan config:clear
+    > php artisan config:clear
 
 Générer la BDD avec des données test
 
-    $ php artisan migrate --seed
+    > php artisan migrate --seed
 
+Lancer le serveur
+
+    > php artisan serve
+    
 ## Front-end
-
-Pour travailler la partie front-end, vous avez besoins de node et de npm. Une fois les deux installés :
-
-Installer les dépendances :
-
-    $ npm install
-
-Compiler le dossier ressources/ à chaque sauvegarde dedans :
-
-    $ npm run watch
 
 Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets pré-compilés dans leurs sous-dossiers dans `/ressources` et les assets compilés se retrouve dans `/public`.
 
 ## Routes
 ### Public
 
-Les routes publiques se trouvent dans le fichier routes/web.php
+Les routes publiques se trouvent en grande partie dans le fichier routes/web.php
 
 - `/` : Page d'Accueil
 - `/login` : Écran de connection

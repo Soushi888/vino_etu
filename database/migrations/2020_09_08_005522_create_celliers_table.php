@@ -17,7 +17,6 @@ class CreateCelliersTable extends Migration
             $table->id();
             $table->string("nom");
             $table->foreignId("user_id")->references('id')->on('users');
-            $table->foreignId("adresse_id")->references('id')->on('adresses');
             $table->timestamps();
         });
 

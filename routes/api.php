@@ -31,14 +31,6 @@ Route::get('/saq', 'SAQController@getProduits');
 Route::put('/saq', 'SAQController@update');
 // End SAQ API
 
-// Adresse API
-Route::get('/adresses', 'AdresseController@index');
-Route::get('/adresses/{adresse}', 'AdresseController@show');
-Route::post('/adresses', 'AdresseController@store');
-Route::put('/adresses/{adresse}', 'AdresseController@update');
-Route::delete('/adresses/{adresse}', 'AdresseController@destroy');
-// End Adresse API
-
 // Bouteille API
 Route::get('/bouteilles', 'BouteilleController@index');
 Route::get('/bouteilles/{bouteille}', 'BouteilleController@show');
@@ -59,7 +51,8 @@ Route::delete('/celliers/{cellier}', 'CellierController@destroy');
 Route::get('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@index');
 Route::get('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@show');
 Route::post('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@store');
-Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
+Route::put('/celliers/{cellier}/bouteilles/{bouteille}/{date_achat}', 'CellierBouteilleController@update');
+//Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
 Route::delete('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@destroy');
 // End CelliersBouteille API
 
