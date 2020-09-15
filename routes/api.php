@@ -28,7 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // SAQ API
 Route::get('/saq', 'SAQController@getProduits');
-Route::put('/saq', 'SAQController@update');
+Route::post('/saq', 'SAQController@ajouterProduit');
 // End SAQ API
 
 // Bouteille API

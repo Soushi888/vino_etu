@@ -39,8 +39,8 @@ class SAQController extends Controller
     public function getProduits($nombre = 24, $page = 1)
     {
         $s = curl_init();
-        // $url = 'https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc';
-        $url = 'https://www.saq.com/fr/produits/vin/vin-rose?format_contenant_ml=1500';
+        $url = 'https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc';
+        // $url = 'https://www.saq.com/fr/produits/vin/vin-rose?format_contenant_ml=1500';
 
         
 
@@ -71,6 +71,7 @@ class SAQController extends Controller
                 array_push($infos, $info);
             }
         }
+        
         return response()->json($infos);
 
     }
@@ -115,6 +116,8 @@ class SAQController extends Controller
             if ($titre > 1) {
                 $nom = str_split($info->nom, $titre - 1);
                 $info->nom = $nom[0];
+
+                
             }
         }
         
@@ -166,33 +169,35 @@ class SAQController extends Controller
      */
     private function ajouteProduits($bte)
     {
-        $retour = new stdClass();
-        $retour->succes = false;
-        $retour->raison = '';
 
-        //var_dump($bte);
-        // Récupère le type
-        $rows = $this->_db->query("select id from vino_type where type = '" . $bte->desc->type . "'");
+        
+    //     $retour = new stdClass();
+    //     $retour->succes = false;
+    //     $retour->raison = '';
 
-        if ($rows->num_rows == 1) {
-            $type = $rows->fetch_assoc();
-            //var_dump($type);
-            $type = $type['id'];
+    //     //var_dump($bte);
+    //     // Récupère le type
+    //     $rows = $this->_db->query("select id from vino_type where type = '" . $bte->desc->type . "'");
 
-            $rows = $this->_db->query("select id from vino_bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
-            if ($rows->num_rows < 1) {
-                $this->stmt->bind_param("sissssisss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
-                $retour->succes = $this->stmt->execute();
-                $retour->raison = self::INSERE;
-                //var_dump($this->stmt);
-            } else {
-                $retour->succes = false;
-                $retour->raison = self::DUPLICATION;
-            }
-        } else {
-            $retour->succes = false;
-            $retour->raison = self::ERREURDB;
-        }
-        return $retour;
-    }
+    //     if ($rows->num_rows == 1) {
+    //         $type = $rows->fetch_assoc();
+    //         //var_dump($type);
+    //         $type = $type['id'];
+
+    //         $rows = $this->_db->query("select id from vino_bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
+    //         if ($rows->num_rows < 1) {
+    //             $this->stmt->bind_param("sissssisss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
+    //             $retour->succes = $this->stmt->execute();
+    //             $retour->raison = self::INSERE;
+    //             //var_dump($this->stmt);
+    //         } else {
+    //             $retour->succes = false;
+    //             $retour->raison = self::DUPLICATION;
+    //         }
+    //     } else {
+    //         $retour->succes = false;
+    //         $retour->raison = self::ERREURDB;
+    //     }
+    //     return $retour;
+    // }
 }
