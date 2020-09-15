@@ -167,8 +167,8 @@ class SAQController extends Controller
      * @param $bte
      * @return stdClass
      */
-    private function ajouteProduits($bte)
-    {
+    // private function ajouteProduits($bte)
+    // {
 
         
     //     $retour = new stdClass();
