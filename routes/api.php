@@ -28,7 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // SAQ API
 Route::get('/saq', 'SAQController@getProduits');
-Route::put('/saq', 'SAQController@update');
+Route::post('/saq', 'SAQController@ajouterProduit');
 // End SAQ API
 
 // Bouteille API
@@ -51,7 +51,7 @@ Route::delete('/celliers/{cellier}', 'CellierController@destroy');
 Route::get('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@index');
 Route::get('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@show');
 Route::post('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@store');
-Route::put('/celliers/{cellier}/bouteilles/{bouteille}/{date_achat}', 'CellierBouteilleController@update');
+Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
 //Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
 Route::delete('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@destroy');
 // End CelliersBouteille API

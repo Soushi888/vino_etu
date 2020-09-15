@@ -1,77 +1,55 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Vino-Inscription</title>
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <main class="content">
+               
+                <h1 class="logo"><img src="img/logo_vino.png" alt="vino"></h1>
+                <form class="form" action="/" method="post">
+                    <div class="form-group">
+                        <input class="input" type="text" name="prenom" placeholder="Prenom">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="nom" placeholder="Nom">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="rue" placeholder="Rue">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="ville" placeholder="Ville">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="pays" placeholder="Pays">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="code" placeholder="Code postale">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="text" name="tel" placeholder="Numéro de téléphone">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="email" name="courriel" placeholder="Courriel">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="password" name="mdp" placeholder="MDP">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-register" type="submit">S'inscrire</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-cancel" type="submit" formaction="identification.html">Annuler</button>
+                    </div>
+                </form>
+            </main>
         </div>
     </div>
-</div>
-@endsection
+</body>
+</html>
