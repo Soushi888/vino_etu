@@ -8,7 +8,7 @@ use App\Cellier;
 
 
 /**
- * Gère l'API celliers
+ * Gère l'API cellierscellier
  * @package App\Http\Controllers
  */
 class CellierController extends Controller

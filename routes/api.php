@@ -18,12 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Utilisateur API
-// Route::get('/utilisateurs', 'UtilisateurController@index');
-// Route::get('/utilisateurs/{utilisateur}', 'UtilisateurController@show');
-// Route::post('/utilisateurs', 'UtilisateurController@store');
-// Route::put('/utilisateurs/{utilisateur}', 'UtilisateurController@update');
-// Route::delete('/utilisateurs/{utilisateur}', 'UtilisateurController@destroy');
+// Users API
+ Route::get('/users', 'UserController@index');
+ Route::get('/users/{user}', 'UserController@show');
+ Route::get('/users/{user}/celliers', 'UserController@showCelliers');
+// Route::post('/users', 'UtilisateurController@store');
+// Route::put('/users/{user}', 'UtilisateurController@update');
+// Route::delete('/users/{user}', 'UtilisateurController@destroy');
 // End Utilisateur API
 
 // SAQ API
@@ -41,6 +42,7 @@ Route::delete('/bouteilles/{bouteille}', 'BouteilleController@destroy');
 
 // Cellier API
 Route::get('/celliers', 'CellierController@index');
+Route::get('/celliers/{id-user}', 'CellierController@showByUser');
 Route::get('/celliers/{cellier}', 'CellierController@show');
 Route::post('/celliers', 'CellierController@store');
 Route::put('/celliers/{cellier}', 'CellierController@update');
