@@ -59,7 +59,7 @@ class CellierBouteilleController extends Controller
      */
     public function update(Request $request, CellierBouteille $CellierBouteille)
     {
-        $bouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('bouteille_id', request('bouteille'))->get();
+        $bouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('bouteille_id', request('bouteille'));
 
         return Response::json($bouteille->update($request->all()), 200);
     }
@@ -74,6 +74,8 @@ class CellierBouteilleController extends Controller
     public
     function destroy(CellierBouteille $CellierBouteille)
     {
+        $CellierBouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('bouteille_id', request('bouteille'));
+        
         $CellierBouteille->delete();
 
         return Response::json(null, 204);
