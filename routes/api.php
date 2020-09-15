@@ -19,12 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Users API
- Route::get('/users', 'UserController@index');
- Route::get('/users/{user}', 'UserController@show');
- Route::get('/users/{user}/celliers', 'UserController@showCelliers');
-// Route::post('/users', 'UtilisateurController@store');
-// Route::put('/users/{user}', 'UtilisateurController@update');
-// Route::delete('/users/{user}', 'UtilisateurController@destroy');
+Route::get('/users', 'UserController@index');
+Route::get('/users/{user}', 'UserController@show');
+Route::get('/users/{user}/celliers', 'UserController@showCelliers');
+Route::post('/users', 'UserController@store');
+Route::put('/users/{user}', 'UserController@update');
+Route::delete('/users/{user}', 'UserController@destroy');
 // End Utilisateur API
 
 // SAQ API
