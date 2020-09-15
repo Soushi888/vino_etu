@@ -3,6 +3,7 @@
 //     return res.json();
 // });
 
+
 //  let tableauNomBouteilles = ["code_saq" ,"created_at" ,"description" ,"format" ,"id" 
 // ,"image" ,"image_url" ,"nom" ,"pays" ,"prix_saq" ,"type_id" ,"updated_at" ,"url_saq"] 
 
@@ -23,7 +24,7 @@
 // reponseJson.then(afficheLesBouteilles);
 
 
-var reponse = fetch("api/saq");
+/* var reponse = fetch("api/saq");
 var reponseJson = reponse.then(function (res) {
     return res.json();
 });
@@ -73,6 +74,29 @@ function afficheSaq(saq) {
     }
 
 
-};
+}; 
 
-reponseJson.then(afficheSaq);
+reponseJson.then(afficheSaq);*/
+
+let idUtilisateur = document.getElementById("idUtilisateur").value;
+
+console.log(idUtilisateur);
+
+
+var reponse = fetch("api/celliers/"+idUtilisateur); 
+var reponseJson = reponse.then(function (res) {
+    return res.json();
+});
+
+function afficheCellierDunUtilisateur(cellierUtilisateur){
+    console.log(cellierUtilisateur);
+     let afficheCellier = document.querySelector("#pageAcceuil");
+     let eLien = document.createElement("a");
+     eLien.setAttribute("href",cellierUtilisateur.nom);
+     eLien.innerHTML = cellierUtilisateur.nom;
+     afficheCellier.appendChild(eLien);
+}
+
+
+
+reponseJson.then(afficheCellierDunUtilisateur)
