@@ -19,20 +19,15 @@ API faite avec Laravel et front end en AJAX.
 
 #### Fonctionnalités disponibles
 - [Page `/`](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/) - Écran de connexion **OU** Page d'accueil (actuellement liste des bouteilles).
+- [Page `/register`](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/register) - Créer un nouveau compte
   
 #### API
 
-Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme **POSTMAN**.
+Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme ***POSTMAN***.
 
 ##### SAQ
 
 [`GET` - api/saq](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/saq)
-
-##### adresses
-
-[`GET` - api/adresses](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/adresses)
-
-[`GET` - api/saq/adresses/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/adresses/1)
 
 ##### bouteilles
 
@@ -46,10 +41,36 @@ Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme **PO
 
 [`GET` - api/saq/celliers/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1)
 
-
 ## Installation en local
 
+### Installation avec le script shell
 
+#### Windows
+
+Double cliquez sur l'icone du script `install-laravel.sh` qui se trouve à la racine de votre répertoire.
+Vous pouvez aussi le lancer en ligne de commande avec les commandes : 
+  
+    > install-laravel.sh
+ou 
+
+    > .\install-laravel.sh`.
+
+#### Linux
+
+Faites la commande :
+  
+    > ./install-laravel.sh
+
+---
+
+Une fois le script exécuté, configurer votre fichier .env et faites la commande
+    
+    > php artisan migrate:fresh --seed
+    
+Lancer le serveur
+
+    > php artisan serve
+### Installation manuelle
 
 1. Copiez le fichier .env.example et renommez le .env
 2. Indiquez-y vos informations pour connecter votre base de données
@@ -81,33 +102,40 @@ Lancer le serveur
 
 Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets pré-compilés dans leurs sous-dossiers dans `/ressources` et les assets compilés se retrouve dans `/public`.
 
+Si vous n'utilisé pas `npm`, Vous pouvez mettre vos fichiers HTML dans le dossier `/ressources/views` et vos fichiers CSS/JS et autres assets directement dans le dossier `/public`.
+
 ## Routes
 ### Public
 
 Les routes publiques se trouvent en grande partie dans le fichier routes/web.php
 
 - `/` : Page d'Accueil
-- `/login` : Écran de connection
+- `/login` : Écran de connexion
+- `/register` : Écran de création de compte
 
 ### API
 
 Les routes de l'api se trouvent dans le fichier routes/api.php
 
-#### utilisateurs
+#### users
 
 - `GET`       - `api/utilisateurs`                   : Retourner tout les utilisateurs
 - `GET`       - `api/utilisateurs/{id}`              : Retourner un utilisateur
+- `GET`       - `api/utilisateurs/{id}/celliers`     : Retourner les celliers d'un utilisateur
 - `POST`      - `api/utilisateurs`                   : Ajouter un utilisateur 
 - `PUT`       - `api/utilisateurs/{id}`              : Modifier un utilisateur
 - `DELETE`    - `api/utilisateurs/{id}`              : Supprimer un utilisateur
 
-#### adresses      
+#### saq
 
-- `GET`       - `api/adresses`                       : Retourner toutes les adresses
-- `GET`       - `api/adresses/{id}`                  : Retourner une adresse
-- `POST`      - `api/adresses`                       : Ajouter une adresse 
-- `PUT`       - `api/adresses/{id}`                  : Modifier une adresse
-- `DELETE`    - `api/adresses/{id}`                  : Supprimer une adresse
+- `GET`       - `api/saq`                            : Retourner les données de SAQ  
+  - requêtes de recherche possibles (ex : `api/saq?type=blanc&page=2`) :
+      - type : rouge | blanc | rose
+          - Défaut : rouge
+      - page : 1 et plus
+          - Défaut : 1
+
+- `POST`      - `api/saq`                            : Ajouter une bouteille de la SAQ
 
 #### bouteilles
 
@@ -132,8 +160,3 @@ Les routes de l'api se trouvent dans le fichier routes/api.php
 - `POST`      - `api/celliers/{id}/bouteilles`       : Ajouter une bouteille dans un cellier 
 - `PUT`       - `api/celliers/{id}/bouteilles`       : Modifier une bouteille d'un cellier
 - `DELETE`    - `api/celliers/{id}/bouteilles`       : Supprimer une bouteille d'un cellier
-
-#### saq
-
-- `GET`       - `api/saq`                            : Retourner les données de la saq
-- `POST`      - `api/saq`                            : Mettre a jours la table bouteilles avec les données de la saq
