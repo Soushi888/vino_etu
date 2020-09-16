@@ -9,6 +9,5 @@ $factory->define(Cellier::class, function (Faker $faker) {
     return [
         "nom" => $faker->name,
         "user_id" => $faker->numberBetween(1, 2),
-        "adresse_id" => $faker->numberBetween(1, 2),
     ];
 });
