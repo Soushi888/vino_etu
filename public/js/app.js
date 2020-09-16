@@ -82,21 +82,44 @@ let idUtilisateur = document.getElementById("idUtilisateur").value;
 
 console.log(idUtilisateur);
 
-
-var reponse = fetch("api/celliers/"+idUtilisateur); 
+var reponse = fetch("api/users/"+idUtilisateur+"/celliers"); 
 var reponseJson = reponse.then(function (res) {
     return res.json();
 });
 
 function afficheCellierDunUtilisateur(cellierUtilisateur){
     console.log(cellierUtilisateur);
-     let afficheCellier = document.querySelector("#pageAcceuil");
-     let eLien = document.createElement("a");
-     eLien.setAttribute("href",cellierUtilisateur.nom);
-     eLien.innerHTML = cellierUtilisateur.nom;
-     afficheCellier.appendChild(eLien);
+    let idCellier = "";
+    let afficheCellier = document.querySelector("#pageAcceuil");
+    let eUl = document.createElement("ul");
+        eUl.setAttribute("id","listCellier")
+    for(let i=0; i<cellierUtilisateur.length;i++){
+        let eLi = document.createElement("li");
+        eLi.setAttribute("id","idCellier"+cellierUtilisateur[i].id)
+        eLi.innerHTML= cellierUtilisateur[i].nom;
+        eLi.style.cursor = "pointer";
+        afficheCellier.appendChild(eUl).appendChild(eLi);
+        eLi.addEventListener("click",function(evt){
+            idCellier = evt.target.id.replace("idCellier", " ");            
+            console.log(idCellier);
+            eUl.setAttribute("id","listCellierAvecBouteilles");
+            eUl.innerHTML="";
+            /*je suis bloquer ici avec le fetch je veux pas faire un function a l'externe*/
+            let reponseDesbouteilleDuCelliers = fetch("api/celliers/"+idCellier+"/bouteilles");
+
+            let reponseJsonDesbouteilleDuCelliers = reponseDesbouteilleDuCelliers.then(function (res){
+               console.log(reponseDesbouteilleDuCelliers);
+            });
+            
+
+        });
+        
+    }
+      
+
 }
 
 
 
 reponseJson.then(afficheCellierDunUtilisateur)
+
