@@ -40,18 +40,15 @@ class SAQController extends Controller
     {
         $request = $_GET;
 
-
+        // Valeur de recherche par défaut.
         if (isset($request["type"]) == "") {
             $request["type"] = "rouge";
         }
         if (isset($request["page"]) == "") {
             $request["page"] = "1";
         }
-        if (isset($request["order"]) == "") {
-            $request["order"] = "asc";
-        }
-        //TODO corriger order desc
-        $url = "https://www.saq.com/fr/produits/vin/vin-" . $request['type'] . "?p=" . $request['page'] . "&product_list_limit=24&product_listorder=name_" . $request['order'];
+
+        $url = "https://www.saq.com/fr/produits/vin/vin-" . $request['type'] . "?p=" . $request['page'] . "&product_list_limit=24&product_list_order=name_asc";
         $s = curl_init();
 
         curl_setopt($s, CURLOPT_URL, $url);
@@ -167,9 +164,10 @@ class SAQController extends Controller
                 }
             }
         }
-        //TODO corriger url_image
+
         $info->url_image = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src');
 
+        // Récupération de l'URL sans les requêtes GET
         $urlLongueur = strpos($info->url_image, "?");
         if ($urlLongueur > 1) {
             $imgUrl = str_split($info->url_image, $urlLongueur);
@@ -181,6 +179,7 @@ class SAQController extends Controller
 
         return $info;
     }
+
     /**
      * Ajoute un produit dans la table bouteille.
      * @param $bte
@@ -192,7 +191,8 @@ class SAQController extends Controller
 
         if ($resultat > 0) {
             return Response::json("Déjà en inventaire");
+        } else {
+            return Response::json(Bouteille::create($request->all()), 201);
         }
-        return Response::json(Bouteille::create($request->all()), 201);
     }
 }

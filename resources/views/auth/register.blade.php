@@ -46,11 +46,11 @@
                         autocomplete="new-password" placeholder="comfirmation MDP">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-register" type="submit" class="btn btn-primary"> {{ __('Register') }}
+                    <button class="btn btn-register" type="submit" class="btn btn-primary"> S'enregistrer
                     </button>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-cancel" type="submit" formaction="identification.html">Annuler</button>
+                    <button class="btn btn-cancel" onclick="window.location.href='{{ route('login') }}'">Annuler</button>
                 </div>
             </form>
         </main>
