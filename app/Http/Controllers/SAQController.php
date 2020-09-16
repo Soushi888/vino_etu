@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bouteille;
 use Illuminate\Http\Request;
 use DOMDocument;
 use Illuminate\Support\Facades\Response;
@@ -28,7 +29,6 @@ class SAQController extends Controller
      */
     private static $_status;
 
-   
 
     /**
      * Retourne la liste des vins rouges
@@ -36,24 +36,34 @@ class SAQController extends Controller
      * @param int $page Nombre de page de recherche
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getProduits($nombre = 24, $page = 1)
+    public function getProduits()
     {
-        $s = curl_init();
-        $url = 'https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc';
-        // $url = 'https://www.saq.com/fr/produits/vin/vin-rose?format_contenant_ml=1500';
+        $request = $_GET;
 
-        
+
+        if (isset($request["type"]) == "") {
+            $request["type"] = "rouge";
+        }
+        if (isset($request["page"]) == "") {
+            $request["page"] = "1";
+        }
+        if (isset($request["order"]) == "") {
+            $request["order"] = "asc";
+        }
+        //TODO corriger order desc
+        $url = "https://www.saq.com/fr/produits/vin/vin-" . $request['type'] . "?p=" . $request['page'] . "&product_list_limit=24&product_listorder=name_" . $request['order'];
+        $s = curl_init();
 
         curl_setopt($s, CURLOPT_URL, $url);
         curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($s, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($s, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($s, CURLOPT_SSL_VERIFYPEER, FALSE);
-        
+
         self::$_webpage = curl_exec($s);
         self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
         curl_close($s);
-     
+
         $doc = new DOMDocument("", "");
         $doc->recover = true;
         $doc->strictErrorChecking = false;
@@ -62,18 +72,17 @@ class SAQController extends Controller
 
         $elements = $doc->getElementsByTagName("li");
         $i = 0;
-        
+
         $infos = [];
-        
+
         foreach ($elements as $key => $noeud) {
             if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
                 $info = self::recupereInfo($noeud);
                 array_push($infos, $info);
             }
         }
-        
-        return response()->json($infos);
 
+        return response()->json($infos);
     }
 
     /**
@@ -86,7 +95,7 @@ class SAQController extends Controller
         return preg_replace('/\s+/', ' ', $chaine);
     }
 
-    
+
     /**
      * Formate le noeud HTML en paramètre pour en extraire le lien de l'image, l'url, le nom, la description, le type, le format, le pays, le code SAQ et le prix.
      * @param $noeud DOMNode Noeud HTML <li>
@@ -94,50 +103,16 @@ class SAQController extends Controller
      */
     static private function recupereInfo($noeud)
     {
-        $info = new stdClass();
-        $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src');
-        
-        $urlLongueur = strpos($info->img , "?" );
-        if ($urlLongueur > 1) {
-            $imgUrl = str_split($info->img, $urlLongueur);
-            $info->img = $imgUrl[0];
-         }
-       
-        // tableau des formats des bouteilles SAQ
-        $formats = ["1 L","1,5 L", "250 ml","3 L","375 ml","750 ml"];
-    
+        $formats = ["1 L", "1,5 L", "250 ml", "3 L", "375 ml", "750 ml"];
         $a_titre = $noeud->getElementsByTagName("a")->item(0);
-        $info->url = $a_titre->getAttribute('href');
+        $info = new stdClass();
+        $info->nom = self::nettoyerEspace(trim($a_titre->textContent));
 
-        $info->nom = self::nettoyerEspace(trim($a_titre->textContent));    
-        
-        foreach($formats as $format) {
-            $titre = strpos($info->nom , $format );
+        foreach ($formats as $format) {
+            $titre = strpos($info->nom, $format);
             if ($titre > 1) {
                 $nom = str_split($info->nom, $titre - 1);
                 $info->nom = $nom[0];
-
-                
-            }
-        }
-        
-            
-        // Type, format et pays
-        $aElements = $noeud->getElementsByTagName("strong");
-        foreach ($aElements as $node) {
-            if ($node->getAttribute('class') == 'product product-item-identity-format') {
-                $info->desc = new stdClass();
-                $info->desc->texte = $node->textContent;
-                $info->desc->texte = self::nettoyerEspace($info->desc->texte);
-                $aDesc = explode("|", $info->desc->texte); // Type, Format, Pays
-                if (count($aDesc) == 3) {
-
-                    $info->desc->type = trim($aDesc[0]);
-                    $info->desc->format = trim($aDesc[1]);
-                    $info->desc->pays = trim($aDesc[2]);
-                }
-
-                $info->desc->texte = trim($info->desc->texte);
             }
         }
 
@@ -146,58 +121,78 @@ class SAQController extends Controller
         foreach ($aElements as $node) {
             if ($node->getAttribute('class') == 'saq-code') {
                 if (preg_match("/\d+/", $node->textContent, $aRes)) {
-                    $info->desc->code_SAQ = trim($aRes[0]);
+                    $info->code_saq = trim($aRes[0]);
                 }
+            }
+        }
+
+        // Type, format et pays
+        $aElements = $noeud->getElementsByTagName("strong");
+        foreach ($aElements as $node) {
+            if ($node->getAttribute('class') == 'product product-item-identity-format') {
+                $info->description = $node->textContent;
+                $info->description = self::nettoyerEspace($info->description);
+                $aDesc = explode("|", $info->description); // Type, Format, Pays
+                $info->pays = trim($aDesc[2]);
+                if (count($aDesc) == 3) {
+
+                    switch (trim($aDesc[0])) {
+                        case 'Vin rouge':
+                            $info->type_id = 1;
+                            break;
+
+                        case 'Vin blanc':
+                            $info->type_id = 2;
+                            break;
+
+                        case 'Vin rosé':
+                            $info->type_id = 3;
+                            break;
+                    }
+                    $info->format = trim($aDesc[1]);
+                }
+
+                $info->description = trim($info->description);
             }
         }
 
         $aElements = $noeud->getElementsByTagName("span");
         foreach ($aElements as $node) {
             if ($node->getAttribute('class') == 'price') {
-                $info->prix = trim($node->textContent);
+                $posPrix = strpos($node->textContent, "$");
+                if ($posPrix > 1) {
+                    $info->prix_saq = str_split($node->textContent, $posPrix);
+                    $info->prix_saq = str_replace(",", ".", $info->prix_saq);
+                    $info->prix_saq = floatval($info->prix_saq[0]);
+                }
             }
         }
+        //TODO corriger url_image
+        $info->url_image = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src');
+
+        $urlLongueur = strpos($info->url_image, "?");
+        if ($urlLongueur > 1) {
+            $imgUrl = str_split($info->url_image, $urlLongueur);
+            $info->url_image = $imgUrl[0];
+        }
+
+        // tableau des formats des bouteilles SAQ
+        $info->url_saq = $a_titre->getAttribute('href');
+
         return $info;
     }
-
-    // TODO : Methode à corriger
-    //
     /**
      * Ajoute un produit dans la table bouteille.
      * @param $bte
      * @return stdClass
      */
-    // private function ajouteProduits($bte)
-    // {
+    public function ajouterProduit(Request $request)
+    {
+        $resultat = count(Bouteille::where("code_saq", $request->code_saq)->get());
 
-        
-    //     $retour = new stdClass();
-    //     $retour->succes = false;
-    //     $retour->raison = '';
-
-    //     //var_dump($bte);
-    //     // Récupère le type
-    //     $rows = $this->_db->query("select id from vino_type where type = '" . $bte->desc->type . "'");
-
-    //     if ($rows->num_rows == 1) {
-    //         $type = $rows->fetch_assoc();
-    //         //var_dump($type);
-    //         $type = $type['id'];
-
-    //         $rows = $this->_db->query("select id from vino_bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
-    //         if ($rows->num_rows < 1) {
-    //             $this->stmt->bind_param("sissssisss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
-    //             $retour->succes = $this->stmt->execute();
-    //             $retour->raison = self::INSERE;
-    //             //var_dump($this->stmt);
-    //         } else {
-    //             $retour->succes = false;
-    //             $retour->raison = self::DUPLICATION;
-    //         }
-    //     } else {
-    //         $retour->succes = false;
-    //         $retour->raison = self::ERREURDB;
-    //     }
-    //     return $retour;
-    // }
+        if ($resultat > 0) {
+            return Response::json("Déjà en inventaire");
+        }
+        return Response::json(Bouteille::create($request->all()), 201);
+    }
 }

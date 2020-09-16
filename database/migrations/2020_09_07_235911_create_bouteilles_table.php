@@ -21,7 +21,7 @@ class CreateBouteillesTable extends Migration
             $table->text("description");
             $table->float("prix_saq");
             $table->string("url_saq");
-            $table->string("url_image");
+            $table->string("url_image")->nullable();
             $table->string("format");
             $table->foreignId("type_id")->references('id')->on('types');
             $table->timestamps();
