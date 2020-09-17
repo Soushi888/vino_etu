@@ -102,21 +102,20 @@ function afficheCellierDunUtilisateur(cellierUtilisateur){
         eLi.addEventListener("click",function(evt){
             idCellier = evt.target.id.replace("idCellier", " ");            
             console.log(idCellier);
-            eUl.setAttribute("id","listCellierAvecBouteilles");
             eUl.innerHTML="";
-            /*je suis bloquer ici avec le fetch je veux pas faire un function a l'externe*/
+            eUl.setAttribute("id","listCellierAvecBouteilles");
             let reponseDesbouteilleDuCelliers = fetch("api/celliers/"+idCellier+"/bouteilles");
-
-            let reponseJsonDesbouteilleDuCelliers = reponseDesbouteilleDuCelliers.then(function (res){
-               console.log(reponseDesbouteilleDuCelliers);
+            let reponseDesbouteilleDuCelliersJson = reponseDesbouteilleDuCelliers.then(function (reponseHttp){                
+                return reponseHttp.json();                  
+            })
+            reponseDesbouteilleDuCelliersJson.then(function(res){
+                
+                for(let i=0; i<res.length;i++){
+                    console.log(res[i]);                    
+                }
             });
-            
-
         });
-        
     }
-      
-
 }
 
 
