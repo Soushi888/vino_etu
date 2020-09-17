@@ -20,6 +20,7 @@ class CreateBouteillesTable extends Migration
             $table->string("pays");
             $table->text("description")->nullable();
             $table->float("prix_saq")->nullable();
+            $table->string("url_saq")->nullable();
             $table->string("url_image")->nullable();
             $table->string("format");
             $table->foreignId("type_id")->references('id')->on('types');
