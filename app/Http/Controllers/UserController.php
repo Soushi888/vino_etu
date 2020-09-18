@@ -8,6 +8,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\User;
 use App\Cellier;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\CellierResource;
 
 class UserController extends Controller
 {
@@ -18,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
 
-        return Response::json(User::all());
+        return UserResource::collection(User::all());
     }
 
 
@@ -29,7 +32,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return Response::json($user);
+        return new UserResource($user);
+        // return Response::json($user);
     }
 
     /**
@@ -39,8 +43,8 @@ class UserController extends Controller
      */
     public function showCelliers(User $user)
     {
-
-        return Response::json(Cellier::where("user_id", $user->id)->get());
+        // return response(Cellier::where("user_id", $user->id)->get());
+        return new CellierResource(Cellier::where("user_id", $user->id)->get());
     }
 
     /**
@@ -50,7 +54,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return Response::json(User::create($request->all()), 201);
+        $validator = Validator::make($request->all(), [
+            "name" => "string|required",
+            "prenom" => "string",
+            "email" => "email|required",
+            "email_verified_at" => "string",
+            "type" => "string|required"
+        ]);
+
+        if ($validator->passes()) {
+            return response()->json(User::create($request->all()), 200);
+        }
+
+        return response()->json(['erreur' => $validator->errors()->all()]);
     }
 
 
@@ -62,7 +78,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        return Response::json($user->update($request->all()), 200);
+        $validator = Validator::make($request->all(), [
+            "name" => "string|required",
+            "prenom" => "string",
+            "email" => "email|required",
+            "email_verified_at" => "string",
+            "type" => "string|required"
+        ]);
+
+        if ($validator->passes()) {
+            return response()->json($user->update($request->all()), 200);
+        }
+
+        return response()->json(['erreur' => $validator->errors()->all()]);
     }
 
 
@@ -74,8 +102,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
 
-        return Response::json("Utilisateur supprimé avec succès.", 204);
+        if ($user->delete())
+        return Response::json("null", 204);
     }
 }

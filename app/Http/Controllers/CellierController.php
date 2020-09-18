@@ -7,6 +7,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Cellier;
+use App\Http\Resources\CellierResource;
+use Illuminate\Support\Facades\Validator;
+
 
 
 /**
@@ -20,8 +23,7 @@ class CellierController extends Controller
      * @return JsonResponse
      */
     public function index() {
-
-        return Response::json(Cellier::all());
+        return CellierResource::collection(Cellier::all());
     }
 
 
@@ -32,7 +34,8 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier)
    {
-       return Response::json($cellier);
+    //    return Response::json($cellier);
+       return new CellierResource($cellier);
    }
 
 
@@ -43,7 +46,16 @@ class CellierController extends Controller
      */
     public function store(Request $request)
    {
-       return Response::json(Cellier::create($request->all()), 201);
+    $validator = Validator::make($request->all(), [
+        "nom" => "string|required",
+        "user_id" => "integer"
+    ]);
+
+    if ($validator->passes()) {
+        return response()->json(Cellier::create($request->all()), 200);
+    }
+
+    return response()->json(['erreur' => $validator->errors()->all()]);
    }
 
 
@@ -55,7 +67,17 @@ class CellierController extends Controller
      */
     public function update(Request $request, Cellier $cellier)
    {
-       return Response::json($cellier->update($request->all()), 200);
+
+    $validator = Validator::make($request->all(), [
+        "nom" => "string|required",
+        "user_id" => "integer"
+    ]);
+
+    if ($validator->passes()) {
+        return response()->json($cellier->update($request->all()), 200);
+    }
+
+    return response()->json(['erreur' => $validator->errors()->all()]);
    }
 
 
@@ -67,8 +89,8 @@ class CellierController extends Controller
      */
     public function destroy(Cellier $cellier)
    {
-       $cellier->delete();
 
-       return Response::json("Cellier supprimé avec succès.", 204);
+    if ($cellier->delete())
+            return Response::json("null", 204);
    }
 }

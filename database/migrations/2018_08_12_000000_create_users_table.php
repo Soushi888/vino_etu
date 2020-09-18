@@ -18,9 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('prenom')->nullable();
             $table->string('email')->unique();
-            $table->bigInteger("cellier_id")->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('type')->nullable();
+            $table->string('type')->default("user");
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
