@@ -16,7 +16,7 @@ class CreateCelliersTable extends Migration
         Schema::create('celliers', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
-            $table->foreignId("user_id")->references('id')->on('users');
+            $table->foreignId("user_id")->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
 
