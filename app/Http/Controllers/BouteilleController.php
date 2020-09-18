@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Bouteille;
+use App\Http\Resources\BouteilleResource;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Gère les routes de l'API bouteilles
@@ -16,9 +18,9 @@ class BouteilleController extends Controller
      * Retournes toutes les bouteilles de la BDD
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index() {
-
-        return Response::json(Bouteille::all());
+    public function index()
+    {
+        return BouteilleResource::collection(Bouteille::all());
     }
 
 
@@ -28,9 +30,9 @@ class BouteilleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Bouteille $bouteille)
-   {
-       return Response::json($bouteille);
-   }
+    {
+        return new BouteilleResource($bouteille);
+    }
 
 
     /**
@@ -38,10 +40,26 @@ class BouteilleController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
-   {
-       return Response::json(Bouteille::create($request->all()), 201);
-   }
+    public static function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            "nom" => "string|required",
+            "code_saq" => "string",
+            "pays" => "string|required",
+            "description" => "string",
+            "prix_saq" => "numeric",
+            "url_image" => "url",
+            "url_saq" => "url",
+            "format" => "string|required",
+            "type_id" => "integer",
+        ]);
+
+        if ($validator->passes()) {
+            return response()->json(Bouteille::create($request->all()), 200);
+        }
+
+        return response()->json(['erreur' => $validator->errors()->all()]);
+    }
 
 
     /**
@@ -51,9 +69,25 @@ class BouteilleController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Bouteille $bouteille)
-   {
-       return Response::json($bouteille->update($request->all()), 200);
-   }
+    {
+        $validator = Validator::make($request->all(), [
+            "nom" => "string|required",
+            "code_saq" => "string",
+            "pays" => "string|required",
+            "description" => "string",
+            "prix_saq" => "numeric",
+            "url_image" => "url",
+            "url_saq" => "url",
+            "format" => "string|required",
+            "type_id" => "integer",
+        ]);
+
+        if ($validator->passes()) {
+            return response()->json($bouteille->update($request->all()), 200);
+        }
+
+        return response()->json(['erreur' => $validator->errors()->all()]);
+    }
 
 
     /**
@@ -63,10 +97,8 @@ class BouteilleController extends Controller
      * @throws \Exception
      */
     public function destroy(Bouteille $bouteille)
-   {
-       $bouteille->delete();
-
-       return Response::json(null, 204);
-   }
+    {
+        if ($bouteille->delete())
+            return Response::json("null", 204);
+    }
 }
-

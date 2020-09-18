@@ -33,12 +33,14 @@ Route::post('/saq', 'SAQController@ajouterProduit');
 // End SAQ API
 
 // Bouteille API
-Route::get('/bouteilles', 'BouteilleController@index');
-Route::get('/bouteilles/{bouteille}', 'BouteilleController@show');
-Route::post('/bouteilles', 'BouteilleController@store');
-Route::put('/bouteilles/{bouteille}', 'BouteilleController@update');
-Route::delete('/bouteilles/{bouteille}', 'BouteilleController@destroy');
+// Route::get('/bouteilles', 'BouteilleController@index');
+// Route::get('/bouteilles/{bouteille}', 'BouteilleController@show');
+// Route::post('/bouteilles', 'BouteilleController@store');
+// Route::put('/bouteilles/{bouteille}', 'BouteilleController@update');
+// Route::delete('/bouteilles/{bouteille}', 'BouteilleController@destroy');
+Route::apiResource("bouteilles", "BouteilleController");
 // End Bouteille API
+
 
 // Cellier API
 Route::get('/celliers', 'CellierController@index');
@@ -57,6 +59,10 @@ Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleContro
 //Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
 Route::delete('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@destroy');
 // End CelliersBouteille API
+
+Route::fallback(function(){
+    return response()->json(["erreur"=>"404 - page non trouvée"]);
+});
 
 
 

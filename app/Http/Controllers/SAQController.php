@@ -179,7 +179,6 @@ class SAQController extends Controller
 
         return $info;
     }
-
     /**
      * Ajoute un produit dans la table bouteille.
      * @param $bte
@@ -192,7 +191,7 @@ class SAQController extends Controller
         if ($resultat > 0) {
             return Response::json("Déjà en inventaire");
         } else {
-            return Response::json(Bouteille::create($request->all()), 201);
+            return Response::json(BouteilleController::store($request)->original);
         }
     }
 }
