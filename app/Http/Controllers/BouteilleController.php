@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 use App\Bouteille;
 use App\Http\Resources\BouteilleResource;
@@ -16,7 +19,7 @@ class BouteilleController extends Controller
 {
     /**
      * Retournes toutes les bouteilles de la BDD
-     * @return \Illuminate\Http\JsonResponse
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
@@ -27,7 +30,8 @@ class BouteilleController extends Controller
     /**
      * Retourne une bouteille de la BDD
      * @param Bouteille $bouteille
-     * @return \Illuminate\Http\JsonResponse
+     * @return BouteilleResource
+     * @return JsonResponse
      */
     public function show(Bouteille $bouteille)
     {
@@ -38,7 +42,7 @@ class BouteilleController extends Controller
     /**
      * Enregistre une bouteille dans la BDD
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public static function store(Request $request)
     {
@@ -66,7 +70,7 @@ class BouteilleController extends Controller
      * Modifie une bouteille dans la BDD
      * @param Request $request
      * @param Bouteille $bouteille
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(Request $request, Bouteille $bouteille)
     {
@@ -93,8 +97,8 @@ class BouteilleController extends Controller
     /**
      * Supprime une bouteille dans la BDD
      * @param Bouteille $bouteille
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @return JsonResponse
+     * @throws Exception
      */
     public function destroy(Bouteille $bouteille)
     {

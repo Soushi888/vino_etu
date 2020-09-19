@@ -155,8 +155,12 @@ Les routes de l'api se trouvent dans le fichier routes/api.php
 
 #### celliers/bouteilles
 
-- `GET`       - `api/celliers/{id}/bouteilles`       : Retourner toutes les bouteilles d'un celliers 
-- `GET`       - `api/celliers/{id}/bouteilles/{id}`  : Retourner une bouteille d'un celliers 
-- `POST`      - `api/celliers/{id}/bouteilles`       : Ajouter une bouteille dans un cellier 
-- `PUT`       - `api/celliers/{id}/bouteilles`       : Modifier une bouteille d'un cellier
-- `DELETE`    - `api/celliers/{id}/bouteilles`       : Supprimer une bouteille d'un cellier
+- `GET`       - `api/celliers/{id}/bouteilles`       : Retourner toutes les transactions liées aux bouteilles d'un cellier
+- `GET`       - `api/celliers/{id}/bouteilles/{id}`  : Retourner les transactions liées à une bouteille d'un cellier
+- `POST`      - `api/celliers/{id}/bouteilles`       : Enregistrer une transaction liée à une bouteille dans un cellier
+
+#### transactions
+
+- `GET`       - `api/transactions/{id}`              : Retourne une transaction liée à une bouteille
+- `PUT`       - `api/transactions/{id}`               : Modifier une transaction liée à une bouteille dans un cellier
+- `DELETE`    - `api/transactions/{id}`               : Supprimer une transaction liée à une bouteille dans un cellier

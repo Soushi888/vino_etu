@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 use App\Cellier;
 use App\Http\Resources\CellierResource;
 use Illuminate\Support\Facades\Validator;
-
 
 
 /**
@@ -20,9 +20,10 @@ class CellierController extends Controller
 {
     /**
      * Retourne toutes les celliers
-     * @return JsonResponse
+     * @return AnonymousResourceCollection
      */
-    public function index() {
+    public function index()
+    {
         return CellierResource::collection(Cellier::all());
     }
 
@@ -30,13 +31,12 @@ class CellierController extends Controller
     /**
      * Retourne un cellier
      * @param Cellier $cellier
-     * @return JsonResponse
+     * @return CellierResource
      */
     public function show(Cellier $cellier)
-   {
-    //    return Response::json($cellier);
-       return new CellierResource($cellier);
-   }
+    {
+        return new CellierResource($cellier);
+    }
 
 
     /**
@@ -45,18 +45,18 @@ class CellierController extends Controller
      * @return JsonResponse
      */
     public function store(Request $request)
-   {
-    $validator = Validator::make($request->all(), [
-        "nom" => "string|required",
-        "user_id" => "integer"
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            "nom" => "string|required",
+            "user_id" => "integer"
+        ]);
 
-    if ($validator->passes()) {
-        return response()->json(Cellier::create($request->all()), 200);
+        if ($validator->passes()) {
+            return response()->json(Cellier::create($request->all()), 200);
+        }
+
+        return response()->json(['erreur' => $validator->errors()->all()]);
     }
-
-    return response()->json(['erreur' => $validator->errors()->all()]);
-   }
 
 
     /**
@@ -66,19 +66,18 @@ class CellierController extends Controller
      * @return JsonResponse
      */
     public function update(Request $request, Cellier $cellier)
-   {
+    {
+        $validator = Validator::make($request->all(), [
+            "nom" => "string|required",
+            "user_id" => "integer"
+        ]);
 
-    $validator = Validator::make($request->all(), [
-        "nom" => "string|required",
-        "user_id" => "integer"
-    ]);
+        if ($validator->passes()) {
+            return response()->json($cellier->update($request->all()), 200);
+        }
 
-    if ($validator->passes()) {
-        return response()->json($cellier->update($request->all()), 200);
+        return response()->json(['erreur' => $validator->errors()->all()]);
     }
-
-    return response()->json(['erreur' => $validator->errors()->all()]);
-   }
 
 
     /**
@@ -88,9 +87,9 @@ class CellierController extends Controller
      * @throws Exception
      */
     public function destroy(Cellier $cellier)
-   {
+    {
 
-    if ($cellier->delete())
+        if ($cellier->delete())
             return Response::json("null", 204);
-   }
+    }
 }

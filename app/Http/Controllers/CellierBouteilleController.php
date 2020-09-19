@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Requestid;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 use App\CellierBouteille;
 use App\Http\Resources\CellierBouteilleResource;
@@ -17,42 +19,41 @@ use Illuminate\Support\Facades\Validator;
 class CellierBouteilleController extends Controller
 {
     /**
-     * Retourne toutes les bouteilles d'un cellier.
-     * @param $Cellier
-     * @return JsonResponse
+     * Retourne toutes les transactions liées aux bouteilles d'un cellier.
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
         return CellierBouteilleResource::collection(CellierBouteille::where('cellier_id', request('cellier'))->get());
-        // $bouteilles = CellierBouteille::where('cellier_id', request('cellier'))->get();
-
-        // return Response::json($bouteilles);
     }
 
-
     /**
-     * Retourne une bouteille d'un cellier
-     * @param CellierBouteille $CellierBouteille
-     * @return JsonResponse
+     * Retourne les transactions liées à une bouteille d'un cellier
+     * @return AnonymousResourceCollection
      */
-    public function show(CellierBouteille $CellierBouteille)
+    public function show()
     {
+        return CellierBouteilleResource::collection(CellierBouteille::where('bouteille_id', request('bouteille'))->where('cellier_id', \request("cellier"))->get());
+    }
 
-        return CellierBouteilleResource::collection(CellierBouteille::where('bouteille_id', request('bouteille'))->get());
-
-        // $bouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('id', request('bouteille'))->get();
-        // return Response::json($bouteille);
+    /**
+     * Retourne une transaction liée à une bouteille.
+     * @param CellierBouteille $cellierBouteille
+     * @return CellierBouteilleResource
+     */
+    public function showTransaction(CellierBouteille $cellierBouteille)
+    {
+        return new CellierBouteilleResource($cellierBouteille->find(request("transaction")));
     }
 
 
     /**
-     * Enregistre une bouteille dans un cellier
+     * Enregistre une transaction liée à une bouteille dans un cellier
      * @param Request $request
      * @return JsonResponse
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             "bouteille_id" => "integer|required",
             "cellier_id" => "integer|required",
@@ -63,66 +64,53 @@ class CellierBouteilleController extends Controller
             "prix" => "numeric",
             "millesime" => "integer"
         ]);
-    
+
         if ($validator->passes()) {
             return response()->json(CellierBouteille::create($request->all()), 200);
         }
-    
+
         return response()->json(['erreur' => $validator->errors()->all()]);
-
-        //  return Response::json(CellierBouteille::create($request->all()), 201);
     }
 
-
     /**
-     * Modifie une bouteille dans un cellier
+     * Modifie une transaction liée à une bouteille dans un cellier
      * @param Request $request
-     * @param CellierBouteille $CellierBouteille
      * @return JsonResponse
      */
-    public function update(Request $request, CellierBouteille $CellierBouteille)
+    public function updateTransaction(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            "bouteille_id" => "integer|required",
+            "cellier_id" => "integer|required",
+            "quantite" => "integer",
+            "date_achat" => "date",
+            "garde_jusqua" => "date",
+            "notes" => "string",
+            "prix" => "numeric",
+            "millesime" => "integer"
+        ]);
 
-        // $validator = Validator::make($request->all(), [
-        //     "bouteille_id" => "integer|required",
-        //     "cellier_id" => "integer|required",
-        //     "quantite" => "integer",
-        //     "date_achat" => "date",
-        //     "garde_jusqua" => "date",
-        //     "notes" => "string",
-        //     "prix" => "numeric",
-        //     "millesime" => "integer"
-        // ]);
+        if ($validator->passes()) {
+            //  return response()->json($CellierBouteille->update($request->all()), 200);
 
-        // if ($validator->passes()) {
+            $bouteille = CellierBouteille::where('id', request('transaction'));
+            return Response::json($bouteille->update($request->all()), 200);
+        }
 
-        //     $CellierBouteille = CellierBouteille::where('id', request('cellierBouteille'));
-        //     return Response::json($CellierBouteille->update($request->all()), 200);
-           
-        // }
-    
-        // return response()->json(['erreur' => $validator->errors()->all()]); 
-
-        $bouteille = CellierBouteille::where('cellier_id', request('cellier'))->where('bouteille_id', request('bouteille'));
-
-        return Response::json($bouteille->update($request->all()), 200);
+        return response()->json(['erreur' => $validator->errors()->all()]);
     }
 
 
     /**
-     * Supprime une bouteille dans un cellier
-     * @param CellierBouteille $CellierBouteille
+     * Supprime une transaction liée à une bouteille dans un cellier
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
-    public
-    function destroy(CellierBouteille $CellierBouteille)
+    public function destroyTransaction()
     {
-        // if ($CellierBouteille->delete())
-        //     return Response::json("null", 204);
-        
-        $CellierBouteille = CellierBouteille::where('id', request('cellierBouteille'));
-        $CellierBouteille->delete();
-        return Response::json(null, 204);
+        $CellierBouteille = CellierBouteille::where('id', request('transaction'));
+
+        if ($CellierBouteille->delete())
+            return Response::json(null, 204);
     }
 }

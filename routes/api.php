@@ -22,28 +22,25 @@ Route::apiResources([
     'users' => 'UserController',
     'bouteilles' => 'BouteilleController',
     'celliers' => 'CellierController',
-    'celliers.bouteilles' => 'CellierBouteilleController',
-    'celliersBouteilles' => 'CellierBouteilleController'
+    'celliers.bouteilles' => 'CellierBouteilleController'
 ]);
+
+// Extension de la route users
 Route::get('/users/{user}/celliers', 'UserController@showCelliers');
-Route::put('/celliersBouteilles/{cellierBouteille}', 'CellierBouteilleController@update');
+
+// celliersBouteilles API
+Route::get('/transactions/{transaction}', 'CellierBouteilleController@showTransaction');
+Route::put('/transactions/{transaction}', 'CellierBouteilleController@updateTransaction');
+Route::delete('/transactions/{transaction}', 'CellierBouteilleController@destroyTransaction');
+// End celliersBouteilles API
 
 // SAQ API
 Route::get('/saq', 'SAQController@getProduits');
 Route::post('/saq', 'SAQController@ajouterProduit');
 // End SAQ API
 
-// CelliersBouteille API
-
-// Route::get('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@index');
-// Route::get('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@show');
-// Route::post('/celliers/{cellier}/bouteilles', 'CellierBouteilleController@store');
-Route::put('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@update');
-Route::delete('/celliers/{cellier}/bouteilles/{bouteille}', 'CellierBouteilleController@destroy');
-// End CelliersBouteille API
-
 Route::fallback(function(){
-    return response()->json(["erreur"=>"404 - page non trouvée"]);
+    return response()->json(["erreur"=>"404 - ressource non trouvée"]);
 });
 
 
