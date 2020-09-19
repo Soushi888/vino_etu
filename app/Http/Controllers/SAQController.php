@@ -165,7 +165,11 @@ class SAQController extends Controller
             }
         }
 
-        $info->url_image = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src');
+        if ($noeud->getElementsByTagName("img")->item(0)->getAttribute('class') !== 'product-image-photo') {
+            $info->url_image = $noeud->getElementsByTagName("img")->item(1)->getAttribute('src');
+        } else {
+            $info->url_image = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src');
+        }
 
         // Récupération de l'URL sans les requêtes GET
         $urlLongueur = strpos($info->url_image, "?");
@@ -179,10 +183,11 @@ class SAQController extends Controller
 
         return $info;
     }
+
     /**
      * Ajoute un produit dans la table bouteille.
-     * @param $bte
-     * @return stdClass
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function ajouterProduit(Request $request)
     {
