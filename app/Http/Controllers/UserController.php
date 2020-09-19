@@ -66,7 +66,7 @@ class UserController extends Controller
             return response()->json(User::create($request->all()), 200);
         }
 
-        return response()->json(['erreur' => $validator->errors()->all()]);
+        return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
 
 
@@ -90,7 +90,7 @@ class UserController extends Controller
             return response()->json($user->update($request->all()), 200);
         }
 
-        return response()->json(['erreur' => $validator->errors()->all()]);
+        return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
 
 

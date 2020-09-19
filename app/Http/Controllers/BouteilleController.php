@@ -62,7 +62,7 @@ class BouteilleController extends Controller
             return response()->json(Bouteille::create($request->all()), 200);
         }
 
-        return response()->json(['erreur' => $validator->errors()->all()]);
+        return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
 
 
@@ -90,7 +90,7 @@ class BouteilleController extends Controller
             return response()->json($bouteille->update($request->all()), 200);
         }
 
-        return response()->json(['erreur' => $validator->errors()->all()]);
+        return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
 
 

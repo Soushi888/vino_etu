@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCellierBouteillesTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCellierBouteillesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cellier_bouteilles', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bouteille_id')->nullable()->references("id")->on("bouteilles")->cascadeOnDelete();
             $table->foreignId('cellier_id')->references("id")->on("celliers")->cascadeOnDelete();
@@ -27,7 +27,7 @@ class CreateCellierBouteillesTable extends Migration
         });
 
         // Génère des données de test
-        factory(App\CellierBouteille::class, 50)->create();
+        factory(App\Transaction::class, 50)->create();
     }
 
     /**

@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\CellierBouteille;
+use App\Transaction;
 use Faker\Generator as Faker;
 
-$factory->define(CellierBouteille::class, function (Faker $faker) {
+$factory->define(\App\Transaction::class, function (Faker $faker) {
     return [
         "bouteille_id" => $faker->numberBetween(1, 20),
         "cellier_id" => $faker->numberBetween(1, 5),

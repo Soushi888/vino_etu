@@ -55,7 +55,7 @@ class CellierController extends Controller
             return response()->json(Cellier::create($request->all()), 200);
         }
 
-        return response()->json(['erreur' => $validator->errors()->all()]);
+        return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
 
 
@@ -76,7 +76,7 @@ class CellierController extends Controller
             return response()->json($cellier->update($request->all()), 200);
         }
 
-        return response()->json(['erreur' => $validator->errors()->all()]);
+        return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
 
 

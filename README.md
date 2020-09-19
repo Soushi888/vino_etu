@@ -18,8 +18,8 @@ Front end : AJAX
 
 ### Utilisateurs
 
-- [X] Se créer un compte
-- [X] Se connecter
+- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
 - [ ] Gérer son profil
     - [ ] Modifier son mot de passe
     - [ ] Modifier son nom et son prénom
@@ -91,13 +91,21 @@ Front end : AJAX
 
 ## Démo
 
-#### Fonctionnalités disponibles
-- [Page `/`](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/) - Écran de connexion **OU** Page d'accueil (actuellement liste des bouteilles).
-- [Page `/register`](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/register) - Créer un nouveau compte
-  
+[Site web de la démo](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+
+Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fonctionnalités plus haute.
+
 #### API
 
 Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme ***POSTMAN***.
+
+##### utilisateurs
+
+[`GET` - api/users](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/users)
+
+[`GET` - api/users/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/users/1)
+
+[`GET` - api/users/{id}/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/users/1/celliers)
 
 ##### SAQ
 
@@ -107,13 +115,25 @@ Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme ***P
 
 [`GET` - api/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles)
 
-[`GET` - api/saq/bouteilles/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles/1)
+[`GET` - api/bouteilles/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles/1)
 
 ##### celliers
 
 [`GET` - api/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers)
 
-[`GET` - api/saq/celliers/1](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1)
+[`GET` - api/celliers/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1)
+
+#### celliers/bouteilles
+
+[`GET` - api/celliers/{id}/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1/bouteilles)
+
+[`GET` - api/celliers/{id}/bouteilles/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1/bouteilles/{id})
+
+#### transactions
+
+[`GET` - api/transactions/](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/transactions/)
+
+[`GET` - api/transactions/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/transactions/1/)
 
 ## Installation en local
 
@@ -226,14 +246,16 @@ Les routes de l'api se trouvent dans le fichier routes/api.php
 - `PUT`       - `api/celliers/{id}`                  : Modifier un cellier
 - `DELETE`    - `api/celliers/{id}`                  : Supprimer un cellier
 
+#### transactions
+
+- `GET`       - `api/transactions/`                  : Retourne toutes les transactions liées aux bouteilles
+- `GET`       - `api/transactions/{id}`              : Retourne une transaction liée à une bouteille
+- `POST`       - `api/transactions/`                 : Ajouter une transaction liée à une bouteille
+- `PUT`       - `api/transactions/{id}`              : Modifier une transaction liée à une bouteille dans un cellier
+- `DELETE`    - `api/transactions/{id}`              : Supprimer une transaction liée à une bouteille dans un cellier
+
 #### celliers/bouteilles
 
 - `GET`       - `api/celliers/{id}/bouteilles`       : Retourner toutes les transactions liées aux bouteilles d'un cellier
 - `GET`       - `api/celliers/{id}/bouteilles/{id}`  : Retourner les transactions liées à une bouteille d'un cellier
 - `POST`      - `api/celliers/{id}/bouteilles`       : Enregistrer une transaction liée à une bouteille dans un cellier
-
-#### transactions
-
-- `GET`       - `api/transactions/{id}`              : Retourne une transaction liée à une bouteille
-- `PUT`       - `api/transactions/{id}`               : Modifier une transaction liée à une bouteille dans un cellier
-- `DELETE`    - `api/transactions/{id}`               : Supprimer une transaction liée à une bouteille dans un cellier
