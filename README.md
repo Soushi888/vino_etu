@@ -4,9 +4,83 @@
 
 Ceci est le projet web final de l'équipe 1 des finissants du groupe 17612 de l'AEC en conception et programmation de sites web du Cégep Maisonneuve. 
 
-API faite avec Laravel et front end en AJAX.
+Application web qui permet à ses utilisateurs de créer et de gérer des celliers. L'administrateur peut gérer le catalogue et le synchroniser avec celui de la SAQ.
+
+Base de données : SQL
+
+API REST : Laravel 
+
+Front end : AJAX
 
 [Documentation Laravel](https://laravel.com/docs/7.x)
+
+## Fonctionnalités
+
+### Utilisateurs
+
+- [X] Se créer un compte
+- [X] Se connecter
+- [ ] Gérer son profil
+    - [ ] Modifier son mot de passe
+    - [ ] Modifier son nom et son prénom
+    - [ ] Modifier son adresse courriel
+- [ ] Gérer ses celliers
+    - [ ] Afficher tous ses celliers
+    - [ ] Afficher le contenu d'un cellier
+    - [ ] Créer un nouveau cellier
+    - [ ] Modifier le nom d'un cellier
+    - [ ] Supprimer un cellier
+- [ ] Gérer ses bouteilles
+    - [ ] Afficher une bouteille du cellier
+        - [ ] Historique des transactions
+        - [ ] Quantité totale de bouteilles en stock
+        - [ ] Notes écrites par l'utilisateur 
+    - [ ] Boire une bouteille du cellier 
+        - [ ] Quantité -1 
+        - [ ] Possibilité d'écrire une note
+    - [ ] Créer un modèle de bouteille personnalisé
+    - [ ] Ajouter une ou plusieurs bouteilles à l'un de ses celliers
+    - [ ] Modifier une transaction du cellier
+    - [ ] Supprimer une transaction du cellier
+- [ ] Consulter le catalogue
+    - [ ] Afficher les bouteilles du catalogue
+    - [ ] Afficher les bouteilles personnalisées
+        - [ ] Supprimer une bouteille personnalisée
+        - [ ] Modifier un modèle de bouteille personnalisée
+    - [ ] Ajouter une bouteille à l'un de ses celliers
+    - [ ] Signaler une erreur dans le catalogue
+
+### Administrateurs
+
+- [ ] Gérer son profil
+    - [ ] Modifier son mot de passe
+    - [ ] Modifier son nom et son prénom
+    - [ ] Modifier son adresse courriel
+- [ ] Gérer les utilisateurs
+    - [ ] Afficher tous les utilisateurs
+    - [ ] Afficher les détails d'un utilisateur
+        - [ ] Historique des transactions
+        - [ ] Bouteilles en stock
+        - [ ] Notes écrites par l'utilisateur 
+        - [ ] Bouteilles personnalisées
+    - [ ] Créer un nouvel utilisateur ou administrateur
+    - [ ] Modifier un utilisateur (incluant le type)
+    - [ ] Supprimer un utilisateur
+- [ ] Gérer le catalogue
+    - [ ] Afficher toutes les bouteilles
+    - [ ] Afficher les détails d'une bouteilles
+        - [ ] Liste des utilisateurs qui en possède une ou plusieurs unités
+        - [ ] Liste des celliers dans lesquels elle se trouve
+        - [ ] Nombre total d'unités présentent dans les celliers des utilisateurs
+    - [ ] Afficher les bouteilles personnalisées des utilisateurs
+    - [ ] Ajouter une nouvelle bouteille
+    - [ ] Supprimer une bouteille
+    - [ ] Afficher le catalogue de la SAQ
+        - [ ] Recherche par page et par type de vin
+        - [ ] Importer une bouteille de la SAQ manuellement
+        - [ ] Importer les bouteilles de toute la page
+- [ ] Consulter les statistiques d'utilisation de l'Application
+    - ...
 
 ## Équipe
 
@@ -129,12 +203,11 @@ Les routes de l'api se trouvent dans le fichier routes/api.php
 #### saq
 
 - `GET`       - `api/saq`                            : Retourner les données de SAQ  
-  - requêtes de recherche possibles (ex : `api/saq?type=blanc&page=2`) :
-      - type : rouge | blanc | rose
-          - Défaut : rouge
-      - page : 1 et plus
-          - Défaut : 1
-
+    - requêtes de recherche possibles (ex : `api/saq?type=blanc&page=2`) :
+        - type : rouge | blanc | rose
+            - Défaut : rouge
+        - page : 1 et plus
+            - Défaut : 1
 - `POST`      - `api/saq`                            : Ajouter une bouteille de la SAQ
 
 #### bouteilles
