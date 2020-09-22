@@ -33,7 +33,6 @@ class UserController extends Controller
     public function show(User $user)
     {
         return new UserResource($user);
-        // return Response::json($user);
     }
 
     /**
@@ -59,7 +58,8 @@ class UserController extends Controller
             "prenom" => "string",
             "email" => "email|required",
             "email_verified_at" => "string",
-            "type" => "string|required"
+            "type" => "string|required",
+            "password" => "string|min:8|required"
         ]);
 
         if ($validator->passes()) {
