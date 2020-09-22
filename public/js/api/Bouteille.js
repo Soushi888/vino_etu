@@ -1,31 +1,77 @@
+/**
+ * Interface avec L'API bouteilles
+ */
 class Bouteille {
     constructor() {
         this._URL_BOUTEILLES = `http://${window.location.hostname}/api/bouteilles`;
     }
 
-    index = () => {
-    };
-    show = () => {
-    };
-
-
-    store = (bouteille) => {
-        return axios.post(`${this._URL_BOUTEILLES}`, {
-            nom: bouteille.nom,
-            code_saq: bouteille.code_saq,
-            // etc.
-        })
-            .then(function (response) { // succes
-                console.log(response);
-            })
-            .catch(function (error) { // error
-                console.log(error);
-            });
+    /**
+     * Retourne sous forme de promesse toutes les bouteilles
+     * @returns {Promise<*>}
+     */
+    index() {
+        return fetch(`${this._URL_BOUTEILLES}`)
+            .then(response => response.json())
+            .then(data => data.data);
     }
 
-    update = () => {
+    /**
+     * Retourne sous forme de promesse une bouteille
+     * @param id
+     * @returns {Promise<*>}
+     */
+    show(id) {
+        return fetch(`${this._URL_BOUTEILLES}/${id}`)
+            .then(response => response.json())
+            .then(data => data.data);
     };
 
-    destroy = () => {
-    };
+    /**
+     * Enregistre une nouvelle bouteille
+     * @param bouteille
+     * @returns {Promise<void>}
+     */
+    store(bouteille) {
+        return fetch(`${this._URL_BOUTEILLES}`, {
+            method: "POST",
+            body: JSON.stringify(bouteille),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
+
+    /**
+     * Modifie une bouteille
+     * @param id
+     * @param data
+     * @returns {Promise<void>}
+     */
+    update(id, data) {
+        return fetch(`${this._URL_BOUTEILLES}/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
+
+    /**
+     * Supprime une bouteille
+     * @param id
+     * @returns {Promise<void>}
+     */
+    destroy(id) {
+        return fetch(`${this._URL_CELLIERS}/${id}`, {
+            method: "DELETE",
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
 }

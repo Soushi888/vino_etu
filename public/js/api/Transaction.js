@@ -1,11 +1,77 @@
+/**
+ * Interface avec L'API transactions
+ */
 class Transaction {
     constructor() {
-        this._URL_TRANSACTIONS = `http://${window.location.hostname}/api/transactions`;
+        this._URL_TRANSACTION = `http://${window.location.hostname}/api/transactions`;
     }
 
-    index = () => {};
-    store = () => {};
-    show = () => {};
-    update = () => {};
-    destroy = () => {};
+    /**
+     * Retourne sous forme de promesse toutes les transactions liées aux bouteilles
+     * @returns {Promise<*>}
+     */
+    index() {
+        return fetch(`${this._URL_TRANSACTION}`)
+            .then(response => response.json())
+            .then(data => data.data);
+    }
+
+    /**
+     * Retourne sous forme de promesse une transaction liée à une bouteille
+     * @param id
+     * @returns {Promise<*>}
+     */
+    show(id) {
+        return fetch(`${this._URL_TRANSACTION}/${id}`)
+            .then(response => response.json())
+            .then(data => data.data);
+    };
+
+    /**
+     * Enregistre une nouvelle transaction
+     * @param transaction
+     * @returns {Promise<void>}
+     */
+    store(transaction) {
+        return fetch(`${this._URL_TRANSACTION}`, {
+            method: "POST",
+            body: JSON.stringify(transaction),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
+
+    /**
+     * Modifie une transaction
+     * @param id
+     * @param data
+     * @returns {Promise<void>}
+     */
+    update(id, data) {
+        return fetch(`${this._URL_TRANSACTION}/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
+
+    /**
+     * Supprime une transaction
+     * @param id
+     * @returns {Promise<void>}
+     */
+    destroy(id) {
+        return fetch(`${this._URL_CELLIERS}/${id}`, {
+            method: "DELETE",
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    }
 }

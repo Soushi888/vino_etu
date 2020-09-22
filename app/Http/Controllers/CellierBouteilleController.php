@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\TransactionResource;
 use App\Transaction;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Response;
 
 /**
  * Gère l'API celliers/bouteilles
@@ -36,10 +38,10 @@ class CellierBouteilleController extends Controller
     /**
      * Enregistre une transaction liée à une bouteille dans un cellier
      * @param Request $request
-     * @return TransactionResource
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        return new TransactionResource(Transaction::create($request->all()));
+        return Response::json(TransactionController::store($request))->original;
     }
 }

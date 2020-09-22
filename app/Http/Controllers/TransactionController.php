@@ -43,7 +43,7 @@ class TransactionController extends Controller
      * @param Request $request
      * @return JsonResponseAlias
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             "bouteille_id" => "integer|required",
