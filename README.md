@@ -57,7 +57,7 @@ Front end : AJAX
     - [ ] Modifier son nom et son prénom
     - [ ] Modifier son adresse courriel
 - [ ] Gérer les utilisateurs
-    - [ ] Afficher tous les utilisateurs
+    - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/)
     - [ ] Afficher les détails d'un utilisateur
         - [ ] Historique des transactions
         - [ ] Bouteilles en stock
@@ -67,7 +67,7 @@ Front end : AJAX
     - [ ] Modifier un utilisateur (incluant le type)
     - [ ] Supprimer un utilisateur
 - [ ] Gérer le catalogue
-    - [ ] Afficher toutes les bouteilles
+    - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue)
     - [ ] Afficher les détails d'une bouteilles
         - [ ] Liste des utilisateurs qui en possède une ou plusieurs unités
         - [ ] Liste des celliers dans lesquels elle se trouve
@@ -75,10 +75,10 @@ Front end : AJAX
     - [ ] Afficher les bouteilles personnalisées des utilisateurs
     - [ ] Ajouter une nouvelle bouteille
     - [ ] Supprimer une bouteille
-    - [ ] Afficher le catalogue de la SAQ
-        - [ ] Recherche par page et par type de vin
-        - [ ] Importer une bouteille de la SAQ manuellement
-        - [ ] Importer les bouteilles de toute la page
+    - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue/saq)
+        - [X] Recherche par page et par type de vin
+        - [X] Importer une bouteille de la SAQ manuellement
+        - [X] Importer les bouteilles de toute la page
 - [ ] Consulter les statistiques d'utilisation de l'Application
     - ...
 

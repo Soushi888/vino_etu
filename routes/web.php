@@ -15,10 +15,42 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('home');
+})->middleware('auth')->name('home');
+
+// Routes Admin
+Route::get('/admin', function () {
+    return view('admin.users');
+})->middleware('auth')->name('admin');
+
+Route::get('/admin/user/ajouter', function () {
+    return view('admin.users.ajouter');
+})->middleware('auth')->name('admin.user.ajouter');
+
+
+Route::get('/admin/catalogue', function () {
+    return view('admin.catalogue');
+})->middleware('auth')->name('admin.catalogue');
+
+Route::get('/admin/catalogue/ajouter', function () {
+    return view('admin.catalogue.ajouter');
+})->middleware('auth')->name('admin.catalogue.ajouter');
+
+Route::get('/admin/catalogue/saq', function () {
+    return view('admin.saq');
+})->middleware('auth')->name('admin.saq');
+
+
+
+Route::get('/modal', function () {
+    return view('modal_modifier_bouteille');
+})->name('home');
+
+
 Route::get('/test', function () {
     return view('test');
 })->name('home');
 
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

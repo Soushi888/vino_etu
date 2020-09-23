@@ -93,9 +93,9 @@ p {
     height: 100vh;
     min-height: 770px;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
 
-    background: #000 url("../img/bg.jpg") center no-repeat;
+    background: #000 url("../img/bg.jpg") no-repeat fixed center;
     background-size: cover;
 
     display: flex;
@@ -108,9 +108,9 @@ p {
     height: 100vh;
     min-height: 770px;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
 
-    background: #000 url("../img/bg.jpg") center no-repeat;
+    background: #000 url("../img/bg.jpg") fixed center;
     background-size: cover;
 
     flex-wrap: wrap;
@@ -239,7 +239,6 @@ p {
 
 }
 
-
 /*Table
 ================*/
 
@@ -263,8 +262,10 @@ table.info td {
     border-bottom: 1px solid #e8e9eb;
     text-align: center;
     vertical-align: middle;
+}
 
-
+td.actions {
+    display: flex;
 }
 
 
@@ -547,7 +548,7 @@ footer {
 }
 
 .admin {
-    background: #000 url("../img/bg.jpg") center no-repeat;
+    background: #000 url("../img/bg.jpg") center no-repeat fixed;
     background-size: cover;
 }
 

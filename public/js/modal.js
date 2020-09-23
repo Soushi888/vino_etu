@@ -1,17 +1,21 @@
-var modal = document.getElementById("my_modal");
-var btn = document.getElementById("btn_modal_window");
-var span = document.getElementsByClassName("close_modal_window")[0];
+function modal() {
+    let modal = document.getElementById("my_modal");
+    let btn = document.querySelectorAll("#btn_modal_window");
+    let span = document.getElementsByClassName("close_modal_window")[0];
 
-btn.onclick = function () {
-    modal.style.display = "block";
-}
+    for (let i = 0; i < btn.length; ++i) {
+        btn[i].onclick = function () {
+            modal.style.display = "block";
+        }
+    }
 
-span.onclick = function () {
-    modal.style.display = "none";
-}
-
-window.onclick = function (event) {
-    if (event.target == modal) {
+    span.onclick = function () {
         modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }
