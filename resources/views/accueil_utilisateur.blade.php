@@ -8,12 +8,22 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src={{asset("js/api/Bouteille.js")}}></script>
+  <script src={{asset("js/api/CellierBouteille.js")}}></script>
+  <script src={{asset("js/api/User.js")}}></script>
+  
   <title></title>
 </head>
 
 </head>
 
 <body>
+  <input type="hidden" id="utilisateur" value="{{ Auth::user()->name }}">
+  <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
+  <a href="{{ url('/logout') }}"> logout </a>
+  <section id="listCelliers">
+    <h1>Un petit verre de vino?</h1>
+  </section>
   <div class="container-index">
     <div class="main-content">
       <div class="content-wrap">
@@ -99,5 +109,57 @@
   <footer>2020 Vino | Group 1</footer>
 
 </body>
+<script>
+console.log("je suis dans cellier");
+let eDivIndex = document.querySelector(".container-index");
+console.log(eDivIndex);
+eDivIndex.style.visibility = "hidden";
+let listCelliers = document.querySelector("#listCelliers h1");
+let eUl = document.createElement("ul");
+let idUtilisateur = document.getElementById("idUtilisateur").value
+let userApi = new User;
+userApi.showCellier(idUtilisateur).then((data => {
+             console.log(data);
+             data.map(cellier => {                
+              console.log(cellier.id);
+               let eSpan = document.createElement("span");
+               let eLi = document.createElement("li");
+               eLi.setAttribute("id","idCellier"+cellier.id)
+              console.log(eLi);
+               eLi.innerHTML= cellier.nom;
+               eSpan.style.cursor = "pointer";
+               listCelliers.after(eUl);
+               eUl.appendChild(eSpan).appendChild(eLi);
+               eLi.addEventListener("click",bouteilles);              
+            }) 
+         }))
 
+function bouteilles(evt){
+  //console.log("je suis dans un span",evt.target );
+  let idCellier = evt.target.id;
+  console.log(idCellier);
+  idCellier = idCellier.replace("idCellier","")
+  //console.log(idCellier);
+  let userCellierBouteilles = new CellierBouteille;
+  userCellierBouteilles.index(idCellier).then((data => {
+    console.log(data);
+    data.map(bouteille => {
+      console.log(bouteille.bouteille_id);
+      
+        let bouteilleUnite = new Bouteille;
+        bouteilleUnite.show(bouteille.bouteille_id).then(data => {
+          console.log(data);
+        })
+
+        userCellierBouteilles.show(idCellier,bouteille.bouteille_id).then(data => {
+          console.log(data);
+        })
+    })    
+  }));
+
+  
+  
+}
+
+</script>
 </html>

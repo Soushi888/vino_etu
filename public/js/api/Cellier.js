@@ -1,6 +1,7 @@
 /**
  * Interface avec L'API celliers
  */
+
 class Cellier {
     constructor() {
         this._URL_CELLIERS = `http://${window.location.hostname}/api/celliers`;

@@ -94,7 +94,7 @@ function afficheCellierDunUtilisateur(cellierUtilisateur){
     let idCellier = "";
     let afficheCellier = document.querySelector("#pageAcceuil h1");
     let eUl = document.createElement("ul");
-        eUl.setAttribute("id","listCellier")
+        eUl.setAttribute("id","listCellier");
         
     for(let i=0; i<cellierUtilisateur.data.length;i++){
         let eLi = document.createElement("li");
@@ -104,6 +104,8 @@ function afficheCellierDunUtilisateur(cellierUtilisateur){
         afficheCellier.after(eUl);
         eUl.appendChild(eLi);
         console.log(afficheCellier);
+
+        
         eLi.addEventListener("click",function(evt){
             idCellier = evt.target.id.replace("idCellier", " ");            
             console.log(idCellier);
