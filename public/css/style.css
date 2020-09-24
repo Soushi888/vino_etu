@@ -36,7 +36,6 @@ p {
 }
 
 
-
 /* Page Accueille
 =================*/
 
@@ -90,7 +89,7 @@ p {
 
 .page {
     width: 100%;
-    height: 100vh;
+    /*height: 100vh;*/
     min-height: 770px;
     position: relative;
     /*overflow: hidden;*/
@@ -105,7 +104,7 @@ p {
 
 .page_admin {
     width: 100%;
-    height: 100vh;
+    /*height: 100vh;*/
     min-height: 770px;
     position: relative;
     /*overflow: hidden;*/
@@ -178,7 +177,6 @@ p {
 }
 
 
-
 /* Content
 =================*/
 
@@ -227,9 +225,8 @@ p {
 }
 
 .logo_admin {
-    margin-top: 100px;
+    padding: 50px 0;
     text-align: center;
-
 }
 
 .logo_accueille img {
@@ -264,10 +261,30 @@ table.info td {
     vertical-align: middle;
 }
 
+table.info td > a {
+    color: #27c474;
+}
+
+table.info td > a:visited {
+    color: #008134;
+}
+
+
 td.actions {
     display: flex;
 }
 
+
+/* Succes et Fail
+=================*/
+
+.success {
+    color: #05552a;
+}
+
+.fail {
+    color: #dd0303;
+}
 
 /* Btn
 =================*/
@@ -334,7 +351,7 @@ td.actions {
     background-color: #c514b6;
 }
 
-.btn-update{
+.btn-update {
     display: block;
     width: 45%;
     background-color: #eac131;
@@ -342,7 +359,7 @@ td.actions {
     font-size: 18px;
 }
 
-.btn-update2{
+.btn-update2 {
     display: block;
     background-color: #eac131;
     color: #000;
@@ -364,15 +381,15 @@ td.actions {
 .btn-accepter {
     display: block;
     width: 75%;
-    background-color:#dd0303;
-   
+    background-color: #dd0303;
+
 }
 
 .btn-annuler {
     display: block;
     width: 75%;
     background-color: #007236;
-    
+
 }
 
 .btn-enter:hover {
@@ -434,11 +451,11 @@ td.actions {
 
 }
 
-.btn-admin{
+.btn-admin {
     margin-left: 80px;
 }
 
-.btn-admin2{
+.btn-admin2 {
     display: none;
 }
 
@@ -457,7 +474,6 @@ td.actions {
     bottom: 45px;
     left: 0;
 }
-
 
 
 /* Form
@@ -507,7 +523,7 @@ td.actions {
     background-color: rgba(243, 234, 234, 0.068);
 }
 
-.mod{
+.mod {
     color: #fff;
 }
 
@@ -517,7 +533,7 @@ td.actions {
     display: table;
     border-collapse: separate;
     width: 100%;
-    
+
 }
 
 .main-content {
@@ -527,7 +543,7 @@ td.actions {
 
 .content-wrap {
     background: #5d70e1;
-   
+
 }
 
 aside {
@@ -559,7 +575,7 @@ footer {
     display: table;
     border-collapse: separate;
     width: 100%;
-    
+
 }
 
 .main-content-ajouter {
@@ -569,7 +585,7 @@ footer {
 
 .content-wrap-ajouter {
     background: #5d70e1;
-   
+
 }
 
 .section_deux {
@@ -605,12 +621,12 @@ footer {
 
 .aj {
     margin-left: 370px;
-    color:  #ffffff;
+    color: #ffffff;
 }
 
-.aj.active:hover{
+.aj.active:hover {
     background-color: #eac131;
-    color:  #000000;
+    color: #000000;
 }
 
 .logo_ajouter img {
@@ -620,7 +636,7 @@ footer {
 }
 
 .ajouter {
-    color:  #ffffff;
+    color: #ffffff;
     font-weight: 700;
     margin-top: 10px;
     margin-bottom: 100px;
@@ -630,7 +646,7 @@ footer {
 
 .ajouter.active:hover {
     background-color: #eac131;
-    color:  #000000;
+    color: #000000;
 
 }
 
@@ -645,7 +661,7 @@ footer {
 
 .input-ajouter,
 .textarea {
-    
+
     padding: 12px 18px;
     font-family: inherit;
     font-size: 1rem;
@@ -661,10 +677,10 @@ label {
     display: table-cell;
     color: #ffffff;
     font-weight: 600;
-    
+
 }
 
-.form-ajouter{
+.form-ajouter {
     margin-left: 26px;
     line-height: 1.1;
 }
@@ -673,69 +689,55 @@ label {
 =================*/
 
 .modal {
-    display: none;
     position: fixed;
-    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-    z-index: 1000;
-}
-.modal .modal_content {
-    background-color: #5d70e2;
-    margin: 5% auto;
-    padding: 20px;
-    width: 30%;
-    z-index: 99999;
-}
-.modal .modal_content .close_modal_window {
-    color: rgb(255, 255, 255);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.form-modal-modifier {
-    margin-left: 90px;
-    line-height: 1.2;
-}
-
-.input-modal-modifier {
-    
-    padding: 12px 18px;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgb(0, 0, 0);
-    text-align: right;
-    border: 0;
-    border-radius: 5px;
-    margin-bottom: -12px;
-}
-
-.btn-container { 
-    height: 100px;
-    position: relative;
-    
-  }
-
-
-.center {
-    margin: 50px;
-    position: relative;
-    top: 25%;
-    left: 47%;
-    -ms-transform: translate(-50%, -50%);
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-  }
-  
-.form-modal {
-    margin-bottom: 20px;
-    
+    background-color: #5d70e2;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.modal-content label {
+    width: max-content;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: #324198;
+}
+
+.close-button:hover {
+    background-color: #23318d;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    transform: scale(1);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
 /* Media
@@ -747,17 +749,17 @@ label {
         display: none;
     }
 
-   .content-wrap-ajouter{
-       display: none;
-   }
+    .content-wrap-ajouter {
+        display: none;
+    }
 
-   .modal .modal_content {
-    background-color: #5d70e2;
-    margin: none;
-    padding: 0px;
-    width: 50%;
-    z-index: 99999;
-}
+    .modal .modal_content {
+        background-color: #5d70e2;
+        margin: none;
+        padding: 0px;
+        width: 50%;
+        z-index: 99999;
+    }
 
 
 }
@@ -806,7 +808,7 @@ label {
         display: none;
     }
 
-    .btn-admin2{
+    .btn-admin2 {
         display: inline;
     }
 
@@ -815,21 +817,21 @@ label {
     }
 
     .slogan-ajouter {
-        display: none; 
+        display: none;
     }
 
     .btn-ajouter-bouteille {
-        display: none; 
+        display: none;
     }
 
-    .ajouter{
+    .ajouter {
         margin-bottom: 40px;
         font-size: 10px;
     }
 
     .btn-ajouter-bouteille2 {
         display: inline;
-                
+
     }
 
     /*modal modifier*/
@@ -883,14 +885,14 @@ label {
 
     .btn-ajouter-bouteille2 {
         margin-left: 120px;
-                
+
     }
 
     .header-nav {
         display: block;
     }
 
-    .img_marg img{
+    .img_marg img {
         display: none;
     }
 }
@@ -910,7 +912,7 @@ label {
 
     }
 
-   
+
 }
 
 /***Menu hamburger*****/
@@ -952,7 +954,7 @@ label[for=toggle]:hover {
     margin-right: 10px;
 }
 
-@media only screen and (min-width : 1025px) {
+@media only screen and (min-width: 1025px) {
 
     input[type=checkbox]#toggle,
     label[for=toggle] {
@@ -960,7 +962,7 @@ label[for=toggle]:hover {
     }
 }
 
-@media only screen and (max-width : 679px) {
+@media only screen and (max-width: 679px) {
     #nav {
         width: 99%;
     }
@@ -984,17 +986,17 @@ label[for=toggle]:hover {
         display: none;
     }
 
-    input[type=checkbox]#toggle:checked~#menu {
+    input[type=checkbox]#toggle:checked ~ #menu {
         display: block;
     }
 
-    input[type=checkbox]#toggle:checked~#menu li {
+    input[type=checkbox]#toggle:checked ~ #menu li {
         display: block;
 
     }
 }
 
-@media only screen and (min-width : 680px) and (max-width : 702px) {
+@media only screen and (min-width: 680px) and (max-width: 702px) {
     #nav {
         width: 80%;
         font-size: 11px;
@@ -1006,7 +1008,7 @@ label[for=toggle]:hover {
     }
 }
 
-@media only screen and (min-width : 703px) and (max-width : 728px) {
+@media only screen and (min-width: 703px) and (max-width: 728px) {
     #nav {
         width: 80%;
         font-size: 12px;
@@ -1020,7 +1022,7 @@ label[for=toggle]:hover {
 
 }
 
-@media only screen and (min-width : 728px) and (max-width : 1024px) {
+@media only screen and (min-width: 728px) and (max-width: 1024px) {
     #nav {
         width: 80%;
         font-size: 13px;

@@ -35,8 +35,8 @@
                     <td aria-label="type">${getType(b.type_id)}</td>
                     <td aria-label="created_at">${date}</td>
                     <td aria-label="actions" >
-                        <a style="margin-bottom: 10px" class="btn-update" href="/admin/bouteilles/${b.id}/update"><i class="fa fa-pencil-square fa-1x" aria-hidden="true"></i></a>
-                        <a class="btn-supprimer" href="/admin/bouteilles/${b.id}/delete"><i class="fa fa-trash fa-1x" aria-hidden="true"></i></a>
+                        <button style="width: max-content" class="btn btn-boire inline btn_modal_window" btn="modifier_${b.code_saq}" type="submit">Modifier</button>
+                        <button style="width: max-content" class="btn btn-accepter inline btn_modal_window" btn="supprimer_${b.code_saql}" type="submit">Supprimer</button>
                     </td>
                 `;
 
@@ -53,7 +53,7 @@
 
 <body>
 <div class="page_admin">
-    <a href="/" class="logo_admin"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
+    <div class="logo_admin"><a href="/"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
     <nav id="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>

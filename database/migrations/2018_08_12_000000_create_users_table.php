@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('prenom')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('type')->default("user");
@@ -26,7 +25,7 @@ class CreateUsersTable extends Migration
         });
 
         // Génère des données de test
-        factory(App\User::class, 2)->create();
+        factory(App\User::class, 15)->create();
 
     }
 

@@ -11,58 +11,103 @@
     <script src={{ asset("js/api/User.js") }}></script>
     <script src={{ asset("js/modal.js") }}></script>
     <script defer>
-        users = new User();
-        users.index().then(data => {
-            let tableau = document.querySelector(".info tbody");
-            data.map(u => {
-                let tr = document.createElement("tr")
-                tr.innerHTML = `
+        function afficherListeUtilisateurs() {
+            // document.querySelector(".info tbody").innerHTML = ""
+            let users = new User();
+            users.index().then(data => {
+                new Modal();
+                let modalContent = document.getElementsByClassName("modal-content");
+
+                // Injection des données des bouteilles
+                let tableau = document.querySelector(".info tbody");
+                tableau.innerHTML = "";
+                data.map(u => {
+                    let tr = document.createElement("tr")
+                    tr.innerHTML = `
                     <td aria-label="#">${u.id}</td>
                     <td aria-label="nom">${u.name}</td>
-                    <td aria-label="prenom">${u.prenom}</td>
                     <td aria-label="email">${u.email}</td>
                     <td aria-label="type">${u.type}</td>
-                    <td aria-label="actions" style="display: flex">
-                        <a style="margin-right: 10px" class="btn-update" href="/amin/users/${u.id}/update"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="btn_modal_window" type="submit">Supprimer</button>
-                    </td>
-                `;
+                    <td aria-label="actions">
+                        <button style="width: max-content" class="btn btn-boire inline btn_modal_window" btn="modifier_${u.email}" type="submit">Modifier</button>
+                        <button style="width: max-content" class="btn btn-accepter inline btn_modal_window" btn="supprimer_${u.email}" type="submit">Supprimer</button>
+                    </td>`;
 
-                tableau.appendChild(tr);
+                    tableau.appendChild(tr);
 
-                let modalDiv = document.getElementById("my_modal")
-                modalDiv.innerHTML = `
-                    <div class="modal_content">
-                        <span class="close_modal_window">×</span>
+                    // Bouton supprimer
+                    let btnSupprimer = document.querySelector(`[btn="supprimer_${u.email}"]`);
+                    // Modal bouton supprimer
+                    btnSupprimer.addEventListener("click", () => {
+                        modalContent[0].innerHTML = `
+                        <span class="close-button">&times;</span>
                         <h2>Confirmation suppression</h2>
                         <p>Voulez vous vraiment supprimer l'utilisateur dont l'email est ${u.email} ?</p>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="btn_modal_window">Oui</button>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="btn_modal_window" type="submit">Non</button>
-                    </div>
-            `;
+                        <button style="width: max-content" class="btn btn-accepter inline" id="oui">Oui</button>
+                        <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
+                        Modal.showModal();
+
+                        document.getElementById("oui").addEventListener("click", () => {
+                            supprimerUtilisateur(u.id);
+                        })
+
+                        document.getElementById("non").addEventListener("click", () => {
+                            Modal.closeModal();
+                        })
+
+                    })
+
+                    // TODO : Formulaire (avec vérifications)  de modification
+                    // Bouton modifier
+                    let btnModifier = document.querySelector(`[btn="modifier_${u.email}"]`);
+                    // Modal bouton modifier
+                    btnModifier.addEventListener("click", () => {
+                        modalContent[0].innerHTML = `
+                        <span class="close-button">&times;</span>
+                        <h2>Modification de ${u.name}</h2>`;
+                        Modal.showModal();
+                    })
+                })
+
+                // TODO : Formulaire d'ajout
+                // Bouton ajouter
+                let btnAjouter = document.querySelector(`[btn="ajouter"]`);
+
+                // Modal bouton ajouter
+                btnAjouter.addEventListener("click", () => {
+                    modalContent[0].innerHTML = `
+                        <span class="close-button">&times;</span>
+                        <h2>Enregistrer un utilisateur</h2>`;
+                    Modal.showModal();
+                })
+
+                console.log(data)
 
             })
+        }
 
-            console.log(data)
+        afficherListeUtilisateurs();
 
+        // TODO : Rafraichir liste des utilisateurs après supression.
+        function supprimerUtilisateur(id) {
+            let users= new User();
+            users.destroy(id);
+            Modal.closeModal();
+            afficherListeUtilisateurs();
+        }
 
-            modal();
-
-        })
     </script>
-
-
     <title>Vino - Liste des utilisateurs</title>
 </head>
 
 <body>
 <div class="page_admin">
-    <a href="/" class="logo_admin"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
+    <div class="logo_admin"><a href="/"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
     <nav id="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
         <ul id="menu">
-            <a class="header-nav-link active" href="*">
+            <a class="header-nav-link active" href="/admin">
                 <li>Utilisateurs</li>
             </a>
             <a class="header-nav-link active" href="/admin/catalogue">
@@ -78,8 +123,8 @@
     </nav>
 
     <div style="margin-bottom: 50px" class="container">
-        <button class="btn btn-ajouter inline" type="submit"
-                onclick=window.location.href='{{ route('admin.user.ajouter') }}>Enregistrer un utilisateur
+        <button class="btn btn-ajouter inline btn_modal_window" btn="ajouter" type="submit">
+            Enregistrer un utilisateur
         </button>
     </div>
 
@@ -88,7 +133,6 @@
         <tr>
             <th>#</th>
             <th>Nom</th>
-            <th>Prénom</th>
             <th>Email</th>
             <th>type</th>
             <th>Actions</th>
@@ -98,9 +142,6 @@
 
         </tbody>
     </table>
-
-    <div id="my_modal" class="modal"></div>
-
 </div>
 </body>
 

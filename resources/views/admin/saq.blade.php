@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">s
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,10 +13,18 @@
         const urlParams = new URLSearchParams(window.location.search);
         const recherche = {type: urlParams.get("type"), page: urlParams.get("page")};
 
+        let recherche_type = document.getElementById("type");
+        let recherche_page = document.getElementById("page");
+
+        console.log(recherche_page, recherche_type);
+
+        // recherche_page.value = recherche.page;
+
+        // console.log(recherche_type)
+
         saq = new SAQ();
         saq.index(recherche.type, recherche.page).then(data => {
             let tableau = document.querySelector(".info tbody")
-
 
             data.map(b => {
                 let tr = document.createElement("tr")
@@ -30,9 +38,9 @@
                     <td aria-label="image"><img style="width: 100px" src="${b.url_image}" alt="${b.description}"></td>
                     <td aria-label="format">${b.format}</td>
                     <td aria-label="type">${getType(b.type_id)}</td>
-                    <td aria-label="actions" >
+                    <td aria-label="actions">
                        <button style="width: max-content" class="btn btn-ajouter inline" type="submit" id=${b.code_saq}>Ajouter</button>
-                        <span id="message"></span>
+                        <span><p id="message_${b.code_saq}" style="margin-top: 20px"></p></span>
                     </td>
                 `;
 
@@ -40,14 +48,25 @@
                 tableau.appendChild(tr);
 
                 document.getElementById(b.code_saq).addEventListener("click", (evt) => {
-                    saq.store(b);
+                    saq.store(b).then((json) => {
+                        console.log(json)
+                        if (json) {
+                            let pMessage = document.getElementById(`message_${evt.target.id}`);
+                            pMessage.innerHTML = "Ajout bien effectué !";
+                            pMessage.className = "success"
+                        } else {
+                            let pMessage = document.getElementById(`message_${evt.target.id}`);
+                            pMessage.innerHTML = "Déjà en inventaire";
+                            pMessage.className = "fail"
+
+                        }
+                    })
+                })
+
+                document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
+                    saq.storeAll(recherche.type, recherche.page);
                 })
             })
-
-            document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
-                saq.storeAll(recherche.type, recherche.page);
-            })
-
         })
     </script>
     <title>Vino - Liste des bouteilles du catalogue</title>
@@ -55,7 +74,7 @@
 
 <body>
 <div class="page_admin">
-    <a href="/" class="logo_admin"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
+    <div class="logo_admin"><a href="/"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
     <nav id="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
@@ -79,14 +98,15 @@
         <form action="">
             <legend style="color: white">Recherche</legend>
             <fieldset style="display: flex">
-                <label for="type"><select name="type" id="type">
+                <label for="type">Type de vin : <select name="type" id="type">
                         <option value="rouge">Rouge</option>
                         <option value="blanc">Blanc</option>
                         <option value="rose">Rosé</option>
                     </select></label>
-                <label for="page"><input style="width: 50px; margin-left: 20px" name="page" id="page" type="number"
-                                         min="1" value="1"></label>
-                <button style="margin-left: 20px" type="submit">Rechercher</button>
+                <label for="page" style="margin-left: 20px">Page : <input style="width: 50px; margin-left: 20px" name="page" id="page"
+                                                type="number"
+                                                min="1" value="1"></label>
+                <button style="margin-left: 20px; padding: 8px; height: 50%; width: max-content" class="btn btn-boire" type="submit">Rechercher</button>
             </fieldset>
         </form>
     </div>

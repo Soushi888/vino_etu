@@ -20,15 +20,12 @@ Route::get('/', function () {
 })->middleware('auth')->name('home');
 
 // Routes Admin
+//Users
 Route::get('/admin', function () {
     return view('admin.users');
 })->middleware('auth')->name('admin');
 
-Route::get('/admin/user/ajouter', function () {
-    return view('admin.users.ajouter');
-})->middleware('auth')->name('admin.user.ajouter');
-
-
+//catalogue
 Route::get('/admin/catalogue', function () {
     return view('admin.catalogue');
 })->middleware('auth')->name('admin.catalogue');
@@ -37,6 +34,7 @@ Route::get('/admin/catalogue/ajouter', function () {
     return view('admin.catalogue.ajouter');
 })->middleware('auth')->name('admin.catalogue.ajouter');
 
+// saq
 Route::get('/admin/catalogue/saq', function () {
     return view('admin.saq');
 })->middleware('auth')->name('admin.saq');
