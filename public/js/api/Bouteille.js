@@ -3,7 +3,7 @@
  */
 class Bouteille {
     constructor() {
-        this._URL_BOUTEILLES = `http://${window.location.hostname}/api/bouteilles`;
+        this._URL_BOUTEILLES = `http://${window.location.host}/api/bouteilles`;
     }
 
     /**

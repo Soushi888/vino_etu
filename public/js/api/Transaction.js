@@ -3,7 +3,7 @@
  */
 class Transaction {
     constructor() {
-        this._URL_TRANSACTION = `http://${window.location.hostname}/api/transactions`;
+        this._URL_TRANSACTION = `http://${window.location.host}/api/transactions`;
     }
 
     /**

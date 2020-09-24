@@ -3,7 +3,7 @@
  */
 class CellierBouteille {
     constructor() {
-        this._URL_CELLIERS = `http://${window.location.hostname}/api/celliers`;
+        this._URL_CELLIERS = `http://${window.location.host}/api/celliers`;
     }
 
     /**

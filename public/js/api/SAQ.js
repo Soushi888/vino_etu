@@ -3,7 +3,7 @@
  */
 class SAQ {
     constructor() {
-        this._URL_SAQ = `http://${window.location.hostname}/api/saq`;
+        this._URL_SAQ = `http://${window.location.host}/api/saq`;
     }
 
     /**

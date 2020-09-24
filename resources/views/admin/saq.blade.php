@@ -1,18 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
-
-{{--{--}}
-{{--nom: ${b.nom},--}}
-{{--code_saq: ${b.code_saq},--}}
-{{--pays: ${b.pays},--}}
-{{--description: ${b.description},--}}
-{{--prix_saq: ${b.prix_saq},--}}
-{{--url_saq: ${b.url_saq},--}}
-{{--url_image: ${b.url_image},--}}
-{{--format: ${b.format},--}}
-{{--type_id: ${b.type_id},--}}
-{{--}--}}
-
+<html lang="fr">s
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
