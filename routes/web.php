@@ -49,6 +49,8 @@ Route::get('/modal', function () {
 Route::get('/test', function () {
     return view('test');
 })->name('home');
-
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+Route::get('/', function () {
+    return view('accueil_utilisateur');
+})->middleware('auth');

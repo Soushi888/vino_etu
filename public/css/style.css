@@ -1,3 +1,7 @@
+.dimention{
+    width:150px;
+    height: 225px;
+}
 html {
     font-size: 15px;
 }
@@ -432,14 +436,6 @@ td.actions {
     background-color: #05552a;
 }
 
-.btn-accepter:hover {
-    background-color: #c0151b;
-}
-
-.btn-annuler:hover {
-    background-color: #05552a;
-}
-
 .inline {
     display: inline;
     padding: 8px 9px;
@@ -594,6 +590,7 @@ footer {
 }
 
 .section_trois {
+    /* width: 500px; */
     background: #5d70e1;
 }
 
@@ -761,6 +758,7 @@ label {
         z-index: 99999;
     }
 
+    
 
 }
 
@@ -833,20 +831,6 @@ label {
         display: inline;
 
     }
-
-    /*modal modifier*/
-    .modal .modal_content {
-        background-color: #5d70e2;
-        margin: 0%;
-        padding: 0px;
-        width: 100%;
-        z-index: 99999;
-    }
-
-    .modal .modal_content .close_modal_window {
-        margin-right: 10px;
-    }
-
 }
 
 @media (max-width: 565px) {

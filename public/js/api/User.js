@@ -27,6 +27,12 @@ class User {
             .then(data => data.data);
     };
 
+    showCellier(id) {
+        return fetch(`${this._URL_USERS}/${id}/celliers`)
+            .then(response => response.json())
+            .then(data => data.data);
+    };
+
     /**
      * Enregistre un nouvel utilisateur
      * @param user
