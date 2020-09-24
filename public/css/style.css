@@ -1045,8 +1045,9 @@ label[for=toggle]:hover {
 
     table.info tr {
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: 5rem;
         border-bottom: 2px solid #e8e9eb;
+        border-top: 2px solid #e8e9eb;
     }
 
     table.info td {
