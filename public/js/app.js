@@ -88,17 +88,24 @@ var reponseJson = reponse.then(function (res) {
 });
 
 function afficheCellierDunUtilisateur(cellierUtilisateur){
-    console.log(cellierUtilisateur);
+    console.log(cellierUtilisateur.data);
+    // let eCacherColumnGauche = document.querySelector(".column_left").style.visibility= "hidden";
+    // let eCacherColumnDroit = document.querySelector(".column_right").style.visibility= "hidden";
     let idCellier = "";
-    let afficheCellier = document.querySelector("#pageAcceuil");
+    let afficheCellier = document.querySelector("#pageAcceuil h1");
     let eUl = document.createElement("ul");
-        eUl.setAttribute("id","listCellier")
-    for(let i=0; i<cellierUtilisateur.length;i++){
+        eUl.setAttribute("id","listCellier");
+        
+    for(let i=0; i<cellierUtilisateur.data.length;i++){
         let eLi = document.createElement("li");
-        eLi.setAttribute("id","idCellier"+cellierUtilisateur[i].id)
-        eLi.innerHTML= cellierUtilisateur[i].nom;
+        eLi.setAttribute("id","idCellier"+cellierUtilisateur.data[i].id)
+        eLi.innerHTML= cellierUtilisateur.data[i].nom;
         eLi.style.cursor = "pointer";
-        afficheCellier.appendChild(eUl).appendChild(eLi);
+        afficheCellier.after(eUl);
+        eUl.appendChild(eLi);
+        console.log(afficheCellier);
+
+        
         eLi.addEventListener("click",function(evt){
             idCellier = evt.target.id.replace("idCellier", " ");            
             console.log(idCellier);
@@ -109,9 +116,20 @@ function afficheCellierDunUtilisateur(cellierUtilisateur){
                 return reponseHttp.json();                  
             })
             reponseDesbouteilleDuCelliersJson.then(function(res){
-                
-                for(let i=0; i<res.length;i++){
-                    console.log(res[i]);                    
+                console.log(res.data);
+
+                for(let i=0; i<res.data.length;i++){
+                    console.log("donne le id d'un bouteille",res.data[i].bouteille_id," donne le millesime",res.data[i].millesime," donne le prix",res.data[i].prix);
+                    let idBouteille = res.data[i].bouteille_id;
+                    console.log(idBouteille);
+                    let reponseDesbouteille = fetch("api/bouteilles/"+idBouteille); 
+                    let reponseDesbouteilleJson = reponseDesbouteille.then(function (reponse){
+                        return reponse.json();
+                    })
+                    reponseDesbouteilleJson.then(function(reponse){
+                        console.log("je suis dans le fetch de bouteille",reponse.data)
+                    })
+                                  
                 }
             });
         });
