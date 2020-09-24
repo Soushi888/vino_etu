@@ -37,50 +37,8 @@
           <a class="header-nav-link" href="identification.html"><i class="fa fa-sign-out fa-2x"
               aria-hidden="true"></i></a>
         </nav>
-        <div class="container_bouteille">
-          <table>
-            <tr>
-              <div class="img_bouteille">
-                <td><img src="img/bouteille.png" alt="bouteille"></td>
-              </div>
-              <td>
-                <p>Nom : <b>Tenuta Il Falchetto Bricco Paradiso 2015</b></p>
-                <p>Quantité : <b>5</b></p>
-                <p>Pays : <b>Italie</b></p>
-                <p>Type : <b>Vin rouge</b></p>
-                <p>Millesime : <b>0</b></p>
-                <a href="#">Voir SAQ</a>
-                <div class="btn_bouteille">
-                  <button class="btn btn-modifier inline" type="submit" formaction="#">Modifier</button>
-                  <button class="btn btn-ajouter inline" type="submit" formaction="#">Ajouter</button>
-                  <button class="btn btn-boire inline" type="submit" formaction="#">Boire</button>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="container_bouteille">
-          <table>
-            <tr>
-              <div class="img_bouteille">
-                <td><img src="img/bouteille.png" alt="bouteille"></td>
-              </div>
-              <td>
-                <p>Nom : <b>Tenuta Il Falchetto Bricco Paradiso 2015</b></p>
-                <p>Quantité : <b>5</b></p>
-                <p>Pays : <b>Italie</b></p>
-                <p>Type : <b>Vin rouge</b></p>
-                <p>Millesime : <b>0</b></p>
-                <a href="#">Voir SAQ</a>
-                <div class="btn_bouteille">
-                  <button class="btn btn-modifier inline" type="submit" formaction="#">Modifier</button>
-                  <button class="btn btn-ajouter inline" type="submit" formaction="#">Ajouter</button>
-                  <button class="btn btn-boire inline" type="submit" formaction="#">Boire</button>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+        <div class="affichaListeBouteille"> </div>
+
         <div class="container_bouteille">
           <table>
             <tr>
@@ -112,20 +70,16 @@
 <script>
 console.log("je suis dans cellier");
 let eDivIndex = document.querySelector(".container-index");
-console.log(eDivIndex);
 eDivIndex.style.visibility = "hidden";
 let listCelliers = document.querySelector("#listCelliers h1");
 let eUl = document.createElement("ul");
 let idUtilisateur = document.getElementById("idUtilisateur").value
 let userApi = new User;
 userApi.showCellier(idUtilisateur).then((data => {
-             console.log(data);
-             data.map(cellier => {                
-              console.log(cellier.id);
+              data.map(cellier => {   
                let eSpan = document.createElement("span");
                let eLi = document.createElement("li");
                eLi.setAttribute("id","idCellier"+cellier.id)
-              console.log(eLi);
                eLi.innerHTML= cellier.nom;
                eSpan.style.cursor = "pointer";
                listCelliers.after(eUl);
@@ -135,11 +89,13 @@ userApi.showCellier(idUtilisateur).then((data => {
          }))
 
 function bouteilles(evt){
-  //console.log("je suis dans un span",evt.target );
+  let eDivIndex = document.querySelector(".container-index");
+  eDivIndex.style.visibility = "visible";
+   let listCelliers = document.querySelector("#listCelliers");
+  listCelliers.innerHTML = "";
   let idCellier = evt.target.id;
   console.log(idCellier);
-  idCellier = idCellier.replace("idCellier","")
-  //console.log(idCellier);
+  idCellier = idCellier.replace("idCellier","");
   let userCellierBouteilles = new CellierBouteille;
   userCellierBouteilles.index(idCellier).then((data => {
     console.log(data);
@@ -148,12 +104,42 @@ function bouteilles(evt){
       
         let bouteilleUnite = new Bouteille;
         bouteilleUnite.show(bouteille.bouteille_id).then(data => {
-          console.log(data);
-        })
 
-        userCellierBouteilles.show(idCellier,bouteille.bouteille_id).then(data => {
-          console.log(data);
-        })
+        let eAffichaListeBouteille = document.querySelector(".affichaListeBouteille");
+           console.log(data.nom," ",data.pays," ",data.prix_saq," ",data.type_id," ", data.url_image," ",data.url_saq);
+           let containerBouteille = document.createElement("div");
+           containerBouteille.className = "container_bouteille";
+        let eTr =`
+                    <table>
+                      <tr>
+                        <div class="img_bouteille">
+                          <td>
+                    <img src="${data.url_image}" alt="bouteille" witdh="150" height="225">
+                  </td>
+                        </div>
+                        <td>
+                <p>Nom : <b>${data.nom}</b></p>                
+                <p>Pays : <b>${data.pays}</b></p>
+                <p>Type : <b>${data.url_image}</b></p>
+                <a href="${data.url_saq}">Voir SAQ</a>
+                <div class="btn_bouteille">
+                  <button class="btn btn-modifier inline" type="submit" formaction="#">Modifier</button>
+                  <button class="btn btn-ajouter inline" type="submit" formaction="#">Ajouter</button>
+                  <button class="btn btn-boire inline" type="submit" formaction="#">Boire</button>
+                </div>
+              </td>
+            </tr>
+                      </table>
+                `;
+                containerBouteille.innerHTML = eTr;
+                eAffichaListeBouteille.appendChild(containerBouteille);
+
+
+         })
+         
+        // userCellierBouteilles.show(idCellier,bouteille.bouteille_id).then(data => {
+        //   console.log(data);
+        // })
     })    
   }));
 
