@@ -120,7 +120,7 @@ function bouteilles(evt){
                         <td>
                 <p>Nom : <b>${data.nom}</b></p>                
                 <p>Pays : <b>${data.pays}</b></p>
-                <p>Type : <b>${data.url_image}</b></p>
+                <p>Type : <b>${data.type_id}</b></p>
                 <a href="${data.url_saq}">Voir SAQ</a>
                 <div class="btn_bouteille">
                   <button class="btn btn-modifier inline" type="submit" formaction="#">Modifier</button>
