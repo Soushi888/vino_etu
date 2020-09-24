@@ -136,7 +136,7 @@ class CreateBouteillesTable extends Migration
             "type_id" => 3,
             "format" => "750 ml",
             "prix_saq" => 21.95,
-            "url_image" => "https://www.saq.com/media/wysiwyg/product_tags/pastille_gout/fg_small.png",
+            "url_image" => "https://www.saq.com/media/catalog/product/1/4/14559358-1_1594231230.png?",
             "url_saq" => "https://www.saq.com/fr/14559358",
             "created_at" => new DateTime(),
             "updated_at" => new DateTime()
@@ -150,7 +150,7 @@ class CreateBouteillesTable extends Migration
             "type_id" => 3,
             "format" => "750 ml",
             "prix_saq" => 17.75,
-            "url_image" => "https://www.saq.com/media/wysiwyg/product_tags/pastille_gout/flg_small.png",
+            "url_image" => "https://www.saq.com/media/catalog/product/1/0/10263841-1_1580595016.png?",
             "url_saq" => "https://www.saq.com/fr/10263841",
             "created_at" => new DateTime(),
             "updated_at" => new DateTime()
