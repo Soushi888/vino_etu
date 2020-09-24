@@ -3,7 +3,7 @@
  */
 class User {
     constructor() {
-        this._URL_USERS = `http://${window.location.hostname}/api/users`;
+        this._URL_USERS = `http://${window.location.host}/api/users`;
     }
 
     /**

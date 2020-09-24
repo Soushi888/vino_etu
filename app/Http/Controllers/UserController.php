@@ -55,7 +55,6 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "name" => "string|required",
-            "prenom" => "string",
             "email" => "email|required",
             "email_verified_at" => "string",
             "type" => "string|required",
@@ -80,7 +79,6 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "name" => "string|required",
-            "prenom" => "string",
             "email" => "email|required",
             "email_verified_at" => "string",
             "type" => "string|required"

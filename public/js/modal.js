@@ -1,17 +1,64 @@
-var modal = document.getElementById("my_modal");
-var btn = document.getElementById("btn_modal_window");
-var span = document.getElementsByClassName("close_modal_window")[0];
+/**
+ * Class Modal qui permet de créer et créer des modales.
+ */
+class Modal {
+    constructor() {
 
-btn.onclick = function () {
-    modal.style.display = "block";
-}
 
-span.onclick = function () {
-    modal.style.display = "none";
-}
+        let modalElement = document.createElement("div");
+        modalElement.className = "modal";
 
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+        modalElement.innerHTML = `
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+            </div>
+        `;
+
+        console.log(modalElement);
+
+        console.log(document.querySelector(".page_admin"))
+
+        document.querySelector("body").appendChild(modalElement);
+    }
+
+    /**
+     * Ouverture d'une fenêtre modal
+     */
+    static showModal() {
+        let modal = document.querySelector(".modal");
+
+        modal.classList.add("show-modal");
+
+        document.querySelector(".close-button").addEventListener("click", evt => Modal.closeModal());
+        ;
+
+        document.querySelector("body").addEventListener("keydown", evt => {
+            if (evt.key === "Escape") {
+                Modal.closeModal();
+            }
+        });
+
+        modal.addEventListener("click", evt => {
+            if (evt.target.classList.contains("modal")) {
+                Modal.closeModal();
+            }
+        });
+    }
+
+    /**
+     * Fermeture d'une fenêtre modal
+     */
+    static closeModal() {
+        document.querySelector(".modal").classList.remove("show-modal");
+        document.querySelector(".modal-content").innerHTML = "<span class='close-button'>&times;</span>";
+    }
+
+    /**
+     * Réinitialisation du contenu du modal
+     */
+    static resetModal() {
+        document.querySelector(".modal-content").innerHTML = "<span class='close-button'>&times;</span>";
+
+        document.querySelector(".close-button").addEventListener("click", Modal.closeModal);
     }
 }

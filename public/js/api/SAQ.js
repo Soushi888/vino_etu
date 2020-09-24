@@ -3,7 +3,7 @@
  */
 class SAQ {
     constructor() {
-        this._URL_SAQ = `http://${window.location.hostname}/api/saq`;
+        this._URL_SAQ = `http://${window.location.host}/api/saq`;
     }
 
     /**
@@ -12,8 +12,8 @@ class SAQ {
      * @param page Numéro de la page
      * @returns {Promise<*>}
      */
-    index(type = "rouge", page = 1) {
-        return fetch(`${this._URL_SAQ}?type=${type}&page=${page}`)
+    async index(type = "rouge", page = 1) {
+        return await fetch(`${this._URL_SAQ}?type=${type}&page=${page}`)
             .then(res => res.json())
             .then(data => data);
     }
@@ -23,14 +23,20 @@ class SAQ {
      * @param bouteille
      * @returns {Promise<void>}
      */
-    store = (bouteille) => {
-        return fetch(`${this._URL_SAQ}`, {
+    async store(bouteille) {
+        return await fetch(`${this._URL_SAQ}`, {
             method: "POST",
             body: JSON.stringify(bouteille),
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(json => {
+                console.log(json);
+                if (json == "Déjà en inventaire") {
+                    return false;
+                }
+                return true;
+            })
             .catch(err => console.log(err));
     };
 
@@ -39,10 +45,10 @@ class SAQ {
      * @param type
      * @param page
      */
-    storeAll = (type, page) => {
-        this.index(type, page).then(data => {
+    async storeAll(type, page) {
+        return await this.index(type, page).then(data => {
             data.map(b => {
-                this.store(b);
+                this.store(b).catch((err) => err);
             })
         })
     };
