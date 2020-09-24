@@ -16,8 +16,7 @@
         let recherche_type = document.getElementById("type");
         let recherche_page = document.getElementById("page");
 
-        console.log(recherche_page, recherche_type);
-
+        // TODO : Données de recherche persistantes
         // recherche_page.value = recherche.page;
 
         // console.log(recherche_type)
@@ -28,7 +27,7 @@
 
             data.map(b => {
                 let tr = document.createElement("tr")
-                let trContent = `
+                tr.innerHTML = `
                     <td aria-label="nom">${b.nom}</td>
                     <td aria-label="code_saq">${b.code_saq}</td>
                     <td aria-label="pays">${b.pays}</td>
@@ -43,8 +42,6 @@
                         <span><p id="message_${b.code_saq}" style="margin-top: 20px"></p></span>
                     </td>
                 `;
-
-                tr.innerHTML = trContent;
                 tableau.appendChild(tr);
 
                 document.getElementById(b.code_saq).addEventListener("click", (evt) => {
@@ -62,10 +59,15 @@
                         }
                     })
                 })
-
-                document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
-                    saq.storeAll(recherche.type, recherche.page);
-                })
+            })
+            // TODO : Afficher message indiquant le nombre de bouteilles importées
+            document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
+                saq.storeAll(recherche.type, recherche.page)
+                    .then(data => {
+                        console.log(data)
+                        let spanMessage = document.getElementById("message");
+                        spanMessage.innerHTML = "Bouteilles enregistrées"
+                    });
             })
         })
     </script>
@@ -103,10 +105,13 @@
                         <option value="blanc">Blanc</option>
                         <option value="rose">Rosé</option>
                     </select></label>
-                <label for="page" style="margin-left: 20px">Page : <input style="width: 50px; margin-left: 20px" name="page" id="page"
-                                                type="number"
-                                                min="1" value="1"></label>
-                <button style="margin-left: 20px; padding: 8px; height: 50%; width: max-content" class="btn btn-boire" type="submit">Rechercher</button>
+                <label for="page" style="margin-left: 20px">Page : <input style="width: 50px; margin-left: 20px"
+                                                                          name="page" id="page"
+                                                                          type="number"
+                                                                          min="1" value="1"></label>
+                <button style="margin-left: 20px; padding: 8px; height: 50%; width: max-content" class="btn btn-boire"
+                        type="submit">Rechercher
+                </button>
             </fieldset>
         </form>
     </div>
@@ -115,6 +120,7 @@
         <button style="width: max-content" class="btn btn-supprimer inline" type="submit" id="ajouter_bouteilles_saq">
             Ajouter toutes les bouteilles de la page
         </button>
+        <span id="message" style="margin-left: 20px; font-weight: bold; color: white"></span>
     </div>
 
     <table class="info container">

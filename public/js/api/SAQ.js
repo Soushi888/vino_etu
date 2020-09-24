@@ -31,7 +31,7 @@ class SAQ {
         })
             .then(response => response.json())
             .then(json => {
-                console.log(json);
+                // console.log(json);
                 if (json == "Déjà en inventaire") {
                     return false;
                 }
@@ -46,10 +46,23 @@ class SAQ {
      * @param page
      */
     async storeAll(type, page) {
-        return await this.index(type, page).then(data => {
-            data.map(b => {
-                this.store(b).catch((err) => err);
-            })
+        let nbr_ajout = 0;
+        let index = this.index(type, page).then(async data => {
+            console.log(data);
+            data.map(async b => {
+                let store = this.store(b)
+                store.then(json => {
+                    // console.log(json);
+                    if (json) {
+                        nbr_ajout++;
+                    }
+                    console.log("bouteilles ajoutées : " + nbr_ajout)
+                }).catch(err => console.log(err));
+            });
+        })
+        return index.then(() => {
+            console.log(nbr_ajout);
+            return nbr_ajout;
         })
     };
 }
