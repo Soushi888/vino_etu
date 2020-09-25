@@ -95,6 +95,11 @@ Front end : AJAX
 
 Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fonctionnalités plus haute.
 
+#### Compte test
+
+- email : test@test.com
+- mot de passe : "12345678"
+
 #### API
 
 Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme ***POSTMAN***.
