@@ -43,6 +43,12 @@ Route::get('/admin/catalogue/saq', function () {
     return view('admin.saq');
 })->middleware('auth')->name('admin.saq');
 
+// statistiques
+Route::get('/admin/statistiques', function () {
+    return view('admin.stats');
+})->middleware('auth')->name('admin.stats');
+
+
 
 
 Route::get('/modal', function () {
