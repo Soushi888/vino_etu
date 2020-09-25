@@ -23,6 +23,12 @@ Route::get('/', function () {
     return view('accueil_utilisateur');
 })->middleware('auth');
 
+Route::get('/ajouter_bouteille', function () {
+    return view('ajouter_bouteille');
+})->name('ajouter_bouteille');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 // Routes Admin
 //Users
 Route::get('/admin', function () {
@@ -47,16 +53,3 @@ Route::get('/admin/catalogue/saq', function () {
 Route::get('/admin/statistiques', function () {
     return view('admin.stats');
 })->middleware('auth')->name('admin.stats');
-
-
-
-
-Route::get('/modal', function () {
-    return view('modal_modifier_bouteille');
-})->name('home');
-
-
-Route::get('/ajouter_bouteille', function () {
-    return view('ajouter_bouteille');
-})->name('home');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
