@@ -8,38 +8,11 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
-  {{-- <script src="{{ asset('js/api/SAQ.js') }}"></script> --}}
-
   <style> #search {text-align: inherit}</style>
 
   <script src="{{ asset('js/api/Bouteille.js') }}"></script>
   <script src="{{ asset('js/api/Transaction.js') }}"></script>
-  <script defer>
-   //JS en bas de la page!
-
-   
-           // let transaction = new Transaction(); 
-       
-  //     transaction.store().then(dataT => {
-  //       opt.id = dataT['bouteille_id']
-  //       console.log(dataT)
-
-          // let trans = [];
-          //   for(i = 0; i<dataT.length; i++) { 
-          //     if( opt.id == dataT[i].bouteille_id){
-          //       trans = dataT[i].bouteille_id;
-          //       trans = dataT[i].millesime;
-                
-          //       console.log(trans);
-          //       // console.log(dataT[i].bouteille_id + "ddd" + opt.id + trans);
-          //     }
-          //   }
-        // });
-      // });    
-
-
-  </script>
-
+  <script src="{{ asset('js/api/Cellier.js') }}"></script>
   <title></title>
 </head>
 
@@ -62,10 +35,11 @@
         <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
         <button class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
         <form class="form-ajouter" action="/" method="post">
+          <label for="name">Nom: {{ Auth::user()->name }} </label><br><br>
+          <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
           <label for="search">Recherche:</label>
-          <select  class="input-ajouter" id="search" name="search" ></select><br><br>
-
+          <select class="input-ajouter" id="search" name="search" ></select><br><br>
           <label for="millesime">Millesime:</label>
           <input class="input-ajouter" type="text" id="millesime" name="millesime"><br><br>
           <label for="quantite">Quantité:</label>
@@ -78,9 +52,9 @@
           <input class="input-ajouter" type="date" id="garde" name="garde"><br><br>
           <label for="cellier">Nom du cellier:</label>
           <select class="input-ajouter" name="cellier" id="cellier">
-            <option value="1">cellier1</option>
-            <option value="2">cellier2</option>
-            <option value="3">cellier3</option>
+            <option value="1">vin rouge</option>
+            <option value="2">vin blanc</option>
+            <option value="3">vin rosé</option>
           </select><br><br>
           <label for="notes">Notes:</label>
           <input class="input-ajouter" name="notes" id="notes"><br><br>
@@ -99,38 +73,57 @@
   </div>
   <footer class="footer-ajouter">2020 Vino | Group 1</footer>
  
+  {{-- petit exemple pour afficher les erreurs formulaire --}}
+  {{-- <td aria-label="actions">
+    <button style="width: max-content" class="btn btn-ajouter inline" type="submit" id=${b.codesaq}>Ajouter</button>
+     <span><p id="message${b.code_saq}" style="margin-top: 20px"></p></span>
+ </td> --}}
+
 
 <script defer>
 
 let bouteilles = new Bouteille();
     
     bouteilles.index().then(dataB => {
-      console.log(dataB)
+      console.log(dataB);
         
         var sel = document.getElementById('search');
         var opt = null;
 
           for(i = 0; i<dataB.length; i++) { 
-
+            // console.log(dataB[i]);
             opt = document.createElement('option');
+            opt.setAttribute("value", dataB[i].id);
             opt.nom = dataB[i].nom;
-            opt.id = dataB[i].id;
-            opt.innerHTML = dataB[i].nom;
+            opt.innerHTML = dataB[i].nom
+            console.log(opt);
+            opt.prix_saq = dataB[i].id;
             sel.appendChild(opt);
-
-
-            sel.addEventListener("change", function() {
-                var price = document.getElementById("price");
-                price.value = opt.prix_saq;  
-            })
           }
     });
-        
-         
+
+
+// let cellier = new Cellier();
+
+// cellier.show().then(dataC => {
+//   console.log(dataC);
+    
+//     var sel = document.getElementById('cellier');
+//     var opt = null;
+
+//       for(i = 0; i<dataC.length; i++) { 
+//         // console.log(dataC[i]);
+//         opt = document.createElement('option');
+//         // opt.setAttribute("value", dataC[i].id);
+//         opt.nom = dataC[i].nom;
+//         opt.innerHTML = dataC[i].nom
+//         sel.appendChild(opt);
+//       }
+// });    
 
 function getValue() {
     // Sélectionner l'élément input et récupérer sa valeur
-    var search = document.getElementById("search").value;
+    var bouteilleId = document.getElementById("search").value;
     var millesime = document.getElementById("millesime").value;;  
     var quantite = document.getElementById("quantite").value;  
     var date = document.getElementById("date").value;
@@ -139,10 +132,25 @@ function getValue() {
     var notes = document.getElementById("notes").value;
     var price = document.getElementById("price").value;
     // Afficher la valeur
-    alert(search + millesime + quantite + price + date + garde +  cellier + notes);
+    // alert(bouteilleId + millesime + quantite + price + date + garde +  cellier + notes);
+
+    let bouteille = {
+      bouteille_id:bouteilleId,
+      cellier_id:cellier,
+      quantite:quantite,
+      date_achat:date,
+      garde_jusqua:garde,
+      notes:notes,
+      prix:price,
+      millesime:millesime
+    }
+
+    let transaction = new Transaction();
+    
+    transaction.store(bouteille).then(data => {
+      console.log(data);
+    });
 }
-
-
   </script>
 </body>
 </html>

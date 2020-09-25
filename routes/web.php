@@ -56,8 +56,7 @@ Route::get('/modal', function () {
 })->name('home');
 
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/ajouter_bouteille', function () {
+    return view('ajouter_bouteille');
 })->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
