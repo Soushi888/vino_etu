@@ -14,7 +14,6 @@
         function afficherListeUtilisateurs() {
             let users = new User();
             users.index().then(data => {
-                document.querySelector(".info tbody").innerHTML = "";
                 new Modal();
                 let modalContent = document.getElementsByClassName("modal-content");
 
@@ -63,14 +62,29 @@
                     let btnModifier = document.querySelector(`[btn="modifier_${u.email}"]`);
                     // Modal bouton modifier
                     btnModifier.addEventListener("click", () => {
-                        modalContent[0].innerHTML = `
-                        <span class="close-button">&times;</span>
-                        <h2>Modification de ${u.name}</h2>`;
+                        modalContent[0].innerHTML = `<span class="close-button">&times;</span>
+                        <h2>Modifier un utilisateur</h2>
+                        <form class="form-ajouter" action="/" method="post">
+                          <label for="name">Nom : </label>
+                          <input class="input-ajouter" type="text" id="name" name="name" value="${u.name}"><br><br>
+                          <label for="email">Adresse courriel : </label>
+                          <input class="input-ajouter" type="text" id="email" name="email" value="${u.email}"><br><br>
+                          <label for="type">type :</label>
+                            <select style="margin-bottom: 5px" class="input-ajouter">
+                                <option>Utilisateur</option>
+                                <option>Administrateur</option>
+                            </select>
+                          <label for="password">Mot de passe :</label>
+                          <input class="input-ajouter" type="password" id="password" name="password"><br><br>
+                          <label for="password_confirm">Confirmation du Mot de passe :</label>
+                          <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
+                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                        </form>`;
                         Modal.showModal();
                     })
                 })
 
-                // TODO : Formulaire d'ajout
+                // TODO : Formulaire (avec vérifications) d'ajout
                 // Bouton ajouter
                 let btnAjouter = document.querySelector(`[btn="ajouter"]`);
 
@@ -78,7 +92,23 @@
                 btnAjouter.addEventListener("click", () => {
                     modalContent[0].innerHTML = `
                         <span class="close-button">&times;</span>
-                        <h2>Enregistrer un utilisateur</h2>`;
+                        <h2>Enregistrer un utilisateur</h2>
+                        <form class="form-ajouter" action="/" method="post">
+                          <label for="name">Nom : </label>
+                          <input class="input-ajouter" type="text" id="name" name="name"><br><br>
+                          <label for="email">Adresse courriel : </label>
+                          <input class="input-ajouter" type="text" id="email" name="email"><br><br>
+                          <label for="type">type :</label>
+                            <select style="margin-bottom: 5px" class="input-ajouter">
+                                <option>Utilisateur</option>
+                                <option>Administrateur</option>
+                            </select>
+                          <label for="password">Mot de passe :</label>
+                          <input class="input-ajouter" type="password" id="password" name="password"><br><br>
+                          <label for="password_confirm">Confirmation du Mot de passe :</label>
+                          <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
+                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                        </form>`;
                     Modal.showModal();
                 })
 

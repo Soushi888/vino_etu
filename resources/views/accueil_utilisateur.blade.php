@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href={{ asset("css/style.css") }}>
     <script src={{asset("js/api/Bouteille.js")}}></script>
     <script src={{asset("js/api/CellierBouteille.js")}}></script>
     <script src={{asset("js/api/User.js")}}></script>
@@ -21,28 +21,29 @@
 <body>
 <input type="hidden" id="utilisateur" value="{{ Auth::user()->name }}">
 <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
-<a href="{{ url('/logout') }}"> logout </a>
+
 <section id="listCelliers">
     <h1>Un petit verre de vino?</h1>
 </section>
+
 <div class="container-index">
     <div class="main-content">
         <div class="content-wrap">
-            <a href="#" class="logo_accueille"><img src="img/logo_vino.png" alt="vino"></a>
+            <a href="#" class="logo_accueille"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
             <h2 class="slogan">Un petite verre de vino?</h2>
         </div>
         <aside>
             <nav class="header-nav accueille">
-                <a class="header-nav-link active accueille" href="#">Mon celliere</a>
+                <a class="header-nav-link active accueille" href="#">Mes celliers</a>
                 <a class="header-nav-link active accueille" href="ajouter_bouteille.html">Ajouter une bouteille au
                     cellier</a>
-                <a class="header-nav-link" href="identification.html"><i class="fa fa-sign-out fa-2x"
-                                                                         aria-hidden="true"></i></a>
+                <a class="header-nav-link" href="/logout"><i class="fa fa-sign-out fa-2x"
+                                                             aria-hidden="true"></i></a>
             </nav>
+
+{{--            <div class="message-bienvenu"><h2>Cellier : <span id="nom_cellier"></span></h2></div>--}}
+
             <div class="affichaListeBouteille"></div>
-
-            <div class="container_bouteille">
-
             </div>
         </aside>
     </div>
@@ -76,7 +77,12 @@
         let listCelliers = document.querySelector("#listCelliers");
         listCelliers.innerHTML = "";
         let idCellier = evt.target.id;
-        console.log(idCellier);
+
+        let nomCellier = evt.target.innerHTML;
+        let messageBienvenu = document.getElementById("message-bienvenu h2");
+        console.log(messageBienvenu)
+
+
         idCellier = idCellier.replace("idCellier", "");
         let userCellierBouteilles = new CellierBouteille;
         userCellierBouteilles.index(idCellier).then((data => {
@@ -94,25 +100,25 @@
                     let containerBouteille = document.createElement("div");
                     containerBouteille.className = "container_bouteille";
                     containerBouteille.innerHTML = `
-                    <table>
-                      <tr>
-                        <div class="img_bouteille">
-                          <td>
-                    <img src="${data.url_image}" alt="bouteille" witdh="150" height="225">
-                  </td>
-                        </div>
-                        <td>
-                <p>Nom : <b>${data.nom}</b></p>
-                <p>Pays : <b>${data.pays}</b></p>
-                <p>Type : <b>${getType(data.type_id)}</b></p>
-                <a href="${data.url_saq}">Voir SAQ</a>
-                <div class="btn_bouteille">
-                  <button class="btn btn-modifier inline" btn="modifier_${data.code_saq}">Modifier</button>
-                  <button class="btn btn-ajouter inline" btn="ajouter_${data.code_saq}">Ajouter</button>
-                  <button class="btn btn-boire inline" btn="boire_${data.code_saq}">Boire</button>
-                </div>
-              </td>
-            </tr>
+                        <table>
+                          <tr>
+                            <div class="img_bouteille">
+                              <td>
+                                 <img src="${data.url_image}" alt="bouteille" witdh="150" height="225">
+                              </td>
+                            </div>
+                            <td>
+                            <p>Nom : <b>${data.nom}</b></p>
+                            <p>Pays : <b>${data.pays}</b></p>
+                            <p>Type : <b>${getType(data.type_id)}</b></p>
+                            <a href="${data.url_saq}">Voir SAQ</a>
+                            <div class="btn_bouteille">
+                              <button class="btn btn-modifier inline" btn="modifier_${data.code_saq}">Modifier</button>
+                              <button class="btn btn-ajouter inline" btn="ajouter_${data.code_saq}">Ajouter</button>
+                              <button class="btn btn-boire inline" btn="boire_${data.code_saq}">Boire</button>
+                            </div>
+                          </td>
+                        </tr>
                       </table>
                 `;
                     eAffichaListeBouteille.appendChild(containerBouteille);

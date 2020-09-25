@@ -170,9 +170,13 @@ p {
     color: #000;
     font-weight: bold;
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
     font-size: 18px;
 
+}
+
+.message-bienvenu {
+    text-align: center;
 }
 
 .accueille.active:hover {
@@ -290,6 +294,8 @@ td.actions {
 .fail {
     color: #dd0303;
 }
+
+
 
 /* Btn
 =================*/
@@ -679,6 +685,7 @@ label {
 }
 
 .form-ajouter {
+    padding: 20px 0;
     margin-left: 26px;
     line-height: 1.1;
 }
@@ -849,6 +856,10 @@ label {
         font-size: 9px;
         justify-content: space-between;
         margin-bottom: 10px;
+    }
+
+    .message-bienvenu {
+        text-align: center;
 
     }
 
@@ -898,6 +909,10 @@ label {
     }
 
 
+}
+
+.form-ajouter {
+    margin: 0;
 }
 
 /***Menu hamburger*****/

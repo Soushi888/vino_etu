@@ -10,10 +10,15 @@
     <link rel="stylesheet" href={{ asset("css/style.css") }}>
     <script src={{ asset("js/api/Bouteille.js") }}></script>
     <script src="{{ asset("js/functions.js") }}"></script>
+    <script src="{{ asset("js/modal.js") }}"></script>
     <script defer>
         bouteilles = new Bouteille();
         bouteilles.index().then(data => {
             let tableau = document.querySelector(".info tbody")
+            tableau.innerHTML = "";
+
+            new Modal();
+            let modalContent = document.getElementsByClassName("modal-content");
 
 
             data.map(b => {
@@ -22,7 +27,7 @@
                 date = `${date.getDate()} ${nomMois(date.getMonth())} ${date.getFullYear()}`
 
                 let tr = document.createElement("tr")
-                let trContent = `
+                tr.innerHTML = `
                     <td aria-label="#">${b.id}</td>
                     <td aria-label="nom">${b.nom}</td>
                     <td aria-label="prenom">${b.code_saq}</td>
@@ -36,12 +41,104 @@
                     <td aria-label="created_at">${date}</td>
                     <td aria-label="actions" >
                         <button style="width: max-content" class="btn btn-boire inline btn_modal_window" btn="modifier_${b.code_saq}" type="submit">Modifier</button>
-                        <button style="width: max-content" class="btn btn-accepter inline btn_modal_window" btn="supprimer_${b.code_saql}" type="submit">Supprimer</button>
+                        <button style="width: max-content" class="btn btn-accepter inline btn_modal_window" btn="supprimer_${b.code_saq}" type="submit">Supprimer</button>
                     </td>
                 `;
-
-                tr.innerHTML = trContent;
                 tableau.appendChild(tr);
+
+                // Bouton supprimer
+                let btnSupprimer = document.querySelector(`[btn="supprimer_${b.code_saq}"]`);
+                // Modal bouton supprimer
+                btnSupprimer.addEventListener("click", () => {
+                    modalContent[0].innerHTML = `
+                        <span class="close-button">&times;</span>
+                        <h2>Confirmation suppression</h2>
+                        <p>Voulez vous vraiment supprimer la bouteille "${b.nom}" ?</p>
+                        <button style="width: max-content" class="btn btn-accepter inline" id="oui">Oui</button>
+                        <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
+                    Modal.showModal();
+
+                    document.getElementById("oui").addEventListener("click", () => {
+                        supprimerUtilisateur(u.id);
+                        afficherListeUtilisateurs();
+                    })
+
+                    document.getElementById("non").addEventListener("click", () => {
+                        Modal.closeModal();
+                    })
+
+                })
+
+                // TODO : Formulaire (avec vérifications)  de modification
+                // Bouton modifier
+                let btnModifier = document.querySelector(`[btn="modifier_${b.code_saq}"]`);
+                // Modal bouton modifier
+                btnModifier.addEventListener("click", () => {
+                    modalContent[0].innerHTML = `
+                        <span class="close-button">&times;</span>
+                        <h2>Modifier une bouteille</h2>
+                        <form class="form-ajouter" action="/" method="post">
+                          <label for="nom">Nom : </label>
+                          <input class="input-ajouter" type="text" id="nom" name="nom" value="${b.nom}"><br><br>
+                          <label for="code_saq">Code : </label>
+                          <input class="input-ajouter" type="text" id="code_saq" name="code_saq" value="${b.code_saq}"><br><br>
+                          <label for="pays">Pays :</label>
+                          <input class="input-ajouter" type="text" id="pays" name="pays" value="${b.pays}"><br><br>
+                          <label for="description">Description :</label>
+                          <textarea style="margin-bottom: 10px" class="input-ajouter" id="description" name="description">${b.description}</textarea>
+                          <label for="url_saq">URL : </label>
+                          <input class="input-ajouter" name="url_saq" id="url_saq" value="${b.url_saq}"><br><br>
+                          <label for="url_image">URL de l'image : </label>
+                          <input class="input-ajouter" name="url_image" id="url_image" value="${b.url_image}"><br><br>
+                          <label for="format">Format : </label>
+                          <input class="input-ajouter" name="format" id="format" value="${b.format}"><br><br>
+                          <label for="type">Type de vin : </label>
+                          <select class="input-ajouter" name="type" id="type">
+                            <option name="rouge" id="rouge" value="1">Rouge</option>
+                            <option name="blanc" id="blanc" value="1">Blanc</option>
+                            <option name="rose" id="rose" value="1">Rosé</option>
+                          </select>
+                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                        </form>`;
+
+
+                    Modal.showModal();
+                })
+            })
+
+            // TODO : Formulaire (avec vérifications) d'ajout
+            // Bouton ajouter
+            let btnAjouter = document.querySelector(`[btn="ajouter"]`);
+
+            // Modal bouton ajouter
+            btnAjouter.addEventListener("click", () => {
+                modalContent[0].innerHTML = `
+                        <span class="close-button">&times;</span>
+                        <h2>Ajouter une bouteille</h2>
+                        <form class="form-ajouter" action="/" method="post">
+                          <label for="nom">Nom : </label>
+                          <input class="input-ajouter" type="text" id="nom" name="nom"><br><br>
+                          <label for="code_saq">Code : </label>
+                          <input class="input-ajouter" type="text" id="code_saq" name="code_saq"><br><br>
+                          <label for="pays">Pays :</label>
+                          <input class="input-ajouter" type="date" id="pays" name="pays"><br><br>
+                          <label for="description">Description :</label>
+                          <input class="input-ajouter" type="date" id="description" name="description"><br><br>
+                          <label for="url_saq">ULR : </label>
+                          <input class="input-ajouter" name="url_saq" id="url_saq"><br><br>
+                          <label for="url_image">URL de l'image : </label>
+                          <input class="input-ajouter" name="url_image" id="url_image"><br><br>
+                          <label for="format">Format : </label>
+                          <input class="input-ajouter" name="format" id="format"><br><br>
+                          <label for="type">Type de vin : </label>
+                          <select class="input-ajouter" name="type" id="type">
+                            <option name="rouge" id="rouge" value="1">Rouge</option>
+                            <option name="blanc" id="blanc" value="1">Blanc</option>
+                            <option name="rose" id="rose" value="1">Rosé</option>
+                          </select>
+                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                        </form>`
+                Modal.showModal();
             })
 
 
@@ -74,8 +171,10 @@
     </nav>
 
     <div style="margin-bottom: 50px" class="container">
-        <button class="btn btn-ajouter inline"  type="submit" onclick=window.location.href='{{ route('admin.catalogue.ajouter') }}>Ajouter une bouteille</button>
-        <button class="btn btn-supprimer inline"  type="submit" onclick=window.location.href='{{ route('admin.saq') }}'>Catalogue SAQ</button>
+        <button class="btn btn-ajouter inline" btn="ajouter">Ajouter une bouteille</button>
+        <button class="btn btn-supprimer inline" type="submit" onclick=window.location.href='{{ route('admin.saq') }}'>
+            Catalogue SAQ
+        </button>
     </div>
 
 
