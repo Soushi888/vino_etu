@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <input class="input" type="password" name="password"
                         class="form-control @error('password') is-invalid @enderror" required
-                        autocomplete="new-password" placeholder="MDP">
+                        autocomplete="new-password" placeholder="Mot de Passe">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <input class="input" type="password" name="password_confirmation"
                         class="form-control @error('password') is-invalid @enderror" required
-                        autocomplete="new-password" placeholder="comfirmation MDP">
+                        autocomplete="new-password" placeholder="confirmation Mot de Passe">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-register" type="submit" class="btn btn-primary"> S'enregistrer

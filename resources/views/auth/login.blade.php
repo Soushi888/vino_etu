@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <input class="input" type="password"
                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                               autocomplete="current-password" placeholder="MDP">
+                               autocomplete="current-password" placeholder="Mot de Passe">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
