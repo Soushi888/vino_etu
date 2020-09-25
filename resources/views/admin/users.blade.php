@@ -12,9 +12,9 @@
     <script src={{ asset("js/modal.js") }}></script>
     <script defer>
         function afficherListeUtilisateurs() {
-            // document.querySelector(".info tbody").innerHTML = ""
             let users = new User();
             users.index().then(data => {
+                document.querySelector(".info tbody").innerHTML = "";
                 new Modal();
                 let modalContent = document.getElementsByClassName("modal-content");
 
@@ -49,6 +49,7 @@
 
                         document.getElementById("oui").addEventListener("click", () => {
                             supprimerUtilisateur(u.id);
+                            afficherListeUtilisateurs();
                         })
 
                         document.getElementById("non").addEventListener("click", () => {
