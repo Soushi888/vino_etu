@@ -22,7 +22,7 @@
   <div class="container-ajouter">
     <div class="main-content-ajouter">
       <div class="content-wrap-ajouter">
-        <a href="accueil_utilisateur.html" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
+        <a href="/" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
         <div class="img_b">
           <img src="img/bouteille2.png" alt="bouteille2">
         </div>
