@@ -15,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+//Route::get('/', function () {
+//    return view('accueil_utilisateur');
+//})->middleware('auth')->name('home');
+
 Route::get('/', function () {
-    return view('home');
-})->middleware('auth')->name('home');
+    return view('accueil_utilisateur');
+})->middleware('auth');
 
 // Routes Admin
 //Users
@@ -51,6 +55,3 @@ Route::get('/test', function () {
 })->name('home');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/', function () {
-    return view('accueil_utilisateur');
-})->middleware('auth');
