@@ -25,14 +25,14 @@ Front end : AJAX
 
 ### Utilisateurs
 
-- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/register)
-- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/login)
+- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/register)
+- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/login)
 - [ ] Gérer son profil
     - [ ] Modifier son mot de passe
     - [ ] Modifier son nom et son prénom
     - [ ] Modifier son adresse courriel
 - [ ] Gérer ses celliers
-    - [X] [Afficher tous ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+    - [X] [Afficher tous ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/)
     - [ ] Afficher le contenu d'un cellier
     - [ ] Créer un nouveau cellier
     - [ ] Modifier le nom d'un cellier
@@ -46,7 +46,7 @@ Front end : AJAX
         - [ ] Quantité -1 
         - [ ] Possibilité d'écrire une note
     - [ ] Créer un modèle de bouteille personnalisé
-    - [X] [Ajouter une ou plusieurs bouteilles à l'un de ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/ajouter_bouteille)
+    - [X] [Ajouter une ou plusieurs bouteilles à l'un de ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/ajouter_bouteille)
     - [ ] Modifier une transaction du cellier
     - [ ] Supprimer une transaction du cellier
 - [ ] Consulter le catalogue
@@ -64,7 +64,7 @@ Front end : AJAX
     - [ ] Modifier son nom et son prénom
     - [ ] Modifier son adresse courriel
 - [ ] Gérer les utilisateurs
-    - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/)
+    - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/)
     - [ ] Afficher les détails d'un utilisateur
         - [ ] Historique des transactions
         - [ ] Bouteilles en stock
@@ -74,7 +74,7 @@ Front end : AJAX
     - [ ] Modifier un utilisateur (incluant le type)
     - [X] Supprimer un utilisateur
 - [ ] Gérer le catalogue
-    - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue)
+    - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue)
     - [ ] Afficher les détails d'une bouteilles
         - [ ] Liste des utilisateurs qui en possède une ou plusieurs unités
         - [ ] Liste des celliers dans lesquels elle se trouve
@@ -82,7 +82,7 @@ Front end : AJAX
     - [ ] Afficher les bouteilles personnalisées des utilisateurs
     - [ ] Ajouter une nouvelle bouteille
     - [X] Supprimer une bouteille
-    - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue/saq)
+    - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue/saq)
         - [X] Recherche par page et par type de vin
         - [X] Importer une bouteille de la SAQ manuellement
         - [X] Importer les bouteilles de toute la page
