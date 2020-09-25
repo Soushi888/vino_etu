@@ -100,46 +100,6 @@ Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fo
 - email : test@test.com
 - mot de passe : "12345678"
 
-#### API
-
-Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme ***POSTMAN***.
-
-##### utilisateurs
-
-[`GET` - api/users](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/users)
-
-[`GET` - api/users/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/users/1)
-
-[`GET` - api/users/{id}/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/users/1/celliers)
-
-##### SAQ
-
-[`GET` - api/saq](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/saq)
-
-##### bouteilles
-
-[`GET` - api/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/bouteilles)
-
-[`GET` - api/bouteilles/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/bouteilles/1)
-
-##### celliers
-
-[`GET` - api/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/celliers)
-
-[`GET` - api/celliers/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/celliers/1)
-
-#### celliers/bouteilles
-
-[`GET` - api/celliers/{id}/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/celliers/1/bouteilles)
-
-[`GET` - api/celliers/{id}/bouteilles/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/celliers/1/bouteilles/{id})
-
-#### transactions
-
-[`GET` - api/transactions/](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/transactions/)
-
-[`GET` - api/transactions/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/api/transactions/1/)
-
 ## Installation en local
 
 ### Installation avec le script shell
