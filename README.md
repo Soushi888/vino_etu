@@ -33,7 +33,7 @@ Front end : AJAX
     - [ ] Modifier son adresse courriel
 - [ ] Gérer ses celliers
     - [X] [Afficher tous ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/)
-    - [ ] Afficher le contenu d'un cellier
+    - [X] Afficher le contenu d'un cellier
     - [ ] Créer un nouveau cellier
     - [ ] Modifier le nom d'un cellier
     - [ ] Supprimer un cellier
