@@ -31,7 +31,6 @@ class SAQ {
         })
             .then(response => response.json())
             .then(json => {
-                // console.log(json);
                 if (json == "Déjà en inventaire") {
                     return false;
                 }
@@ -51,18 +50,13 @@ class SAQ {
             console.log(data);
             data.map(async b => {
                 let store = this.store(b)
-                store.then(json => {
-                    // console.log(json);
+              return  store.then(json => {
                     if (json) {
                         nbr_ajout++;
                     }
-                    console.log("bouteilles ajoutées : " + nbr_ajout)
+                    document.getElementById("message").innerText = `${nbr_ajout} bouteilles ajoutées.`
                 }).catch(err => console.log(err));
             });
-        })
-        return index.then(() => {
-            console.log(nbr_ajout);
-            return nbr_ajout;
         })
     };
 }

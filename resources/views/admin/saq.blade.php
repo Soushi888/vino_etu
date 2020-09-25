@@ -24,6 +24,9 @@
         saq = new SAQ();
         saq.index(recherche.type, recherche.page).then(data => {
             let tableau = document.querySelector(".info tbody")
+            tableau.innerHTML = ""
+
+
 
             data.map(b => {
                 let tr = document.createElement("tr")
@@ -60,13 +63,10 @@
                     })
                 })
             })
-            // TODO : Afficher message indiquant le nombre de bouteilles importées
             document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
                 saq.storeAll(recherche.type, recherche.page)
                     .then(data => {
-                        console.log(data)
-                        let spanMessage = document.getElementById("message");
-                        spanMessage.innerHTML = "Bouteilles enregistrées"
+                        console.log(data);
                     });
             })
         })
