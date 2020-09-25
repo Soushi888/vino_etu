@@ -66,7 +66,7 @@ class Bouteille {
      * @returns {Promise<void>}
      */
     destroy(id) {
-        return fetch(`${this._URL_CELLIERS}/${id}`, {
+        return fetch(`${this._URL_BOUTEILLES}/${id}`, {
             method: "DELETE",
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })

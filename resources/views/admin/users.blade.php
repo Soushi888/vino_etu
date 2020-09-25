@@ -57,7 +57,7 @@
 
                     })
 
-                    // TODO : Formulaire (avec vérifications)  de modification
+                    // TODO : Messages erreurs et modification
                     // Bouton modifier
                     let btnModifier = document.querySelector(`[btn="modifier_${u.email}"]`);
                     // Modal bouton modifier
@@ -84,7 +84,7 @@
                     })
                 })
 
-                // TODO : Formulaire (avec vérifications) d'ajout
+                // TODO : Messages erreurs et ajout
                 // Bouton ajouter
                 let btnAjouter = document.querySelector(`[btn="ajouter"]`);
 
@@ -119,7 +119,6 @@
 
         afficherListeUtilisateurs();
 
-        // TODO : Rafraichir liste des utilisateurs après supression.
         function supprimerUtilisateur(id) {
             let users= new User();
             users.destroy(id);
