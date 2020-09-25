@@ -19,7 +19,7 @@
     <div class="modal_content">
         <span class="close_modal_window">×</span>
         <h1 class="logo"><img src="img/logo_vino.png" alt="vino"></h1>
-        <form class="form-modal-modifier" action="/" method="post">
+        <form class="form-modal-modifier" action="{{ route("accueil") }}" method="post">
             <label for="name">Nom:</label><br><br>
             <label for="search">Recherche:</label>
             <input class="input-modal-modifier" type="text" id="search" name="search"><br><br>
@@ -33,7 +33,7 @@
             <input class="input-modal-modifier" type="text" id="price" name="price"><br><br>
             <label for="garde">Garde:</label>
             <input class="input-modal-modifier" type="text" id="garde" name="garde"><br><br>
-            <label for="cellar">Nom du cellier:</label>
+            <label for="cellar">Nom du cellier:</label>F
             <select class="input-modal-modifier" name="cellar" id="cellar">
                 <option value="---">---</option>
                 <option value="cellar1">cellar 1</option>

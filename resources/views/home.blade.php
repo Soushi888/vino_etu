@@ -5,7 +5,7 @@
 <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
 @section('content')
-<a href="{{ url('/logout') }}"> logout </a>
+<a href="{{ route("logout") }}"> logout </a>
 <section id="pageAcceuil">
     <h1>Un petit verre de vino?</h1>
     <div class="container-index">

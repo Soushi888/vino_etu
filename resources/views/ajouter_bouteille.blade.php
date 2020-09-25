@@ -22,7 +22,7 @@
   <div class="container-ajouter">
     <div class="main-content-ajouter">
       <div class="content-wrap-ajouter">
-        <a href="/" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
+        <a href="{{ route("accueil") }}" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
         <div class="img_b">
           <img src="img/bouteille2.png" alt="bouteille2">
         </div>
@@ -34,7 +34,7 @@
         </nav>
         <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
         <button class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
-        <form class="form-ajouter" action="/" method="post">
+        <form class="form-ajouter" action="{{ route("accueil") }}" method="post">
           <label for="name">Nom: {{ Auth::user()->name }} </label><br><br>
           <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 

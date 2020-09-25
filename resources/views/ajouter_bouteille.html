@@ -29,7 +29,7 @@
         </nav>
         <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
         <button class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
-        <form class="form-ajouter" action="/" method="post">
+        <form class="form-ajouter" action="{{ route("accueil") }}" method="post">
           <label for="name">Nom:</label><br><br>
           <label for="search">Recherche:</label>
           <input class="input-ajouter" type="text" id="search" name="search"><br><br>

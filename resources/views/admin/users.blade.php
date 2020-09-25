@@ -78,7 +78,7 @@
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                          <button style="margin-top: 30px; cursor: not-allowed" class="btn btn-accepter" disabled>Accepter</button>
                         </form>`;
                         Modal.showModal();
                     })
@@ -107,7 +107,7 @@
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                          <button style="margin-top: 30px; cursor: not-allowed" class="btn btn-accepter" disabled>Accepter</button>
                         </form>`;
                     Modal.showModal();
                 })
@@ -120,7 +120,7 @@
         afficherListeUtilisateurs();
 
         function supprimerUtilisateur(id) {
-            let users= new User();
+            let users = new User();
             users.destroy(id);
             Modal.closeModal();
             afficherListeUtilisateurs();
@@ -132,21 +132,18 @@
 
 <body>
 <div class="page_admin">
-    <div class="logo_admin"><a href="/"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
+    <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
     <nav id="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
         <ul id="menu">
-            <a class="header-nav-link active" href="/admin">
+            <a class="header-nav-link active" href="{{ route("admin") }}">
                 <li>Utilisateurs</li>
             </a>
-            <a class="header-nav-link active" href="/admin/catalogue">
+            <a class="header-nav-link active" href="{{ route("admin.catalogue") }}">
                 <li>Catalogue</li>
             </a>
-            <a class="header-nav-link active" href="/admin/statistiques">
-                <li>Statistiques</li>
-            </a>
-            <a class="header-nav-link" href="/logout">
+            <a class="header-nav-link" href="{{ route("logout") }}">
                 <i class="fa fa-sign-out fa-1x" aria-hidden="true"></i>
             </a>
         </ul>

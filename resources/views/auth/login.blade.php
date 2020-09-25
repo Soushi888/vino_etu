@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-cancel" onclick="window.location.href='{{ route('register') }}'">
+                        <button class="btn btn-cancel" onclick="window.location.href='{{ route('register') }}'" disabled style="cursor: not-allowed">
                             S'inscrire
                         </button>
                     </div>

@@ -18,7 +18,7 @@
 
 <body>
 <div class="page_admin">
-    <div class="logo_admin"><a href="/"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
+    <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
     <nav id="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
@@ -32,7 +32,7 @@
             <a class="header-nav-link active" href="/admin/statistiques">
                 <li>Statistiques</li>
             </a>
-            <a class="header-nav-link" href="/logout">
+            <a class="header-nav-link" href="{{ route("logout") }}">
                 <i class="fa fa-sign-out fa-1x" aria-hidden="true"></i>
             </a>
         </ul>
@@ -41,7 +41,6 @@
     <div class="container">
         <h1 style="color: white; text-align: center">Statistiques générales</h1>
     </div>
-</div>
-</body>
+</div>/body>
 
 </html>
