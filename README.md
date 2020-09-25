@@ -14,18 +14,25 @@ Front end : AJAX
 
 [Documentation Laravel](https://laravel.com/docs/7.x)
 
+## Équipe
+
+- Vladyslav Iefimov
+- Christopher Parent-Paquette
+- Samuel St-Jean
+- Sacha Pignot
+
 ## Fonctionnalités
 
 ### Utilisateurs
 
-- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
-- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/register)
+- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/login)
 - [ ] Gérer son profil
     - [ ] Modifier son mot de passe
     - [ ] Modifier son nom et son prénom
     - [ ] Modifier son adresse courriel
 - [ ] Gérer ses celliers
-    - [ ] Afficher tous ses celliers
+    - [X] [Afficher tous ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
     - [ ] Afficher le contenu d'un cellier
     - [ ] Créer un nouveau cellier
     - [ ] Modifier le nom d'un cellier
@@ -39,7 +46,7 @@ Front end : AJAX
         - [ ] Quantité -1 
         - [ ] Possibilité d'écrire une note
     - [ ] Créer un modèle de bouteille personnalisé
-    - [ ] Ajouter une ou plusieurs bouteilles à l'un de ses celliers
+    - [X] [Ajouter une ou plusieurs bouteilles à l'un de ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/ajouter_bouteille)
     - [ ] Modifier une transaction du cellier
     - [ ] Supprimer une transaction du cellier
 - [ ] Consulter le catalogue
@@ -65,7 +72,7 @@ Front end : AJAX
         - [ ] Bouteilles personnalisées
     - [ ] Créer un nouvel utilisateur ou administrateur
     - [ ] Modifier un utilisateur (incluant le type)
-    - [ ] Supprimer un utilisateur
+    - [X] Supprimer un utilisateur
 - [ ] Gérer le catalogue
     - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue)
     - [ ] Afficher les détails d'une bouteilles
@@ -74,7 +81,7 @@ Front end : AJAX
         - [ ] Nombre total d'unités présentent dans les celliers des utilisateurs
     - [ ] Afficher les bouteilles personnalisées des utilisateurs
     - [ ] Ajouter une nouvelle bouteille
-    - [ ] Supprimer une bouteille
+    - [X] Supprimer une bouteille
     - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue/saq)
         - [X] Recherche par page et par type de vin
         - [X] Importer une bouteille de la SAQ manuellement
@@ -82,16 +89,9 @@ Front end : AJAX
 - [ ] Consulter les statistiques d'utilisation de l'Application
     - ...
 
-## Équipe
-
-- Vladyslav Iefimov
-- Christopher Parent-Paquette
-- Samuel St-Jean
-- Sacha Pignot
-
 ## Démo
 
-[Site web de la démo](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+[Site web de la démo](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public)
 
 Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fonctionnalités plus haute.
 
@@ -196,7 +196,11 @@ Lancer le serveur
 
 Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets pré-compilés dans leurs sous-dossiers dans `/ressources` et les assets compilés se retrouve dans `/public`.
 
-Si vous n'utilisé pas `npm`, Vous pouvez mettre vos fichiers HTML dans le dossier `/ressources/views` et vos fichiers CSS/JS et autres assets directement dans le dossier `/public`.
+Si vous n'utilisez pas `npm`, Vous pouvez mettre vos fichiers HTML dans le dossier `/ressources/views` et vos fichiers CSS/JS et autres assets directement dans le dossier `/public`.
+
+### Interface avec l'API
+
+Dans le dossier `public/js/api` se trouve des classes javascript servant d'interface avec l'API.
 
 ## Routes
 ### Public
@@ -250,7 +254,7 @@ Les routes de l'api se trouvent dans le fichier routes/api.php
 
 - `GET`       - `api/transactions/`                  : Retourne toutes les transactions liées aux bouteilles
 - `GET`       - `api/transactions/{id}`              : Retourne une transaction liée à une bouteille
-- `POST`       - `api/transactions/`                 : Ajouter une transaction liée à une bouteille
+- `POST`      - `api/transactions/`                 : Ajouter une transaction liée à une bouteille
 - `PUT`       - `api/transactions/{id}`              : Modifier une transaction liée à une bouteille dans un cellier
 - `DELETE`    - `api/transactions/{id}`              : Supprimer une transaction liée à une bouteille dans un cellier
 

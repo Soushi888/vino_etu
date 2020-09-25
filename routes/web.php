@@ -21,13 +21,13 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('accueil_utilisateur');
-})->middleware('auth');
+})->middleware('auth')->name("accueil");
 
 Route::get('/ajouter_bouteille', function () {
     return view('ajouter_bouteille');
 })->name('ajouter_bouteille');
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
 
 // Routes Admin
 //Users
