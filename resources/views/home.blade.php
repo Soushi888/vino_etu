@@ -11,7 +11,7 @@
     <div class="container-index">
     <div class="main-content">
       <div class="content-wrap">
-        <a href="#" class="logo_accueille"><img src="img/logo_vino.png" alt="vino"></a>
+        <a href="#" class="logo_accueille"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
         <h2 class="slogan">Un petite verre de vino?</h2>
       </div>
       <aside>

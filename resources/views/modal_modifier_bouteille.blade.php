@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href={{ asset("css/style.css") }}>
     <title></title>
 </head>
 
@@ -18,7 +18,7 @@
 <div id="my_modal" class="modal">
     <div class="modal_content">
         <span class="close_modal_window">×</span>
-        <h1 class="logo"><img src="img/logo_vino.png" alt="vino"></h1>
+        <h1 class="logo"><img src={{ asset("img/logo_vino.png") }} alt="vino"></h1>
         <form class="form-modal-modifier" action="{{ route("accueil") }}" method="post">
             <label for="name">Nom:</label><br><br>
             <label for="search">Recherche:</label>

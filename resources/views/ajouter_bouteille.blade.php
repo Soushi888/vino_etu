@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href={{ asset("css/style.css") }}>
   <style> #search {text-align: inherit}</style>
 
   <script src="{{ asset('js/api/Bouteille.js') }}"></script>
@@ -22,14 +22,14 @@
   <div class="container-ajouter">
     <div class="main-content-ajouter">
       <div class="content-wrap-ajouter">
-        <a href="{{ route("accueil") }}" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
+        <a href="{{ route("accueil") }}" class="logo_ajouter"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
         <div class="img_b">
-          <img src="img/bouteille2.png" alt="bouteille2">
+          <img src={{ asset("img/bouteille2.png") }} alt="bouteille2">
         </div>
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="#">Mon celliere</a>
+          <a class="header-nav-link active ajouter" href="{{ route("accueil") }}">Mes celliers</a>
           <a class="header-nav-link active ajouter" href="#">Ajouter une bouteille au cellier</a>
         </nav>
         <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
@@ -65,7 +65,7 @@
             aria-hidden="true"></i></a>
         </nav>
         <div class="img_marg">
-          <img src="img/bouteille3.png" alt="bouteille">
+          <img src={{ asset("img/bouteille3.png") }} alt="bouteille">
         </div>
         <button class="btn btn-ajouter-bouteille" type="button"  onclick="getValue()" id="boutton" type="submit" formaction="#">Ajouter la bouteille</button>
       </aside>

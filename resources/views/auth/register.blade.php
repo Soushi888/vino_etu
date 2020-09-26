@@ -5,7 +5,7 @@
     <div class="container">
         <main class="content">
 
-            <h1 class="logo"><img src="img/logo_vino.png" alt="vino"></h1>
+            <h1 class="logo"><img src={{ asset("img/logo_vino.png") }} alt="vino"></h1>
             <form class="form" action="{{ route('register') }}" method="post">
                 @csrf
                 <div class="form-group">
