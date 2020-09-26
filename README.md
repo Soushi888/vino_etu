@@ -176,6 +176,10 @@ Les routes publiques se trouvent en grande partie dans le fichier routes/web.php
 - `/login` : Écran de connexion
 - `/register` : Écran de création de compte
 
+- `/admin` : Page Admin - gestion des utilisateurs
+- `/admin/catalogue` : Page Admin - gestion du catalogue
+- `/admin/catalogue/saq` : Page Admin - gestion du catalogue SAQ
+
 ### API
 
 Les routes de l'api se trouvent dans le fichier routes/api.php
