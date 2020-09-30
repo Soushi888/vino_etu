@@ -7,12 +7,12 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href={{ asset("css/style.css") }}>
-  <style> #search {text-align: inherit}</style>
+  <link rel="stylesheet" href="css/style.css">
+  <style> #search {text-align: inherit} </style>
 
   <script src="{{ asset('js/api/Bouteille.js') }}"></script>
   <script src="{{ asset('js/api/Transaction.js') }}"></script>
-  <script src="{{ asset('js/api/Cellier.js') }}"></script>
+  <script src="{{ asset('js/api/User.js') }}"></script>
   <title></title>
 </head>
 
@@ -22,39 +22,55 @@
   <div class="container-ajouter">
     <div class="main-content-ajouter">
       <div class="content-wrap-ajouter">
-        <a href="{{ route("accueil") }}" class="logo_ajouter"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
+        <a href="/" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
         <div class="img_b">
-          <img src={{ asset("img/bouteille2.png") }} alt="bouteille2">
+          <img src="img/bouteille2.png" alt="bouteille2">
         </div>
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="{{ route("accueil") }}">Mes celliers</a>
+          <a class="header-nav-link active ajouter" href="#">Mon celliere</a>
           <a class="header-nav-link active ajouter" href="#">Ajouter une bouteille au cellier</a>
         </nav>
         <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
-        <button class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
-        <form class="form-ajouter" action="{{ route("accueil") }}" method="post">
+        <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
+        
+        <form class="form-ajouter" name="form1" action="/" method="post">
+
+          {{-- test: listeAutoComplete --}}
+          {{-- Recherche : <input type="text" name="nom_bouteille">
+          <ul class="listeAutoComplete"> --}}
+
+
           <label for="name">Nom: {{ Auth::user()->name }} </label><br><br>
           <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
           <label for="search">Recherche:</label>
           <select class="input-ajouter" id="search" name="search" ></select><br><br>
+          
           <label for="millesime">Millesime:</label>
+          <span><p class="fail" id="b.millesime" style="margin-top: 20px"></p></span>
           <input class="input-ajouter" type="text" id="millesime" name="millesime"><br><br>
+          
+
           <label for="quantite">Quantité:</label>
+          <span><p class="fail" id="b.quantieRequis" style="margin-top: 20px"></p></span>
           <input class="input-ajouter" type="text" id="quantite" name="quantite"><br><br>
+
           <label for="price">Prix:</label>
+          <span><p class="fail" id="b.prix" style="margin-top: 20px"></p></span>
           <input class="input-ajouter" type="text" id="price" name="price"><br><br>
+
           <label for="date">Date achat:</label>
-          <input class="input-ajouter" type="date" id="date" name="date"><br><br>
+          <span><p class="fail" id="b.dateAchatPasValide" style="margin-top: 20px"></p></span>
+          <input class="input-ajouter" type="text" id="date" name="date" placeholder="2020-09-29"><br><br>
+
           <label for="garde">Garde:</label>
-          <input class="input-ajouter" type="date" id="garde" name="garde"><br><br>
+          <span><p  class="fail" id="b.gardeJustequa" style="margin-top: 20px"></p></span>
+          <input class="input-ajouter" type="text" id="garde" name="garde" placeholder="2020-09-30"><br><br>
+
           <label for="cellier">Nom du cellier:</label>
           <select class="input-ajouter" name="cellier" id="cellier">
-            <option value="1">vin rouge</option>
-            <option value="2">vin blanc</option>
-            <option value="3">vin rosé</option>
           </select><br><br>
           <label for="notes">Notes:</label>
           <input class="input-ajouter" name="notes" id="notes"><br><br>
@@ -65,22 +81,51 @@
             aria-hidden="true"></i></a>
         </nav>
         <div class="img_marg">
-          <img src={{ asset("img/bouteille3.png") }} alt="bouteille">
+          <img src="img/bouteille3.png" alt="bouteille">
         </div>
-        <button class="btn btn-ajouter-bouteille" type="button"  onclick="getValue()" id="boutton" type="submit" formaction="#">Ajouter la bouteille</button>
+        <span><p class="fail" id="b.ajouter" style="margin-top: 20px"></p></span>
+        <button class="btn btn-ajouter-bouteille" type="button"  onclick="getValue()" id="boutton" type="submit" formaction="#">Ajouter la bouteille </button>
+        
       </aside>
     </div>
   </div>
   <footer class="footer-ajouter">2020 Vino | Group 1</footer>
- 
-  {{-- petit exemple pour afficher les erreurs formulaire --}}
-  {{-- <td aria-label="actions">
-    <button style="width: max-content" class="btn btn-ajouter inline" type="submit" id=${b.codesaq}>Ajouter</button>
-     <span><p id="message${b.code_saq}" style="margin-top: 20px"></p></span>
- </td> --}}
-
-
 <script defer>
+
+//test intégration semi-compilation.
+// let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
+//     console.log(inputNomBouteille);
+//     let liste = document.querySelector('.listeAutoComplete');
+//     if(inputNomBouteille){
+//       inputNomBouteille.addEventListener("keyup", function(evt){
+//         console.log(evt);
+//         let nom = inputNomBouteille.value;
+//         liste.innerHTML = "";
+//         if(nom){
+//           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
+//           fetch(requete)
+//               .then(response => {
+//                   if (response.status === 200) {
+//                     return response.json();
+//                   } else {
+//                     throw new Error('Erreur');
+//                   }
+//                 })
+//                 .then(response => {
+//                   console.log(response);
+                  
+                 
+//                   response.forEach(function(element){
+//                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
+//                   })
+//                 }).catch(error => {
+//                   console.error(error);
+//                 });
+//         }  
+//       }); 
+//   }
+
+
 
 let bouteilles = new Bouteille();
     
@@ -103,28 +148,32 @@ let bouteilles = new Bouteille();
     });
 
 
-// let cellier = new Cellier();
+// recuperation de l'id utilisateur connecter
+var userId = document.getElementById("idUtilisateur").value;
 
-// cellier.show().then(dataC => {
-//   console.log(dataC);
+let cellier = new User();
+
+//recupere les cellier de l'utilisateur
+cellier.showCellier(userId).then(dataC => {
+  console.log(dataC);
     
-//     var sel = document.getElementById('cellier');
-//     var opt = null;
+    var sel = document.getElementById('cellier');
+    var opt = null;
 
-//       for(i = 0; i<dataC.length; i++) { 
-//         // console.log(dataC[i]);
-//         opt = document.createElement('option');
-//         // opt.setAttribute("value", dataC[i].id);
-//         opt.nom = dataC[i].nom;
-//         opt.innerHTML = dataC[i].nom
-//         sel.appendChild(opt);
-//       }
-// });    
+      for(i = 0; i<dataC.length; i++) { 
+        // console.log(dataC[i]);
+        opt = document.createElement('option');
+        opt.setAttribute("value", dataC[i].id);
+        opt.nom = dataC[i].nom;
+        opt.innerHTML = dataC[i].nom
+        sel.appendChild(opt);
+      }
+});    
 
 function getValue() {
     // Sélectionner l'élément input et récupérer sa valeur
     var bouteilleId = document.getElementById("search").value;
-    var millesime = document.getElementById("millesime").value;;  
+    var millesime = document.getElementById("millesime").value;  
     var quantite = document.getElementById("quantite").value;  
     var date = document.getElementById("date").value;
     var garde = document.getElementById("garde").value;
@@ -133,6 +182,103 @@ function getValue() {
     var price = document.getElementById("price").value;
     // Afficher la valeur
     // alert(bouteilleId + millesime + quantite + price + date + garde +  cellier + notes);
+
+    
+    // validation du formulaire
+    var f = document.form1;
+      var msgEr; 
+
+      //Millesime
+    	msgErr = "";
+				milles = f.millesime.value.trim();
+				if (milles === "") {
+					msgErr = "Millesime Obligatoire";
+				} else {
+
+          if (!/^([0-9]{4})$/.test(milles) || new Set(milles).size > 5) {
+            msgErr = !/^([0-9]{4})$/.test(milles) ?
+							"Millesime non valide" :
+							new Set(milles).size > 5 ?
+							"entrer 4 valeur numérique." :
+              ""
+					}
+				}
+				f.millesime.value = milles;
+				if (msgErr !== "") erreur = true;
+				document.getElementById("b.millesime").innerHTML = msgErr;
+        
+
+        //Quantité
+        msgErr = "";
+				quanti = f.quantite.value.trim();
+				if (quanti === "") {
+					msgErr = "Quantité Obligatoire";
+				} else {
+
+          if (!/^[0-9]*$/.test(quanti) ) {
+            msgErr = !/^[0-9]*$/.test(quanti) ?
+							"Quantité non valide" :
+              ""
+					}
+				}
+				f.quantite.value = quanti;
+				if (msgErr !== "") erreur = true;
+        document.getElementById("b.quantieRequis").innerHTML = msgErr;
+        
+
+        //Prix
+        msgErr = "";
+				prix = f.price.value.trim();
+				if (prix === "") {
+					msgErr = "Prix Obligatoire";
+				} else {
+
+          if (!/^\-?\d+\.\d{2}$/.test(prix) ) {
+            msgErr = !/^\-?\d+\.\d{2}$/.test(prix) ?
+							"Prix non valide" :
+              ""
+					}
+				}
+				f.price.value = prix;
+				if (msgErr !== "") erreur = true;
+        document.getElementById("b.prix").innerHTML = msgErr;
+        
+
+        //Date D'achat
+        msgErr = "";
+				dateAchat = f.date.value.trim();
+				if (dateAchat === "") {
+					msgErr = "date d'achat Obligatoire";
+				} else {
+
+          if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(dateAchat) ) {
+            msgErr = !/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(dateAchat) ?
+							"date d'achat non valide" :
+              ""
+					}
+				}
+				f.date.value = dateAchat;
+				if (msgErr !== "") erreur = true;
+        document.getElementById("b.dateAchatPasValide").innerHTML = msgErr;
+
+      
+        //Garde justequa
+        msgErr = "";
+				gardeJusqua = f.garde.value.trim();
+				if (gardeJusqua === "") {
+					msgErr = "Date de Garde Obligatoire";
+				} else {
+
+          if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(gardeJusqua) ) {
+            msgErr = !/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(gardeJusqua) ?
+							"date d'achat non valide" :
+              ""
+					}
+				}
+				f.garde.value = gardeJusqua;
+				if (msgErr !== "") erreur = true;
+        document.getElementById("b.gardeJustequa").innerHTML = msgErr;
+
 
     let bouteille = {
       bouteille_id:bouteilleId,
@@ -145,10 +291,16 @@ function getValue() {
       millesime:millesime
     }
 
+    //transaction
     let transaction = new Transaction();
     
     transaction.store(bouteille).then(data => {
-      console.log(data);
+    console.log(data);
+
+      ajouter success
+      if(data[0] == "Ajout effectué") {
+        document.getElementById("b.ajouter").innerHTML = "Ajout effectué";
+      }
     });
 }
   </script>
