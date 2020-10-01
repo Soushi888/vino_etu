@@ -34,6 +34,7 @@
         </div>
         <aside>
             <nav class="header-nav accueille">
+                <a class="header-nav-link active accueille" href="#">Mon compte</a>
                 <a class="header-nav-link active accueille" href="#">Mes celliers</a>
                 <a class="header-nav-link active accueille" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au
                     cellier</a>
