@@ -12,6 +12,7 @@
     <script src={{asset("js/api/CellierBouteille.js")}}></script>
     <script src={{asset("js/api/User.js")}}></script>
     <script src={{asset("js/functions.js")}}></script>
+    <script src={{asset("js/api/Cellier.js")}}></script>
     <script src={{asset("js/modal.js")}}></script>
     <title></title>
 </head>
@@ -35,11 +36,9 @@
         <aside>
             <nav class="header-nav accueille">
                 <a class="header-nav-link active accueille" href="#">Mon compte</a>
-                <a class="header-nav-link active accueille" href="#">Mes celliers</a>
                 <a class="header-nav-link active accueille" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au
                     cellier</a>
-                <a class="header-nav-link" href="{{route("logout")}}"><i class="fa fa-sign-out fa-2x"
-                                                             aria-hidden="true"></i></a>
+                <a class="header-nav-link" href="{{route("logout")}}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
             </nav>
 
 {{--            <div class="message-bienvenu"><h2>Cellier : <span id="nom_cellier"></span></h2></div>--}}
@@ -60,31 +59,38 @@
     let idUtilisateur = document.getElementById("idUtilisateur").value
     let userApi = new User;
     userApi.showCellier(idUtilisateur).then((data => {
-        data.map(cellier => {
-            let eSpan = document.createElement("span");
-            let eLi = document.createElement("li");
-            eLi.setAttribute("id", "idCellier" + cellier.id)
-            eLi.innerHTML = cellier.nom;
-            eSpan.style.cursor = "pointer";
-            listCelliers.after(eUl);
-            eUl.appendChild(eSpan).appendChild(eLi);
-            eLi.addEventListener("click", bouteilles);
+    console.log(data.length);
+        if(data.length === 0){
+        let celliers = new Cellier();
+        let cellier = {
+            nom: "cellier",
+            user_id: idUtilisateur,
+        };
+        celliers.store(cellier);
+        
+
+        }else{
+            
+            data.map(cellier => {
+                bouteilles(cellier.id)
         })
+        }
+    
+
     }))
 
     function bouteilles(evt) {
+        
         let eDivIndex = document.querySelector(".container-index");
         eDivIndex.style.visibility = "visible";
         let listCelliers = document.querySelector("#listCelliers");
         listCelliers.innerHTML = "";
-        let idCellier = evt.target.id;
-
-        let nomCellier = evt.target.innerHTML;
+        let idCellier = evt;
+        console.log(idCellier);
         let messageBienvenu = document.getElementById("message-bienvenu h2");
         console.log(messageBienvenu)
 
 
-        idCellier = idCellier.replace("idCellier", "");
         let userCellierBouteilles = new CellierBouteille;
         userCellierBouteilles.index(idCellier).then((data => {
             new Modal();
