@@ -174,7 +174,7 @@
                 <li>Catalogue</li>
             </a>
             <a class="header-nav-link" href="{{ route("logout") }}">
-                <i class="fa fa-sign-out fa-1x" aria-hidden="true"></i>
+                <i class="fa fa-sign-out fa-1x sign" aria-hidden="true"></i>
             </a>
         </ul>
     </nav>
