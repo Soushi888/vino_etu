@@ -31,7 +31,6 @@ class SAQ {
         })
             .then(response => response.json())
             .then(json => {
-                console.log(json);
                 if (json == "Déjà en inventaire") {
                     return false;
                 }
@@ -46,10 +45,18 @@ class SAQ {
      * @param page
      */
     async storeAll(type, page) {
-        return await this.index(type, page).then(data => {
-            data.map(b => {
-                this.store(b).catch((err) => err);
-            })
+        let nbr_ajout = 0;
+        let index = this.index(type, page).then(async data => {
+            console.log(data);
+            data.map(async b => {
+                let store = this.store(b)
+              return  store.then(json => {
+                    if (json) {
+                        nbr_ajout++;
+                    }
+                    document.getElementById("message").innerText = `${nbr_ajout} bouteilles ajoutées.`
+                }).catch(err => console.log(err));
+            });
         })
     };
 }

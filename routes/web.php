@@ -15,9 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+//Route::get('/', function () {
+//    return view('accueil_utilisateur');
+//})->middleware('auth')->name('home');
+
 Route::get('/', function () {
-    return view('home');
-})->middleware('auth')->name('home');
+    return view('accueil_utilisateur');
+})->middleware('auth');
+
+Route::get('/ajouter_bouteille', function () {
+    return view('ajouter_bouteille');
+})->name('ajouter_bouteille');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 // Routes Admin
 //Users
@@ -39,18 +49,7 @@ Route::get('/admin/catalogue/saq', function () {
     return view('admin.saq');
 })->middleware('auth')->name('admin.saq');
 
-
-
-Route::get('/modal', function () {
-    return view('modal_modifier_bouteille');
-})->name('home');
-
-
-Route::get('/test', function () {
-    return view('test');
-})->name('home');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-Route::get('/', function () {
-    return view('accueil_utilisateur');
-})->middleware('auth');
+// statistiques
+Route::get('/admin/statistiques', function () {
+    return view('admin.stats');
+})->middleware('auth')->name('admin.stats');

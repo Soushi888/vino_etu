@@ -39,7 +39,12 @@ class Transaction {
             headers: {"Content-type": "application/json; charset=UTF-8"}
         })
             .then(response => response.json())
-            .then(json => console.log(json))
+            .then(json => {
+                if(!json.erreur) {
+                    return "Ajout effectué";
+                }
+                return json.erreur;
+                })
             .catch(err => console.log(err));
     }
 
