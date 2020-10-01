@@ -78,7 +78,7 @@
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button style="margin-top: 30px; cursor: not-allowed" class="btn btn-accepter" disabled>Accepter</button>
+                          <button style="margin-top: 30px; class="btn btn-accepter">Accepter</button>
                         </form>`;
                         Modal.showModal();
                     })
@@ -107,7 +107,7 @@
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button style="margin-top: 30px; cursor: not-allowed" class="btn btn-accepter" disabled>Accepter</button>
+                          <button style="margin-top: 30px; class="btn btn-accepter">Accepter</button>
                         </form>`;
                     Modal.showModal();
                 })

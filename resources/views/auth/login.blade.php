@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/api/Cellier.js') }}"></script>
 
@@ -69,7 +68,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-cancel" onclick="window.location.href='{{ route('register') }}'"  style="cursor: not-allowed">
+                        <button class="btn btn-cancel" onclick="window.location.href='{{ route('register') }}'">
                             S'inscrire
                         </button>
                     </div>

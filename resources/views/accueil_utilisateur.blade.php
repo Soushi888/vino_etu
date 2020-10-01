@@ -132,7 +132,7 @@
                         <span class="close-button">&times;</span>
                         <h2>Modifier </h2>
                         <p>Voulez vous vraiment modifier la bouteille dont le nom est ${data.nom} ?</p>
-                        <button style="width: max-content; cursor: not-allowed;" class="btn btn-accepter inline" id="oui" disabled>Oui</button>
+                        <button style="width: max-content;" class="btn btn-accepter inline" id="oui">Oui</button>
                         <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
                         Modal.showModal();
 
@@ -157,7 +157,7 @@
                         <form action="">
                                <label for="quantite">Quantité : <input type="number" min="1"></label>
                         </form>
-                        <button style="width: max-content; cursor: not-allowed" class="btn btn-ajouter inline" type="submit" id="non" disabled>Ajouter</button>`;
+                        <button style="width: max-content;" class="btn btn-ajouter inline" type="submit" id="non">Ajouter</button>`;
                         Modal.showModal();
                     })
 
@@ -170,7 +170,7 @@
                         <h2>Boire</h2>
                         <p>Voulez vous vraiment boire une bouteille dont le nom est ${data.nom} ?</p>
                         <textarea style="margin-bottom: 10px" class="textarea" placeholder="Laisser une note"></textarea>
-                        <button style="width: max-content; cursor: not-allowed" class="btn btn-accepter inline" id="oui" disabled>Oui</button>
+                        <button style="width: max-content;" class="btn btn-accepter inline" id="oui">Oui</button>
                         <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
                         Modal.showModal();
 

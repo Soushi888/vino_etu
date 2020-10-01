@@ -101,7 +101,7 @@
                             <option name="blanc" id="blanc" value="1">Blanc</option>
                             <option name="rose" id="rose" value="1">Rosé</option>
                           </select>
-                          <button style="margin-top: 30px; cursor: not-allowed" class="btn btn-accepter" disabled>Accepter</button>
+                          <button style="margin-top: 30px;" class="btn btn-accepter">Accepter</button>
                         </form>`;
 
 
@@ -139,7 +139,7 @@
                             <option name="blanc" id="blanc" value="1">Blanc</option>
                             <option name="rose" id="rose" value="1">Rosé</option>
                           </select>
-                          <button style="margin-top: 30px; cursor: not-allowed" class="btn btn-accepter" disabled>Accepter</button>
+                          <button style="margin-top: 30px;" class="btn btn-accepter">Accepter</button>
                         </form>`
                     Modal.showModal();
                 })
