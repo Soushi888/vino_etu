@@ -14,19 +14,26 @@ Front end : AJAX
 
 [Documentation Laravel](https://laravel.com/docs/7.x)
 
+## Équipe
+
+- Vladyslav Iefimov
+- Christopher Parent-Paquette
+- Samuel St-Jean
+- Sacha Pignot
+
 ## Fonctionnalités
 
 ### Utilisateurs
 
-- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
-- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/register)
+- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/login)
 - [ ] Gérer son profil
     - [ ] Modifier son mot de passe
     - [ ] Modifier son nom et son prénom
     - [ ] Modifier son adresse courriel
 - [ ] Gérer ses celliers
-    - [ ] Afficher tous ses celliers
-    - [ ] Afficher le contenu d'un cellier
+    - [X] [Afficher tous ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/)
+    - [X] Afficher le contenu d'un cellier
     - [ ] Créer un nouveau cellier
     - [ ] Modifier le nom d'un cellier
     - [ ] Supprimer un cellier
@@ -39,7 +46,7 @@ Front end : AJAX
         - [ ] Quantité -1 
         - [ ] Possibilité d'écrire une note
     - [ ] Créer un modèle de bouteille personnalisé
-    - [ ] Ajouter une ou plusieurs bouteilles à l'un de ses celliers
+    - [X] [Ajouter une ou plusieurs bouteilles à l'un de ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/ajouter_bouteille)
     - [ ] Modifier une transaction du cellier
     - [ ] Supprimer une transaction du cellier
 - [ ] Consulter le catalogue
@@ -57,7 +64,7 @@ Front end : AJAX
     - [ ] Modifier son nom et son prénom
     - [ ] Modifier son adresse courriel
 - [ ] Gérer les utilisateurs
-    - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/)
+    - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/)
     - [ ] Afficher les détails d'un utilisateur
         - [ ] Historique des transactions
         - [ ] Bouteilles en stock
@@ -65,75 +72,33 @@ Front end : AJAX
         - [ ] Bouteilles personnalisées
     - [ ] Créer un nouvel utilisateur ou administrateur
     - [ ] Modifier un utilisateur (incluant le type)
-    - [ ] Supprimer un utilisateur
+    - [X] Supprimer un utilisateur
 - [ ] Gérer le catalogue
-    - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue)
+    - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue)
     - [ ] Afficher les détails d'une bouteilles
         - [ ] Liste des utilisateurs qui en possède une ou plusieurs unités
         - [ ] Liste des celliers dans lesquels elle se trouve
         - [ ] Nombre total d'unités présentent dans les celliers des utilisateurs
     - [ ] Afficher les bouteilles personnalisées des utilisateurs
     - [ ] Ajouter une nouvelle bouteille
-    - [ ] Supprimer une bouteille
-    - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/admin/catalogue/saq)
+    - [X] Supprimer une bouteille
+    - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue/saq)
         - [X] Recherche par page et par type de vin
         - [X] Importer une bouteille de la SAQ manuellement
         - [X] Importer les bouteilles de toute la page
 - [ ] Consulter les statistiques d'utilisation de l'Application
     - ...
 
-## Équipe
-
-- Vladyslav Iefimov
-- Christopher Parent-Paquette
-- Samuel St-Jean
-- Sacha Pignot
-
 ## Démo
 
-[Site web de la démo](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/)
+[Site web de la démo](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public)
 
 Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fonctionnalités plus haute.
 
-#### API
+#### Compte test
 
-Pour les requêtes POST, PUT ou DELETE, veuillez tester avec un outil comme ***POSTMAN***.
-
-##### utilisateurs
-
-[`GET` - api/users](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/users)
-
-[`GET` - api/users/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/users/1)
-
-[`GET` - api/users/{id}/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/users/1/celliers)
-
-##### SAQ
-
-[`GET` - api/saq](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/saq)
-
-##### bouteilles
-
-[`GET` - api/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles)
-
-[`GET` - api/bouteilles/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/bouteilles/1)
-
-##### celliers
-
-[`GET` - api/celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers)
-
-[`GET` - api/celliers/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1)
-
-#### celliers/bouteilles
-
-[`GET` - api/celliers/{id}/bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1/bouteilles)
-
-[`GET` - api/celliers/{id}/bouteilles/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/celliers/1/bouteilles/{id})
-
-#### transactions
-
-[`GET` - api/transactions/](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/transactions/)
-
-[`GET` - api/transactions/{id}](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/index.php/api/transactions/1/)
+- email : test@test.com
+- mot de passe : "12345678"
 
 ## Installation en local
 
@@ -196,7 +161,11 @@ Lancer le serveur
 
 Les fichiers de vues se trouvent dans le dossier `/ressources/views`, les assets pré-compilés dans leurs sous-dossiers dans `/ressources` et les assets compilés se retrouve dans `/public`.
 
-Si vous n'utilisé pas `npm`, Vous pouvez mettre vos fichiers HTML dans le dossier `/ressources/views` et vos fichiers CSS/JS et autres assets directement dans le dossier `/public`.
+Si vous n'utilisez pas `npm`, Vous pouvez mettre vos fichiers HTML dans le dossier `/ressources/views` et vos fichiers CSS/JS et autres assets directement dans le dossier `/public`.
+
+### Interface avec l'API
+
+Dans le dossier `public/js/api` se trouve des classes javascript servant d'interface avec l'API.
 
 ## Routes
 ### Public
@@ -206,6 +175,10 @@ Les routes publiques se trouvent en grande partie dans le fichier routes/web.php
 - `/` : Page d'Accueil
 - `/login` : Écran de connexion
 - `/register` : Écran de création de compte
+
+- `/admin` : Page Admin - gestion des utilisateurs
+- `/admin/catalogue` : Page Admin - gestion du catalogue
+- `/admin/catalogue/saq` : Page Admin - gestion du catalogue SAQ
 
 ### API
 
@@ -250,7 +223,7 @@ Les routes de l'api se trouvent dans le fichier routes/api.php
 
 - `GET`       - `api/transactions/`                  : Retourne toutes les transactions liées aux bouteilles
 - `GET`       - `api/transactions/{id}`              : Retourne une transaction liée à une bouteille
-- `POST`       - `api/transactions/`                 : Ajouter une transaction liée à une bouteille
+- `POST`      - `api/transactions/`                 : Ajouter une transaction liée à une bouteille
 - `PUT`       - `api/transactions/{id}`              : Modifier une transaction liée à une bouteille dans un cellier
 - `DELETE`    - `api/transactions/{id}`              : Supprimer une transaction liée à une bouteille dans un cellier
 

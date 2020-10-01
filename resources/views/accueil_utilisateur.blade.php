@@ -34,10 +34,11 @@
         </div>
         <aside>
             <nav class="header-nav accueille">
+                <a class="header-nav-link active accueille" href="#">Mon compte</a>
                 <a class="header-nav-link active accueille" href="#">Mes celliers</a>
                 <a class="header-nav-link active accueille" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au
                     cellier</a>
-                <a class="header-nav-link" href="/logout"><i class="fa fa-sign-out fa-2x"
+                <a class="header-nav-link" href="{{route("logout")}}"><i class="fa fa-sign-out fa-2x"
                                                              aria-hidden="true"></i></a>
             </nav>
 
@@ -130,10 +131,19 @@
                         modalContent[0].innerHTML = `
                         <span class="close-button">&times;</span>
                         <h2>Modifier </h2>
-                        <p>Voulez vous vraiment supprimer la bouteille dont le nom est ${data.nom} ?</p>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="oui">Oui</button>
+                        <p>Voulez vous vraiment modifier la bouteille dont le nom est ${data.nom} ?</p>
+                        <button style="width: max-content;" class="btn btn-accepter inline" id="oui">Oui</button>
                         <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
                         Modal.showModal();
+
+                        // document.getElementById("oui").addEventListener("click", () => {
+                        //     supprimerBouteille(b.id);
+                        //     afficherListeBouteilles();
+                        // })
+
+                        document.getElementById("non").addEventListener("click", () => {
+                            Modal.closeModal();
+                        })
                     })
 
                     // Bouton ajouter
@@ -147,7 +157,7 @@
                         <form action="">
                                <label for="quantite">Quantité : <input type="number" min="1"></label>
                         </form>
-                        <button style="width: max-content" class="btn btn-ajouter inline" type="submit" id="non">Ajouter</button>`;
+                        <button style="width: max-content;" class="btn btn-ajouter inline" type="submit" id="non">Ajouter</button>`;
                         Modal.showModal();
                     })
 
@@ -158,10 +168,20 @@
                         modalContent[0].innerHTML = `
                         <span class="close-button">&times;</span>
                         <h2>Boire</h2>
-                        <p>Voulez vous vraiment supprimer la bouteille dont le nom est ${data.nom} ?</p>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="oui">Oui</button>
+                        <p>Voulez vous vraiment boire une bouteille dont le nom est ${data.nom} ?</p>
+                        <textarea style="margin-bottom: 10px" class="textarea" placeholder="Laisser une note"></textarea>
+                        <button style="width: max-content;" class="btn btn-accepter inline" id="oui">Oui</button>
                         <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
                         Modal.showModal();
+
+                        // document.getElementById("oui").addEventListener("click", () => {
+                        //     supprimerBouteille(b.id);
+                        //     afficherListeBouteilles();
+                        // })
+
+                        document.getElementById("non").addEventListener("click", () => {
+                            Modal.closeModal();
+                        })
                     })
 
                 })

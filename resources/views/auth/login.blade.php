@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/api/Cellier.js') }}"></script>
 
@@ -32,7 +31,7 @@
 
                 </div>
                 <h1 class="logo">
-                    <img src="img/logo_vino.png" alt="vino">
+                    <img src={{ asset("img/logo_vino.png") }} alt="vino">
                 </h1>
 
                 <form method="POST" class="form" action="{{ route('login') }}">
@@ -53,7 +52,7 @@
                     <div class="form-group">
                         <input class="input" type="password"
                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                               autocomplete="current-password" placeholder="MDP">
+                               autocomplete="current-password" placeholder="Mot de Passe">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">

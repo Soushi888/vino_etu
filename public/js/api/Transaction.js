@@ -33,19 +33,21 @@ class Transaction {
      * @returns {Promise<void>}
      */
     store(transaction) {
+
         return fetch(`${this._URL_TRANSACTION}`, {
-            method: "POST",
-            body: JSON.stringify(transaction),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "POST",
+                body: JSON.stringify(transaction),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => {
-                if(!json.erreur) {
+                if (!json.erreur) {
                     return "Ajout effectué";
                 }
-                return json.erreur;
-                })
-            .catch(err => console.log(err));
+                throw json.erreur;
+            })
     }
 
     /**
@@ -56,10 +58,12 @@ class Transaction {
      */
     update(id, data) {
         return fetch(`${this._URL_TRANSACTION}/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));
@@ -72,9 +76,11 @@ class Transaction {
      */
     destroy(id) {
         return fetch(`${this._URL_CELLIERS}/${id}`, {
-            method: "DELETE",
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));

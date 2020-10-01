@@ -5,13 +5,13 @@
 <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
 @section('content')
-<a href="{{ url('/logout') }}"> logout </a>
+<a href="{{ route("logout") }}"> logout </a>
 <section id="pageAcceuil">
     <h1>Un petit verre de vino?</h1>
     <div class="container-index">
     <div class="main-content">
       <div class="content-wrap">
-        <a href="#" class="logo_accueille"><img src="img/logo_vino.png" alt="vino"></a>
+        <a href="#" class="logo_accueille"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
         <h2 class="slogan">Un petite verre de vino?</h2>
       </div>
       <aside>

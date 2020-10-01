@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href={{ asset("css/style.css") }}>
     <title></title>
 </head>
 
@@ -18,8 +18,8 @@
 <div id="my_modal" class="modal">
     <div class="modal_content">
         <span class="close_modal_window">×</span>
-        <h1 class="logo"><img src="img/logo_vino.png" alt="vino"></h1>
-        <form class="form-modal-modifier" action="/" method="post">
+        <h1 class="logo"><img src={{ asset("img/logo_vino.png") }} alt="vino"></h1>
+        <form class="form-modal-modifier" action="{{ route("accueil") }}" method="post">
             <label for="name">Nom:</label><br><br>
             <label for="search">Recherche:</label>
             <input class="input-modal-modifier" type="text" id="search" name="search"><br><br>
@@ -33,7 +33,7 @@
             <input class="input-modal-modifier" type="text" id="price" name="price"><br><br>
             <label for="garde">Garde:</label>
             <input class="input-modal-modifier" type="text" id="garde" name="garde"><br><br>
-            <label for="cellar">Nom du cellier:</label>
+            <label for="cellar">Nom du cellier:</label>F
             <select class="input-modal-modifier" name="cellar" id="cellar">
                 <option value="---">---</option>
                 <option value="cellar1">cellar 1</option>

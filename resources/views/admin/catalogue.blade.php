@@ -101,7 +101,7 @@
                             <option name="blanc" id="blanc" value="1">Blanc</option>
                             <option name="rose" id="rose" value="1">Rosé</option>
                           </select>
-                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                          <button style="margin-top: 30px;" class="btn btn-accepter">Accepter</button>
                         </form>`;
 
 
@@ -139,7 +139,7 @@
                             <option name="blanc" id="blanc" value="1">Blanc</option>
                             <option name="rose" id="rose" value="1">Rosé</option>
                           </select>
-                          <button style="margin-top: 30px" class="btn btn-accepter">Accepter</button>
+                          <button style="margin-top: 30px;" class="btn btn-accepter">Accepter</button>
                         </form>`
                     Modal.showModal();
                 })
@@ -162,22 +162,19 @@
 
 <body>
 <div class="page_admin">
-    <div class="logo_admin"><a href="/"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
+    <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
     <nav id="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
         <ul id="menu">
-            <a class="header-nav-link active" href="/admin">
+            <a class="header-nav-link active" href="{{ route("admin") }}">
                 <li>Utilisateurs</li>
             </a>
-            <a class="header-nav-link active" href="/admin/catalogue">
+            <a class="header-nav-link active" href="{{ route("admin.catalogue") }}">
                 <li>Catalogue</li>
             </a>
-            <a class="header-nav-link active" href="/admin/statistiques">
-                <li>Statistiques</li>
-            </a>
-            <a class="header-nav-link" href="/logout">
-                <i class="fa fa-sign-out fa-1x" aria-hidden="true"></i>
+            <a class="header-nav-link" href="{{ route("logout") }}">
+                <i class="fa fa-sign-out fa-1x sign" aria-hidden="true"></i>
             </a>
         </ul>
     </nav>

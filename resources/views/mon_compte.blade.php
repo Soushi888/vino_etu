@@ -6,12 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
   <style> #search {text-align: inherit} </style>
 
-  <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
   <script src="{{ asset('js/api/Bouteille.js') }}"></script>
   <script src="{{ asset('js/api/Transaction.js') }}"></script>
   <script src="{{ asset('js/api/User.js') }}"></script>
@@ -40,17 +38,15 @@
         <form class="form-ajouter" name="form1" action="/" method="post">
 
           {{-- test: listeAutoComplete --}}
+          {{-- Recherche : <input type="text" name="nom_bouteille">
+          <ul class="listeAutoComplete"> --}}
 
-            <div id="autocomplete" class="autocomplete">
-              <input class="autocomplete-input" />
-              <ul class="autocomplete-result-list"></ul>
-            </div>
 
           <label for="name">Nom: {{ Auth::user()->name }} </label><br><br>
           <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
-         
-          <input type="hidden" class="input-ajouter" id="search" name="search" /><br><br>
+          <label for="search">Recherche:</label>
+          <select class="input-ajouter" id="search" name="search" ></select><br><br>
           
           <label for="millesime">Millesime:</label>
           <span><p class="fail" id="b.millesime" style="margin-top: 20px"></p></span>
@@ -96,8 +92,39 @@
   <footer class="footer-ajouter">2020 Vino | Group 1</footer>
 <script defer>
 
+//test intégration semi-compilation.
+// let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
+//     console.log(inputNomBouteille);
+//     let liste = document.querySelector('.listeAutoComplete');
+//     if(inputNomBouteille){
+//       inputNomBouteille.addEventListener("keyup", function(evt){
+//         console.log(evt);
+//         let nom = inputNomBouteille.value;
+//         liste.innerHTML = "";
+//         if(nom){
+//           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
+//           fetch(requete)
+//               .then(response => {
+//                   if (response.status === 200) {
+//                     return response.json();
+//                   } else {
+//                     throw new Error('Erreur');
+//                   }
+//                 })
+//                 .then(response => {
+//                   console.log(response);
+                  
+                 
+//                   response.forEach(function(element){
+//                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
+//                   })
+//                 }).catch(error => {
+//                   console.error(error);
+//                 });
+//         }  
+//       }); 
+//   }
 
-console.log(Autocomplete);
 let bouteilles = new Bouteille();
     
     bouteilles.index().then(dataB => {
@@ -106,21 +133,16 @@ let bouteilles = new Bouteille();
         var sel = document.getElementById('search');
         var opt = null;
 
-          var options = {
-            search: input => {
-              if (input.length < 1) { return [] }
-              return dataB.filter(b => {
-                return b.nom.toLowerCase()
-                  .startsWith(input.toLowerCase())
-              })  
-            },
-            onSubmit: result => {
-              // mettre la valeur du ID dans le search input
-              sel.value = result.id
-            },
-            getResultValue: (suggestion) => suggestion.nom
+          for(i = 0; i<dataB.length; i++) { 
+            // console.log(dataB[i]);
+            opt = document.createElement('option');
+            opt.setAttribute("value", dataB[i].id);
+            opt.nom = dataB[i].nom;
+            opt.innerHTML = dataB[i].nom
+            console.log(opt);
+            opt.prix_saq = dataB[i].id;
+            sel.appendChild(opt);
           }
-          new Autocomplete('#autocomplete', options)
     });
 
 
@@ -168,14 +190,17 @@ function getValue() {
     	msgErr = "";
 				milles = f.millesime.value.trim();
 				if (milles === "") {
-					msgErr = "valeurs obligatoire"
-				} else if (milles.length > 4){
-          msgErr = "entrer 4 valeurs numériques"
-        } else if (!/^\d{4}$/.test(milles)) {
-          msgErr = "Millesime non valide"
-        }
+					msgErr = "Millesime Obligatoire";
+				} else {
 
-
+          if (!/^([0-9]{4})$/.test(milles) || new Set(milles).size > 5) {
+            msgErr = !/^([0-9]{4})$/.test(milles) ?
+							"Millesime non valide" :
+							new Set(milles).size > 5 ?
+							"entrer 4 valeur numérique." :
+              ""
+					}
+				}
 				f.millesime.value = milles;
 				if (msgErr !== "") erreur = true;
 				document.getElementById("b.millesime").innerHTML = msgErr;
@@ -271,8 +296,9 @@ function getValue() {
     console.log(data);
 
       //ajouter success
-      document.getElementById("b.ajouter").innerHTML = "Ajout effectué";
-    
+      if(data[0] == "Ajout effectué") {
+        document.getElementById("b.ajouter").innerHTML = "Ajout effectué";
+      }
     });
 }
   </script>
