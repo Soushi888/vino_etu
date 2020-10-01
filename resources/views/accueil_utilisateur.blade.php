@@ -34,8 +34,7 @@
         </div>
         <aside>
             <nav class="header-nav accueille">
-                <a class="header-nav-link active accueille" href="#">Mon compte</a>
-                <a class="header-nav-link active accueille" href="#">Mes celliers</a>
+                <a class="header-nav-link active accueille" href="{{ route("mon_compte") }}">Mon compte</a>
                 <a class="header-nav-link active accueille" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au
                     cellier</a>
                 <a class="header-nav-link" href="{{route("logout")}}"><i class="fa fa-sign-out fa-2x"

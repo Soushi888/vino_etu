@@ -34,10 +34,12 @@ class Bouteille {
      */
     store(bouteille) {
         return fetch(`${this._URL_BOUTEILLES}`, {
-            method: "POST",
-            body: JSON.stringify(bouteille),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "POST",
+                body: JSON.stringify(bouteille),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));
@@ -51,10 +53,12 @@ class Bouteille {
      */
     update(id, data) {
         return fetch(`${this._URL_BOUTEILLES}/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));
@@ -67,9 +71,11 @@ class Bouteille {
      */
     destroy(id) {
         return fetch(`${this._URL_BOUTEILLES}/${id}`, {
-            method: "DELETE",
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));
