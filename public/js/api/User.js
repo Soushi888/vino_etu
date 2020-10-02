@@ -40,10 +40,12 @@ class User {
      */
     store(user) {
         return fetch(`${this._URL_USERS}`, {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));
@@ -57,10 +59,12 @@ class User {
      */
     update(id, data) {
         return fetch(`${this._URL_USERS}/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));
@@ -73,9 +77,11 @@ class User {
      */
     destroy(id) {
         return fetch(`${this._URL_USERS}/${id}`, {
-            method: "DELETE",
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        })
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err));

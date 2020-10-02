@@ -33,7 +33,7 @@
         <nav class="header-nav ajouter">
           <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
         </nav>
-        <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
+        <h3 class="slogan-ajouter">Ajouter une bouteille?</h3>
         <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
         
         <form class="form-ajouter" name="form1" action="/" method="post">
@@ -45,7 +45,7 @@
               <ul class="autocomplete-result-list"></ul>
             </div>
 
-          <label for="name">Nom: {{ Auth::user()->name }} </label><br><br>
+          {{-- <label for="name">Nom: {{ Auth::user()->name }} </label><br><br> --}}
           <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
          
@@ -271,7 +271,10 @@ function getValue() {
 
       //ajouter success
       document.getElementById("b.ajouter").innerHTML = "Ajout effectué";
-    
+      //refresh la page
+      setTimeout(function() {
+      location.reload();
+      window.location.href = "{{ route("accueil_utilisateur") }}" }, 900);
     });
 }
   </script>
