@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->timestamp("garde_jusqua")->nullable();
             $table->text("notes")->nullable();
             $table->float("prix");
-            $table->year("millesime");
+            $table->bigInteger("millesime");
             $table->timestamps();
         });
 

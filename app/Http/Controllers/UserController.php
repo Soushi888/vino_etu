@@ -78,10 +78,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
-            "name" => "string|required",
+            "name" => "string",
             "email" => "email|required",
             "email_verified_at" => "string",
-            "type" => "string|required"
+            "type" => "string"
         ]);
 
         if ($validator->passes()) {
@@ -102,6 +102,6 @@ class UserController extends Controller
     {
 
         if ($user->delete())
-        return Response::json("null", 204);
+            return Response::json("null", 204);
     }
 }
