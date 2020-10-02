@@ -25,6 +25,7 @@ Route::apiResources([
     'celliers' => 'CellierController',
     'transactions' => 'TransactionController',
     'celliers.bouteilles' => 'CellierBouteilleController',
+    "affichageDetails" => "AffichageDetailsTransactionBouteilleTypeController"
 ]);
 
 // Extension de la route users

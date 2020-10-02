@@ -1,0 +1,1 @@
+SELECT * FROM `transactions` JOIN bouteilles on bouteille_id = transactions.bouteille_id = bouteilles.id JOIN types on type_id = bouteilles.id = types.id

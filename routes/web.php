@@ -27,6 +27,14 @@ Route::get('/ajouter_bouteille', function () {
     return view('ajouter_bouteille');
 })->name('ajouter_bouteille');
 
+Route::get('/mon_compte', function () {
+    return view('mon_compte');
+})->name('mon_compte');
+
+Route::get('/accueil_utilisateur', function () {
+    return view('accueil_utilisateur');
+})->name('accueil_utilisateur');
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
 
 // Routes Admin

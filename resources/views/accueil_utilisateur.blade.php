@@ -35,7 +35,7 @@
         </div>
         <aside>
             <nav class="header-nav accueille">
-                <a class="header-nav-link active accueille" href="#">Mon compte</a>
+                <a class="header-nav-link active accueille" href="{{ route("mon_compte") }}">Mon compte</a>
                 <a class="header-nav-link active accueille" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au
                     cellier</a>
                 <a class="header-nav-link" href="{{route("logout")}}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
@@ -61,14 +61,9 @@
     userApi.showCellier(idUtilisateur).then((data => {
     console.log(data.length);
         if(data.length === 0){
-        let celliers = new Cellier();
-        let cellier = {
-            nom: "cellier",
-            user_id: idUtilisateur,
-        };
-        celliers.store(cellier);
-        
 
+            creeCellier();
+            location.reload();
         }else{
             
             data.map(cellier => {
@@ -78,6 +73,16 @@
     
 
     }))
+
+
+function creeCellier(){
+    let celliers = new Cellier();
+        let cellier = {
+            nom: "cellier",
+            user_id: idUtilisateur,
+        };
+        celliers.store(cellier);
+}
 
     function bouteilles(evt) {
         

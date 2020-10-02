@@ -29,19 +29,15 @@
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="#">Mon celliere</a>
-          <a class="header-nav-link active ajouter" href="#">Ajouter une bouteille au cellier</a>
+          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
+          <a class="header-nav-link active ajouter" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
         </nav>
-        <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
+        <h2 class="slogan-ajouter">MON COMPTE EN DEV...wait and see.</h2>
         <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
         
         <form class="form-ajouter" name="form1" action="/" method="post">
 
-          {{-- test: listeAutoComplete --}}
-          {{-- Recherche : <input type="text" name="nom_bouteille">
-          <ul class="listeAutoComplete"> --}}
-
-
+        
           <label for="name">Nom: {{ Auth::user()->name }} </label><br><br>
           <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
 
@@ -92,38 +88,6 @@
   <footer class="footer-ajouter">2020 Vino | Group 1</footer>
 <script defer>
 
-//test intégration semi-compilation.
-// let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-//     console.log(inputNomBouteille);
-//     let liste = document.querySelector('.listeAutoComplete');
-//     if(inputNomBouteille){
-//       inputNomBouteille.addEventListener("keyup", function(evt){
-//         console.log(evt);
-//         let nom = inputNomBouteille.value;
-//         liste.innerHTML = "";
-//         if(nom){
-//           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
-//           fetch(requete)
-//               .then(response => {
-//                   if (response.status === 200) {
-//                     return response.json();
-//                   } else {
-//                     throw new Error('Erreur');
-//                   }
-//                 })
-//                 .then(response => {
-//                   console.log(response);
-                  
-                 
-//                   response.forEach(function(element){
-//                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
-//                   })
-//                 }).catch(error => {
-//                   console.error(error);
-//                 });
-//         }  
-//       }); 
-//   }
 
 let bouteilles = new Bouteille();
     
@@ -242,40 +206,7 @@ function getValue() {
         document.getElementById("b.prix").innerHTML = msgErr;
         
 
-        //Date D'achat
-        msgErr = "";
-				dateAchat = f.date.value.trim();
-				if (dateAchat === "") {
-					msgErr = "date d'achat Obligatoire";
-				} else {
-
-          if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(dateAchat) ) {
-            msgErr = !/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(dateAchat) ?
-							"date d'achat non valide" :
-              ""
-					}
-				}
-				f.date.value = dateAchat;
-				if (msgErr !== "") erreur = true;
-        document.getElementById("b.dateAchatPasValide").innerHTML = msgErr;
-
-      
-        //Garde justequa
-        msgErr = "";
-				gardeJusqua = f.garde.value.trim();
-				if (gardeJusqua === "") {
-					msgErr = "Date de Garde Obligatoire";
-				} else {
-
-          if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(gardeJusqua) ) {
-            msgErr = !/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(gardeJusqua) ?
-							"date d'achat non valide" :
-              ""
-					}
-				}
-				f.garde.value = gardeJusqua;
-				if (msgErr !== "") erreur = true;
-        document.getElementById("b.gardeJustequa").innerHTML = msgErr;
+        
 
 
     let bouteille = {

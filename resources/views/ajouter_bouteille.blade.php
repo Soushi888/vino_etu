@@ -31,8 +31,7 @@
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="#">Mon celliere</a>
-          <a class="header-nav-link active ajouter" href="#">Ajouter une bouteille au cellier</a>
+          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
         </nav>
         <h2 class="slogan-ajouter">Un petite verre de vino?</h2>
         <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
