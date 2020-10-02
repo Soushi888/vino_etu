@@ -20,7 +20,20 @@ class AffichageDetailsTransactionBouteilleTypeController extends Controller
         return DB::table('transactions')
                     ->join('bouteilles', 'bouteilles.id', '=', 'transactions.bouteille_id')
                     ->join('types', 'types.id', '=', 'bouteilles.type_id')
-                    ->select('bouteilles.nom')
+                    ->select('*')
                     ->get();
+    }
+
+    public function show($request)
+    {
+        
+        //return TransactionResource::collection(Transaction::where('cellier_id','=', $request)->get());
+
+        return DB::table('transactions')
+        ->join('bouteilles', 'bouteilles.id', '=', 'transactions.bouteille_id')
+        ->join('types', 'types.id', '=', 'bouteilles.type_id')
+        ->select('*')
+        ->where('cellier_id','=',$request)
+        ->get();
     }
 }

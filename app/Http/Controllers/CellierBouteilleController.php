@@ -22,6 +22,7 @@ class CellierBouteilleController extends Controller
     public function index()
     {
         return TransactionResource::collection(Transaction::where('cellier_id', request('cellier'))->get());
+        
     }
 
 
