@@ -75,10 +75,15 @@ p {
     margin-left: -130px;
 
 }
-
+.container_bouteille>table{
+    font-weight: bold;
+}
+.grosseur_img{
+    width:150px;
+    height: 225px;
+}
 .img_bouteille {
     margin-bottom: 20px;
-
 }
 
 .fa-sign-out {
