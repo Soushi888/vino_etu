@@ -19,10 +19,10 @@
 <body>
 <div class="page_admin">
     <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
-    <nav id="nav" class="wrap">
+    <nav class="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
-        <ul id="menu">
+        <ul class="menu">
             <a class="header-nav-link active" href="/admin">
                 <li>Utilisateurs</li>
             </a>
@@ -39,8 +39,9 @@
     </nav>
 
     <div class="container">
-        <h1 style="color: white; text-align: center">Statistiques générales</h1>
+        <h1 class="color-white text-align-center">Statistiques générales</h1>
     </div>
-</div>/body>
+</div>
+</body>
 
 </html>

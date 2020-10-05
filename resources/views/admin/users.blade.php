@@ -28,8 +28,8 @@
                     <td aria-label="email">${u.email}</td>
                     <td aria-label="type">${u.type}</td>
                     <td aria-label="actions">
-                        <button style="width: max-content" class="btn btn-boire inline btn_modal_window" btn="modifier_${u.email}" type="submit">Modifier</button>
-                        <button style="width: max-content" class="btn btn-accepter inline btn_modal_window" btn="supprimer_${u.email}" type="submit">Supprimer</button>
+                        <button class="btn btn-boire inline btn_modal_window width-max-content" btn="modifier_${u.email}" type="submit">Modifier</button>
+                        <button class="btn btn-accepter inline btn_modal_window width-max-content" btn="supprimer_${u.email}" type="submit">Supprimer</button>
                     </td>`;
 
                     tableau.appendChild(tr);
@@ -42,8 +42,8 @@
                         <span class="close-button">&times;</span>
                         <h2>Confirmation suppression</h2>
                         <p>Voulez vous vraiment supprimer l'utilisateur dont l'email est ${u.email} ?</p>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="oui">Oui</button>
-                        <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
+                        <button class="btn btn-accepter inline width-max-content" id="oui">Oui</button>
+                        <button class="btn btn-accepter inline width-max-content" type="submit" id="non">Non</button>`;
                         Modal.showModal();
 
                         document.getElementById("oui").addEventListener("click", () => {
@@ -70,7 +70,7 @@
                           <label for="email">Adresse courriel : </label>
                           <input class="input-ajouter" type="text" id="email" name="email" value="${u.email}"><br><br>
                           <label for="type">type :</label>
-                            <select style="margin-bottom: 5px" class="input-ajouter">
+                            <select class="input-ajouter margin-bottom-5px">
                                 <option>Utilisateur</option>
                                 <option>Administrateur</option>
                             </select>
@@ -78,7 +78,7 @@
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button style="margin-top: 30px; class="btn btn-accepter">Accepter</button>
+                          <button class="btn btn-accepter margin-top-30px">Accepter</button>
                         </form>`;
                         Modal.showModal();
                     })
@@ -99,7 +99,7 @@
                           <label for="email">Adresse courriel : </label>
                           <input class="input-ajouter" type="text" id="email" name="email"><br><br>
                           <label for="type">type :</label>
-                            <select style="margin-bottom: 5px" class="input-ajouter">
+                            <select class="input-ajouter margin-bottom-5px">
                                 <option>Utilisateur</option>
                                 <option>Administrateur</option>
                             </select>
@@ -107,7 +107,7 @@
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button style="margin-top: 30px; class="btn btn-accepter">Accepter</button>
+                          <button class="btn btn-accepter margin-top-30px">Accepter</button>
                         </form>`;
                     Modal.showModal();
                 })
@@ -133,10 +133,10 @@
 <body>
 <div class="page_admin">
     <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
-    <nav id="nav" class="wrap">
+    <nav class="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
-        <ul id="menu">
+        <ul class="menu">
             <a class="header-nav-link active" href="{{ route("admin") }}">
                 <li>Utilisateurs</li>
             </a>
@@ -149,7 +149,7 @@
         </ul>
     </nav>
 
-    <div style="margin-bottom: 50px" class="container">
+    <div class="container margin-bottom-50px">
         <button class="btn btn-ajouter inline btn_modal_window" btn="ajouter" type="submit">
             Enregistrer un utilisateur
         </button>

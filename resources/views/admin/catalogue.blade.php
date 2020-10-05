@@ -37,13 +37,13 @@
                     <td aria-label="description">${b.description}</td>
                     <td aria-label="prix">${b.prix_saq}$</td>
                     <td aria-label="url"><a href="${b.url_saq}">${b.url_saq}</a></td>
-                    <td aria-label="image"><img style="width: 100px" src="${b.url_image}" alt="${b.description}"></td>
+                    <td aria-label="image"><img class="width-100px" src="${b.url_image}" alt="${b.description}"></td>
                     <td aria-label="format">${b.format}</td>
                     <td aria-label="type">${getType(b.type_id)}</td>
                     <td aria-label="created_at">${date}</td>
                     <td aria-label="actions" >
-                        <button style="width: max-content" class="btn btn-boire inline btn_modal_window" btn="modifier_${b.code_saq}" type="submit">Modifier</button>
-                        <button style="width: max-content" class="btn btn-accepter inline btn_modal_window" btn="supprimer_${b.code_saq}" type="submit">Supprimer</button>
+                        <button class="btn btn-boire inline btn_modal_window width-max-content" btn="modifier_${b.code_saq}" type="submit">Modifier</button>
+                        <button class="btn btn-accepter inline btn_modal_window width-max-content" btn="supprimer_${b.code_saq}" type="submit">Supprimer</button>
                     </td>
                 `;
                     tableau.appendChild(tr);
@@ -56,8 +56,8 @@
                         <span class="close-button">&times;</span>
                         <h2>Confirmation suppression</h2>
                         <p>Voulez vous vraiment supprimer la bouteille "${b.nom}" ?</p>
-                        <button style="width: max-content" class="btn btn-accepter inline" id="oui">Oui</button>
-                        <button style="width: max-content" class="btn btn-accepter inline" type="submit" id="non">Non</button>`;
+                        <button class="btn btn-accepter inline width-max-content" id="oui">Oui</button>
+                        <button class="btn btn-accepter inline width-max-content" type="submit" id="non">Non</button>`;
                         Modal.showModal();
 
                         document.getElementById("oui").addEventListener("click", () => {
@@ -88,7 +88,7 @@
                           <label for="pays">Pays :</label>
                           <input class="input-ajouter" type="text" id="pays" name="pays" value="${b.pays}"><br><br>
                           <label for="description">Description :</label>
-                          <textarea style="margin-bottom: 10px" class="input-ajouter" id="description" name="description">${b.description}</textarea>
+                          <textarea class="input-ajouter margin-bottom-10px" id="description" name="description">${b.description}</textarea>
                           <label for="url_saq">URL : </label>
                           <input class="input-ajouter" name="url_saq" id="url_saq" value="${b.url_saq}"><br><br>
                           <label for="url_image">URL de l'image : </label>
@@ -101,7 +101,7 @@
                             <option name="blanc" id="blanc" value="1">Blanc</option>
                             <option name="rose" id="rose" value="1">Rosé</option>
                           </select>
-                          <button style="margin-top: 30px;" class="btn btn-accepter">Accepter</button>
+                          <button class="btn btn-accepter margin-top-30px">Accepter</button>
                         </form>`;
 
 
@@ -139,7 +139,7 @@
                             <option name="blanc" id="blanc" value="1">Blanc</option>
                             <option name="rose" id="rose" value="1">Rosé</option>
                           </select>
-                          <button style="margin-top: 30px;" class="btn btn-accepter">Accepter</button>
+                          <button class="btn btn-accepter margin-top-30px">Accepter</button>
                         </form>`
                     Modal.showModal();
                 })
@@ -163,10 +163,10 @@
 <body>
 <div class="page_admin">
     <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
-    <nav id="nav" class="wrap">
+    <nav class="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
-        <ul id="menu">
+        <ul class="menu">
             <a class="header-nav-link active" href="{{ route("admin") }}">
                 <li>Utilisateurs</li>
             </a>
@@ -179,7 +179,7 @@
         </ul>
     </nav>
 
-    <div style="margin-bottom: 50px" class="container">
+    <div class="container margin-bottom-50px">
         <button class="btn btn-ajouter inline" btn="ajouter">Ajouter une bouteille</button>
         <button class="btn btn-supprimer inline" type="submit" onclick=window.location.href='{{ route('admin.saq') }}'>
             Catalogue SAQ

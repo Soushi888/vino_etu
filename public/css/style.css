@@ -1,7 +1,8 @@
-.dimention{
-    width:150px;
+.dimention {
+    width: 150px;
     height: 225px;
 }
+
 html {
     font-size: 15px;
 }
@@ -37,7 +38,7 @@ p {
     width: 100%;
     max-width: 1030px;
     margin: 0 auto;
-   
+
 }
 
 
@@ -275,11 +276,11 @@ table.info td {
     vertical-align: middle;
 }
 
-table.info td > a {
+table.info td>a {
     color: #27c474;
 }
 
-table.info td > a:visited {
+table.info td>a:visited {
     color: #008134;
 }
 
@@ -578,7 +579,8 @@ footer {
 }
 
 
-/***ajouter_bouteille***/
+/*Ajouter_bouteille
+==================*/
 
 .container-ajouter {
     display: table;
@@ -681,6 +683,7 @@ footer {
     border: 0;
     border-radius: 5px;
     margin-bottom: -12px;
+    text-align: center;
 }
 
 label {
@@ -696,9 +699,63 @@ label {
     line-height: 1.1;
 }
 
-#search{
+#search {
     width: 222px;
 }
+
+/*Mon compte
+==================*/
+.form-compte {
+    padding: 20px 0;
+    line-height: 1.1;
+}
+
+.btn-modifier-compte {
+    display: block;
+    width: 44%;
+    background-color: #028340;
+    margin-top: -20px;
+
+}
+
+.btn-supprimer-compte {
+    display: block;
+    width: 44%;
+    background-color: #dd0303;
+    margin-top: -20px;
+}
+
+.btn-modifier-compte:hover {
+    background-color: #0a4d2a;
+}
+
+.btn-supprimer-compte:hover {
+    background-color: #c0151b;
+}
+
+.img_b {
+    margin-top: 390px;
+    margin-bottom: -7px;
+}
+
+.compte {
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    font-size: 16px;
+    margin-left: 0px;
+    margin-right: 20px;
+
+}
+
+.titre-compte {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: -180px;
+    color: #ffffff;
+}
+
 /* Modal
 =================*/
 
@@ -776,7 +833,42 @@ label {
         z-index: 99999;
     }
 
-    
+    /*Mon compte*/
+.form-compte {
+    padding: 20px 0;
+    line-height: 1.1;
+    margin-left: 220px;
+}
+
+.btn-modifier-compte {
+    display: block;
+    width: 25%;
+    background-color: #028340;
+    margin-top: -20px;
+    margin-left: 220px;
+}
+
+.btn-supprimer-compte {
+    display: block;
+    width: 25%;
+    background-color: #dd0303;
+    margin-top: -20px;
+    margin-left: 220px;
+}
+
+.titre-compte {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: -90px;
+    color: #ffffff;
+    margin-left: 220px;
+}
+
+.utilisateur {
+    padding-left: 220px;
+
+}
+
 
 }
 
@@ -849,10 +941,47 @@ label {
         display: inline;
 
     }
-    
+
     .fa-2x {
-    font-size: 1em;
+        font-size: 1em;
     }
+
+     /*Mon compte*/
+.form-compte {
+    padding: 20px 0;
+    line-height: 1.1;
+    margin-left: 120px;
+}
+
+.btn-modifier-compte {
+    display: block;
+    width: 34%;
+    background-color: #028340;
+    margin-top: -20px;
+    margin-left: 120px;
+}
+
+.btn-supprimer-compte {
+    display: block;
+    width: 34%;
+    background-color: #dd0303;
+    margin-top: -20px;
+    margin-left: 120px;
+}
+
+.titre-compte {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: -90px;
+    color: #ffffff;
+    margin-left: 120px;
+}
+
+.utilisateur {
+    padding-left: 120px;
+
+}
+
 }
 
 @media (max-width: 565px) {
@@ -907,6 +1036,43 @@ label {
     .img_marg img {
         display: none;
     }
+
+    /* Mon compte media */
+    .form-compte {
+        padding: 20px 0;
+        line-height: 1.1;
+        margin-left: 120px;
+    }
+
+    .btn-modifier-compte {
+        display: block;
+        width: 46%;
+        background-color: #028340;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
+
+    .btn-supprimer-compte {
+        display: block;
+        width: 46%;
+        background-color: #dd0303;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
+
+    .titre-compte {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: -90px;
+        color: #ffffff;
+        margin-left: 120px;
+    }
+
+    .utilisateur {
+        padding-left: 120px;
+
+    }
+
 }
 
 
@@ -927,7 +1093,7 @@ label {
 
 }
 
-.sign{
+.sign {
     color: white;
 }
 
@@ -937,21 +1103,21 @@ label {
     margin: 15px auto;
 }
 
-#nav {
+.nav {
     width: 1030px;
     background: #ed1c24;
     font-weight: 600;
     font-size: 14px;
     border-radius: 2px;
-
+    margin: 15px auto;
 }
 
-#nav ul {
+.nav ul {
     margin: 0px;
     padding: 0px;
 }
 
-#nav ul li,
+.nav ul li,
 label[for=toggle] {
     display: inline-block;
     cursor: pointer;
@@ -959,10 +1125,10 @@ label[for=toggle] {
     margin: 10px 10px 10px 10px;
     font-weight: 400;
     margin-right: 10px;
-    
+
 }
 
-#nav ul li:hover,
+.nav ul li:hover,
 label[for=toggle]:hover {
     color: rgb(245, 239, 239);
     text-shadow: 0 0 1px #f7f4f4;
@@ -979,13 +1145,13 @@ label[for=toggle]:hover {
     label[for=toggle] {
         display: none;
     }
-    
-    
-    
+
+
+
 }
 
 @media only screen and (max-width: 679px) {
-    #nav {
+    .nav {
         width: 99%;
     }
 
@@ -1004,32 +1170,32 @@ label[for=toggle]:hover {
         width: 90%;
     }
 
-    #menu {
+    .menu {
         display: none;
     }
 
-    input[type=checkbox]#toggle:checked ~ #menu {
+    input[type=checkbox]#toggle:checked~.menu {
         display: block;
     }
 
-    input[type=checkbox]#toggle:checked ~ #menu li {
+    input[type=checkbox]#toggle:checked~.menu li {
         display: block;
 
     }
-    
+
     .fa-sign-out {
         margin-top: 30px;
         margin-left: -12px;
         font-size: larger;
         color: white;
-        
+
     }
-    
+
 
 }
 
 @media only screen and (min-width: 680px) and (max-width: 702px) {
-    #nav {
+    .nav {
         width: 80%;
         font-size: 11px;
     }
@@ -1041,7 +1207,7 @@ label[for=toggle]:hover {
 }
 
 @media only screen and (min-width: 703px) and (max-width: 728px) {
-    #nav {
+    .nav {
         width: 80%;
         font-size: 12px;
     }
@@ -1055,7 +1221,7 @@ label[for=toggle]:hover {
 }
 
 @media only screen and (min-width: 728px) and (max-width: 1024px) {
-    #nav {
+    .nav {
         width: 80%;
         font-size: 13px;
     }
@@ -1092,9 +1258,92 @@ label[for=toggle]:hover {
         float: left;
         font-weight: bold;
     }
-    
-     .fa-sign-out {
+
+    .fa-sign-out {
         color: white;
-        
+
     }
+}
+
+/*
+catalogue.balde.php/ 
+saq.blade.php/ 
+stats.blade.php/
+users.blade.php/
+
+=====================*/
+.margin-bottom-5px {
+    margin-bottom: 5px;
+}
+
+.margin-bottom-10px {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-20px {
+    margin-bottom: 20px;
+}
+
+.margin-bottom-50px {
+    margin-bottom: 50px;
+}
+
+.margin-top-20px {
+    margin-top: 20px;
+}
+
+.margin-top-30px {
+    margin-top: 30px;
+}
+
+.margin-left-20px {
+    margin-left: 20px;
+}
+
+.margin-left-54px {
+    margin-left: 54px;
+}
+
+.padding-8px {
+    padding: 8px;
+}
+
+.padding-bottom-18px {
+    padding-bottom: 18px;
+}
+
+.width-50px {
+    width: 50px;
+}
+
+.width-100px {
+    width: 100px;
+}
+
+.width-max-content {
+    width: max-content;
+}
+
+.height-50 {
+    height: 50%;
+}
+
+.color-white {
+    color: white;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.text-align-center {
+    text-align: center;
 }

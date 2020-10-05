@@ -37,12 +37,12 @@
                     <td aria-label="description">${b.description}</td>
                     <td aria-label="prix">${b.prix_saq}$</td>
                     <td aria-label="url"><a href="${b.url_saq}">${b.url_saq}</a></td>
-                    <td aria-label="image"><img style="width: 100px" src="${b.url_image}" alt="${b.description}"></td>
+                    <td aria-label="image"><img class="width-100px" src="${b.url_image}" alt="${b.description}"></td>
                     <td aria-label="format">${b.format}</td>
                     <td aria-label="type">${getType(b.type_id)}</td>
                     <td aria-label="actions">
-                       <button style="width: max-content" class="btn btn-ajouter inline" type="submit" id=${b.code_saq}>Ajouter</button>
-                        <span><p id="message_${b.code_saq}" style="margin-top: 20px"></p></span>
+                       <button class="btn btn-ajouter inline width-max-content" type="submit" id=${b.code_saq}>Ajouter</button>
+                        <span><p id="message_${b.code_saq}" class="margin-top-20px"</p></span>
                     </td>
                 `;
                 tableau.appendChild(tr);
@@ -77,10 +77,10 @@
 <body>
 <div class="page_admin">
     <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
-    <nav id="nav" class="wrap">
+    <nav class="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>
-        <ul id="menu">
+        <ul class="menu">
             <a class="header-nav-link active" href="{{ route("admin") }}">
                 <li>Utilisateurs</li>
             </a>
@@ -93,31 +93,30 @@
         </ul>
     </nav>
 
-    <div class="container" style="margin-bottom: 20px">
+    <div class="container margin-bottom-20px">
         <form action="">
-            <legend style="color: white">Recherche</legend>
-            <fieldset style="display: flex">
-                <label for="type">Type de vin : <select name="type" id="type">
+            <legend class="color-white">Recherche</legend>
+            <fieldset class="display-flex padding-bottom-18px">
+                <label for="type">Type de vin : <select name="type" id="type" class="inline">
                         <option value="rouge">Rouge</option>
                         <option value="blanc">Blanc</option>
                         <option value="rose">Rosé</option>
                     </select></label>
-                <label for="page" style="margin-left: 20px">Page : <input style="width: 50px; margin-left: 20px"
+                <label for="page" class="">Page :<input class="width-50px margin-left-20px inline margin-left-54px"
                                                                           name="page" id="page"
                                                                           type="number"
                                                                           min="1" value="1"></label>
-                <button style="margin-left: 20px; padding: 8px; height: 50%; width: max-content" class="btn btn-boire"
-                        type="submit">Rechercher
+                <button class="padding-8px height-50 width-max-content btn btn-boire" type="submit">Rechercher
                 </button>
             </fieldset>
         </form>
     </div>
 
-    <div style="margin-bottom: 20px; display: flex; justify-content: center" class="container">
-        <button style="width: max-content" class="btn btn-supprimer inline" type="submit" id="ajouter_bouteilles_saq">
+    <div class="container margin-bottom-20px display-flex justify-content-center">
+        <button class="btn btn-supprimer inline width-max-content" type="submit" id="ajouter_bouteilles_saq">
             Ajouter toutes les bouteilles de la page
         </button>
-        <span id="message" style="margin-left: 20px; font-weight: bold; color: white"></span>
+        <span id="message" class="margin-left-20px font-weight-bold color-white"></span>
     </div>
 
     <table class="info container">

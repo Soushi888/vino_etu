@@ -26,48 +26,48 @@
         </div>
       </div>
       <aside class="section_deux">
-        <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
-          <a class="header-nav-link active ajouter" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
+        <nav class="header-nav compte">
+          <a class="header-nav-link active compte" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
+          <a class="header-nav-link active compte" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
         </nav>
-        <h2 class="slogan-ajouter">Mon compte</h2>
+        <h2 class="titre-compte">Mon compte</h2>
         {{-- <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button> --}}
 
         <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
-        <label for="name">Utilisateur: {{ Auth::user()->name }} </label><br><br>
+        <label for="name" class="utilisateur">Utilisateur: {{ Auth::user()->name }} </label><br><br>
 
-        <form class="form-ajouter" name="userF" action="/" method="post">
+        <form class="form-compte" name="userF" action="/" method="post">
           
-          <label for="email">Modifier Email:</label>
-          <span><p class="fail" id="e.email" style="margin-top: 20px"></p></span>
-          <input class="input-ajouter" type="text" id="email" name="email"><br><br>
+          <label for="email">Modifier Courriel:</label>
+          <span><p class="fail" id="e.email"></p></span>
+          <input class="input-ajouter" type="text" id="email" name="email">
           <input type="hidden" class="input-ajouter" type="text" id="emailHidden" name="emailHidden"><br><br>
           
-          <label for="mdp">Modifier Mot De Pase:</label>
-          <span><p class="fail" id="e.mdp" style="margin-top: 20px"></p></span>
+          <label for="mdp">Modifier Mot de Passe:</label>
+          <span><p class="fail" id="e.mdp"></p></span>
           <input class="input-ajouter" type="text" id="mdp" name="mdp" placeholder="Entrer mot de passe"><br><br>
         </form>
-          <button id="modifierBtn">Modifier</button>
-          <span><p class="fail" id="b.modifierBtn" style="margin-top: 20px"></p></span>
+          <button id="modifierBtn" class="btn btn-modifier-compte">Modifier</button>
+          <span><p class="fail" id="b.modifierBtn"></p></span>
         
 
-        <form class="form-ajouter" name="userC" action="/" method="post">
+        <form class="form-compte" name="userC" action="/" method="post">
           <label for="cellier">Modifier Nom Cellier:</label>
-          <span><p class="fail" id="e.cellier" style="margin-top: 20px"></p></span>
+          <span><p class="fail" id="e.cellier"></p></span>
           <input class="input-ajouter" type="text" id="cellier" name="cellier"><br><br>
         </form> 
-          <button id="modifierCellierBtn">Modifier</button>
-          <span><p class="fail" id="b.modifierCellierBtn" style="margin-top: 20px"></p></span>
+          <button id="modifierCellierBtn" class="btn btn-modifier-compte">Modifier</button>
+          <span><p class="fail" id="b.modifierCellierBtn"></p></span>
 
 
-        <form class="form-ajouter" name="suprimerF" action="/" method="delete">
+        <form class="form-compte" name="suprimerF" action="/" method="delete">
 
-          <label for="suprimer">Suprimer mon compte:</label>
-          <span><p class="fail" id="e.suprimer" style="margin-top: 20px"></p></span>
+          <label for="suprimer">Supprimer mon compte:</label>
+          <span><p class="fail" id="e.suprimer"></p></span>
           <input class="input-ajouter" type="text" id="suprimer" name="suprimer" placeholder="Entrer courielle"><br><br>
         </form>
-        <button id="supprimerBtn">Suprimer mon compte</button>
-        <span><p class="fail" id="b.supprimerBtn" style="margin-top: 20px"></p></span>
+        <button id="supprimerBtn" class="btn btn-supprimer-compte">Supprimer mon compte</button>
+        <span><p class="fail" id="b.supprimerBtn"></p></span>
     </div>
   </div>
   <footer class="footer-ajouter">2020 Vino | Group 1</footer>
