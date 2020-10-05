@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();;
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('type')->default("user")->nullable();;
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -38,7 +37,6 @@ class CreateUsersTable extends Migration
         $user = User::find(2);
         $user->email = "admin@test.com";
         $user->password = Hash::make("12345678");
-        $user->type = "admin";
         $user->save();
     }
 

@@ -41,23 +41,23 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 //Users
 Route::get('/admin', function () {
     return view('admin.users');
-})->middleware('auth')->name('admin');
+})->middleware('auth', 'can:backoffice_access')->name('admin');
 
 //catalogue
 Route::get('/admin/catalogue', function () {
     return view('admin.catalogue');
-})->middleware('auth')->name('admin.catalogue');
+})->middleware('auth', 'can:backoffice_access')->name('admin.catalogue');
 
 Route::get('/admin/catalogue/ajouter', function () {
     return view('admin.catalogue.ajouter');
-})->middleware('auth')->name('admin.catalogue.ajouter');
+})->middleware('auth', 'can:backoffice_access')->name('admin.catalogue.ajouter');
 
 // saq
 Route::get('/admin/catalogue/saq', function () {
     return view('admin.saq');
-})->middleware('auth')->name('admin.saq');
+})->middleware('auth', 'can:backoffice_access')->name('admin.saq');
 
 // statistiques
 Route::get('/admin/statistiques', function () {
     return view('admin.stats');
-})->middleware('auth')->name('admin.stats');
+})->middleware('auth', 'can:backoffice_access')->name('admin.stats');
