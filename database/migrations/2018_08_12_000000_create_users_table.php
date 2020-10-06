@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
         });
 
         // Génère des données de test
-        factory(App\User::class, 15)->create();
+        factory(App\User::class, 2)->create();
 
         // Génère des comptes utilisateurs et administrateur avec lesquels se connecter
         $user = User::find(1);

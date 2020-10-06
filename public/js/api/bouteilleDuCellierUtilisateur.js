@@ -1,11 +1,10 @@
-
     let eDivIndex = document.querySelector(".container-index");    
     let listCelliers = document.querySelector("#listCelliers h1");
     let eUl = document.createElement("ul");
     let idUtilisateur = document.getElementById("idUtilisateur").value
     let userApi = new User;
     userApi.showCellier(idUtilisateur).then((data => {
-    console.log(data.length);
+    console.log(data);
         if(data.length === 0){
             creeCellier();
             location.reload();
@@ -43,7 +42,7 @@ function creeCellier(){
             reponseJson.then(function(reponse){
                         console.log("je suis dans le fetch de bouteille",reponse);
                         for(let i =0; i<reponse.length; i++){
-                            console.log(reponse[i].pays)
+                           //console.log(reponse[i])
 
                             let eTr1 = document.createElement("tr");
                             let eDivImg = document.createElement("div");
@@ -87,16 +86,32 @@ function creeCellier(){
                            eBoutonModifier = document.createElement("button");
                            eBoutonModifier.setAttribute("class","btn btn-modifier inline");
                            eBoutonModifier.setAttribute("btn","modifier_"+reponse.code_saq);
+                           eBoutonModifier.addEventListener("click",function(){
+                               console.log("transaction "+reponse[i].transaction_id+" millisime "+reponse[i].millesime);
+                               var idTransaction = reponse[i].transaction_id;
+                             
+                               let t = new Transaction();
+                                    t.show(idTransaction).then(dataU => {
+                                    console.log({dataU});
+                                });
+
+                           })
                            eTextModifier = document.createTextNode("Modifier")
                            eBoutonModifier.appendChild(eTextModifier);
                            eBoutonAjouter = document.createElement("button");
                            eBoutonAjouter.setAttribute("class","btn btn-ajouter inline");
                            eBoutonAjouter.setAttribute("btn","ajouter_"+reponse.code_saq);
+                           eBoutonAjouter.addEventListener("click",function(){
+                            console.log("je suis Ajouter");
+                        })
                            eTextAjouter = document.createTextNode("Ajouter")
                            eBoutonAjouter.appendChild(eTextAjouter);
                            eBoutonBoire = document.createElement("button");
                            eBoutonBoire.setAttribute("class","btn btn-boire inline");
-                           eBoutonBoire.setAttribute("btn","boire_"+reponse.code_saq);                           
+                           eBoutonBoire.setAttribute("btn","boire_"+reponse.code_saq);
+                           eBoutonBoire.addEventListener("click",function(){
+                            console.log("je suis Boire");
+                        })                           
                            eTextBoire = document.createTextNode("Boire")
                            eBoutonBoire.appendChild(eTextBoire);
                            eDivBouton.appendChild(eBoutonModifier);

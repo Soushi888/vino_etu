@@ -21,7 +21,7 @@ class CreateCelliersTable extends Migration
         });
 
         // Génère des données de test
-        factory(App\Cellier::class, 5)->create();
+        factory(App\Cellier::class, 2)->create();
 
     }
 

@@ -27,7 +27,8 @@ class CreateTransactionsTable extends Migration
         });
 
         // Génère des données de test
-        factory(App\Transaction::class, 50)->create();
+        factory(App\Transaction::class, 10)->create();
+        
     }
 
     /**
