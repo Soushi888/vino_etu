@@ -28,7 +28,7 @@ function ListeBouteilles() {
                     <td aria-label="type">${getType(b.type_id)}</td>
                     <td aria-label="created_at">${date}</td>
                     <td aria-label="actions" >
-                        <button class="btn btn-boire inline btn_modal_window width-max-content" btn="modifier_${b.code_saq}" type="submit">Modifier</button>
+                        <button class="btn btn-boire inline btn_modal_window width-max-content margin-bottom-10px" btn="modifier_${b.code_saq}" type="submit">Modifier</button>
                         <button class="btn btn-accepter inline btn_modal_window width-max-content" btn="supprimer_${b.code_saq}" type="submit">Supprimer</button>
                     </td>
                 `;

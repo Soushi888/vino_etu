@@ -7,14 +7,13 @@
 
             <h1 class="logo"><img src={{ asset("img/logo_vino.png") }} alt="vino"></h1>
             <form class="form" action="{{ route('register') }}" method="post">
-            echo "<h1>".{{ route('register') }}".</h1>"
                 @csrf
                 <div class="form-group">
                     <input class="input" name="name" type="text" class="form-control @error('name') is-invalid @enderror"
                         name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Nom">
 
                     @error('name')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback fail" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
@@ -25,7 +24,7 @@
                         value="{{ old('email') }}" required autocomplete="email" placeholder="Courriel">
 
                     @error('email')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback fail" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
@@ -36,7 +35,7 @@
                         autocomplete="new-password" placeholder="Mot de Passe">
 
                     @error('password')
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback fail" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror

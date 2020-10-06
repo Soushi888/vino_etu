@@ -302,6 +302,10 @@ td.actions {
 }
 
 
+.invalid-feedback {
+    display: block;
+    margin-top: 20px;
+}
 
 /* Btn
 =================*/
