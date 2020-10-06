@@ -27,6 +27,10 @@ Route::get('/ajouter_bouteille', function () {
     return view('ajouter_bouteille');
 })->name('ajouter_bouteille');
 
+Route::get('/modifier_bouteille', function () {
+    return view('modifier_bouteille');
+})->name('modifier_bouteille');
+
 Route::get('/mon_compte', function () {
     return view('mon_compte');
 })->name('mon_compte');

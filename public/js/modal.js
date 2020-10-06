@@ -14,9 +14,9 @@ class Modal {
             </div>
         `;
 
-        console.log(modalElement);
+        // console.log(modalElement);
 
-        console.log(document.querySelector(".page_admin"))
+        // console.log(document.querySelector(".page_admin"))
 
         document.querySelector("body").appendChild(modalElement);
     }
@@ -29,8 +29,7 @@ class Modal {
 
         modal.classList.add("show-modal");
 
-        document.querySelector(".close-button").addEventListener("click", evt => Modal.closeModal());
-        ;
+        document.querySelector(".close-button").addEventListener("click", evt => Modal.closeModal());;
 
         document.querySelector("body").addEventListener("keydown", evt => {
             if (evt.key === "Escape") {

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href={{ asset("css/style.css") }}>   
     <script src={{asset("js/api/User.js")}}></script>
     <script src={{asset("js/api/Cellier.js")}}></script>
-    
     <script src={{asset("js/modal.js")}}></script>
     <title></title>
 </head>
