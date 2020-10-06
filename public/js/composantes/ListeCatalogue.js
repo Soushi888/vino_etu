@@ -48,8 +48,9 @@ function ListeBouteilles() {
 
                 document.getElementById("oui").addEventListener("click", () => {
                     supprimerBouteille(b.id);
-                    ListeBouteilles();
+                    tr.remove();
                 })
+
 
                 document.getElementById("non").addEventListener("click", () => {
                     Modal.closeModal();
@@ -135,8 +136,7 @@ function ListeBouteilles() {
 }
 
 function supprimerBouteille(id) {
-    let bouteilles= new Bouteille();
+    let bouteilles = new Bouteille();
     bouteilles.destroy(id);
     Modal.closeModal();
-    ListeBouteilles();
 }

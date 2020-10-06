@@ -35,7 +35,7 @@ function ListeUtilisateurs() {
 
                 document.getElementById("oui").addEventListener("click", () => {
                     supprimerUtilisateur(u.id);
-                    ListeUtilisateurs();
+                    tr.remove();
                 })
 
                 document.getElementById("non").addEventListener("click", () => {
@@ -55,7 +55,7 @@ function ListeUtilisateurs() {
                           <input class="input-ajouter" type="text" id="name" name="name" value="${u.name}"><br><br>
                           <label for="email">Adresse courriel : </label>
                           <input class="input-ajouter" type="text" id="email" name="email" value="${u.email}"><br><br>
-                          <label for="type">type :</label>
+                          <label for="type">rôle :</label>
                             <select class="input-ajouter margin-bottom-5px">
                                 <option>Utilisateur</option>
                                 <option ${u.roles[0] ? "selected" : ""}>Administrateur</option>
@@ -64,9 +64,16 @@ function ListeUtilisateurs() {
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button class="btn btn-accepter margin-top-30px">Accepter</button>
+                          <button class="btn btn-accepter margin-top-30px" id="accepter">Accepter</button>
                         </form>`;
                 Modal.showModal();
+
+                document.getElementById("accepter").addEventListener("click", (evt) => {
+                    evt.preventDefault();
+                    console.log("modifier !");
+
+                    Modal.closeModal();
+                })
             })
         })
 
@@ -84,18 +91,31 @@ function ListeUtilisateurs() {
                           <input class="input-ajouter" type="text" id="name" name="name"><br><br>
                           <label for="email">Adresse courriel : </label>
                           <input class="input-ajouter" type="text" id="email" name="email"><br><br>
-                          <label for="type">type :</label>
-                            <select class="input-ajouter margin-bottom-5px">
-                                <option>Utilisateur</option>
-                                <option>Administrateur</option>
+                          <label for="type">rôle :</label>
+                            <select class="input-ajouter margin-bottom-5px" id="role" name="role">
+                                <option value="1">Utilisateur</option>
+                                <option value="2">Administrateur</option>
                             </select>
                           <label for="password">Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password" name="password"><br><br>
                           <label for="password_confirm">Confirmation du Mot de passe :</label>
                           <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
-                          <button class="btn btn-accepter margin-top-30px">Accepter</button>
+                          <button class="btn btn-accepter margin-top-30px" id="accepter">Accepter</button>
                         </form>`;
             Modal.showModal();
+
+            document.getElementById("accepter").addEventListener("click", (evt) => {
+                evt.preventDefault();
+                console.log("enregistré !");
+                let user = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    role: document.getElementById("role").value,
+                    password: document.getElementById("password").value
+                }
+                console.log(user);
+                ajouterUtilisateur(user);
+            })
         })
 
         console.log(data)
@@ -103,9 +123,31 @@ function ListeUtilisateurs() {
     })
 }
 
+function ajouterUtilisateur(user) {
+    let users = new User();
+
+
+
+
+    // Validation des données
+    if (!isEmail(user.email)) {
+
+    }
+
+    users.store({
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        password: user.password
+    }).then(() => {
+        Modal.closeModal();
+    })
+}
+
 function supprimerUtilisateur(id) {
     let users = new User();
-    users.destroy(id);
-    Modal.closeModal();
-    ListeUtilisateurs();
+    users.destroy(id)
+        .then(() => {
+            Modal.closeModal();
+        });
 }
