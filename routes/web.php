@@ -39,8 +39,6 @@ Route::get('/accueil_utilisateur', function () {
     return view('accueil_utilisateur');
 })->name('accueil_utilisateur');
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
-
 // Routes Admin
 //Users
 Route::get('/admin', function () {
@@ -61,7 +59,4 @@ Route::get('/admin/catalogue/saq', function () {
     return view('admin.saq');
 })->middleware('auth', 'can:backoffice_access')->name('admin.saq');
 
-// statistiques
-Route::get('/admin/statistiques', function () {
-    return view('admin.stats');
-})->middleware('auth', 'can:backoffice_access')->name('admin.stats');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name("logout");
