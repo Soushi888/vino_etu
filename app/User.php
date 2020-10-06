@@ -51,7 +51,7 @@ class User extends Authenticatable
     /**
      * Assign a new role to the user.
      *
-     * @param  mixed  $role
+     * @param mixed $role
      */
     public function assignRole($role)
     {

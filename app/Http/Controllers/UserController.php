@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -16,33 +17,46 @@ class UserController extends Controller
 {
     /**
      * Retourne toutes les utilisateurs
-     * @return JsonResponse
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
+        $users = UserResource::collection(User::all());
 
-        return UserResource::collection(User::all());
+        foreach ($users as $user) {
+            $user["roles"] = User::find($user->id)->roles()->get();
+            $user["roles"]["capacités"] = User::find($user->id)->abilities();
+        }
+
+        return $users;
     }
 
 
     /**
      * Retourne un utilisateur
      * @param User $user
-     * @return JsonResponse
+     * @return UserResource
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        $roles = $user->roles()->get();
+        $abilities = $user->abilities();
+
+        $user = new UserResource($user);
+
+        $user["roles"] = $roles;
+        $user["roles"]["capacités"] = $abilities;
+
+        return $user;
     }
 
     /**
      * Retourne les celliers d'un utilisateur
      * @param User $user
-     * @return User
+     * @return CellierResource
      */
     public function showCelliers(User $user)
     {
-        // return response(Cellier::where("user_id", $user->id)->get());
         return new CellierResource(Cellier::where("user_id", $user->id)->get());
     }
 
@@ -93,7 +107,7 @@ class UserController extends Controller
 
 
     /**
-     * Supprime un cellier
+     * Supprime un utilisateur
      * @param User $user
      * @return JsonResponse
      * @throws Exception

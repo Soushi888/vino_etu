@@ -9,68 +9,7 @@
     <link rel="stylesheet" href={{ asset("css/style.css") }}>
     <script src={{ asset("js/api/SAQ.js") }}></script>
     <script src="{{ asset("js/functions.js") }}"></script>
-    <script defer>
-        const urlParams = new URLSearchParams(window.location.search);
-        const recherche = {type: urlParams.get("type"), page: urlParams.get("page")};
-
-        let recherche_type = document.getElementById("type");
-        let recherche_page = document.getElementById("page");
-
-        // TODO : Données de recherche persistantes
-        // recherche_page.value = recherche.page;
-
-        // console.log(recherche_type)
-
-        saq = new SAQ();
-        saq.index(recherche.type, recherche.page).then(data => {
-            let tableau = document.querySelector(".info tbody")
-            tableau.innerHTML = ""
-
-
-
-            data.map(b => {
-                let tr = document.createElement("tr")
-                tr.innerHTML = `
-                    <td aria-label="nom">${b.nom}</td>
-                    <td aria-label="code_saq">${b.code_saq}</td>
-                    <td aria-label="pays">${b.pays}</td>
-                    <td aria-label="description">${b.description}</td>
-                    <td aria-label="prix">${b.prix_saq}$</td>
-                    <td aria-label="url"><a href="${b.url_saq}">${b.url_saq}</a></td>
-                    <td aria-label="image"><img class="width-100px" src="${b.url_image}" alt="${b.description}"></td>
-                    <td aria-label="format">${b.format}</td>
-                    <td aria-label="type">${getType(b.type_id)}</td>
-                    <td aria-label="actions">
-                       <button class="btn btn-ajouter inline width-max-content" type="submit" id=${b.code_saq}>Ajouter</button>
-                        <span><p id="message_${b.code_saq}" class="margin-top-20px"</p></span>
-                    </td>
-                `;
-                tableau.appendChild(tr);
-
-                document.getElementById(b.code_saq).addEventListener("click", (evt) => {
-                    saq.store(b).then((json) => {
-                        console.log(json)
-                        if (json) {
-                            let pMessage = document.getElementById(`message_${evt.target.id}`);
-                            pMessage.innerHTML = "Ajout bien effectué !";
-                            pMessage.className = "success"
-                        } else {
-                            let pMessage = document.getElementById(`message_${evt.target.id}`);
-                            pMessage.innerHTML = "Déjà en inventaire";
-                            pMessage.className = "fail"
-
-                        }
-                    })
-                })
-            })
-            document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
-                saq.storeAll(recherche.type, recherche.page)
-                    .then(data => {
-                        console.log(data);
-                    });
-            })
-        })
-    </script>
+    <script src={{ asset("js/composantes/ListeSAQ.js") }}></script>
     <title>Vino - Liste des bouteilles du catalogue</title>
 </head>
 
@@ -97,12 +36,12 @@
         <form action="">
             <legend class="color-white">Recherche</legend>
             <fieldset class="display-flex padding-bottom-18px">
-                <label for="type">Type de vin : <select name="type" id="type" class="inline">
+                <label for="type" class="margin-right-20">Type de vin : <select name="type" id="type" class="inline">
                         <option value="rouge">Rouge</option>
                         <option value="blanc">Blanc</option>
                         <option value="rose">Rosé</option>
                     </select></label>
-                <label for="page" class="">Page :<input class="width-50px margin-left-20px inline margin-left-54px"
+                <label for="page" class="margin-right-20">Page :<input class="width-80px margin-left-20px inline"
                                                                           name="page" id="page"
                                                                           type="number"
                                                                           min="1" value="1"></label>
@@ -135,7 +74,7 @@
         </tr>
         </thead>
         <tbody>
-
+        <script defer>ListeSAQ()</script>
         </tbody>
     </table>
 

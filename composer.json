@@ -17,7 +17,8 @@
     "laravel/ui": "^2.2",
     "ext-dom": "*",
     "ext-curl": "*",
-    "ext-libxml": "*"
+    "ext-libxml": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "facade/ignition": "^2.0",

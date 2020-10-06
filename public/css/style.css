@@ -1266,7 +1266,7 @@ label[for=toggle]:hover {
 }
 
 /*
-catalogue.balde.php/ 
+catalogue.blade.php/
 saq.blade.php/ 
 stats.blade.php/
 users.blade.php/
@@ -1304,6 +1304,10 @@ users.blade.php/
     margin-left: 54px;
 }
 
+.margin-right-20 {
+    margin-right: 20px;
+}
+
 .padding-8px {
     padding: 8px;
 }
@@ -1314,6 +1318,10 @@ users.blade.php/
 
 .width-50px {
     width: 50px;
+}
+
+.width-80px {
+    width: 80px;
 }
 
 .width-100px {
