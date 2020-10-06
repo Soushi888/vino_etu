@@ -34,7 +34,7 @@ $id_transaction = intval($_GET['bouteille']);
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
+          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon cellier</a>
           <a class="header-nav-link active ajouter" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
         </nav>
         <h2 class="slogan-ajouter" data-id="${id_transaction}">Modifier Bouteille <?php if(isset($id_transaction)) echo intval($id_transaction); ?> </h2>

@@ -8,7 +8,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href={{ asset("css/style.css") }}>
   <style> #search {text-align: inherit} </style>
 
   <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
@@ -31,7 +31,7 @@
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
+          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon cellier</a>
         </nav>
         <h3 class="slogan-ajouter">Ajouter une bouteille?</h3>
         <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la bouteille</button>
@@ -80,7 +80,7 @@
         </form>
       </aside>
       <aside class="section_trois">
-        <a class="header-nav-link aj" href="identification.html"><i class="fa fa-sign-out fa-2x"
+        <a class="header-nav-link aj" href={{ route("logout") }}><i class="fa fa-sign-out fa-2x"
             aria-hidden="true"></i></a>
         </nav>
         <div class="img_marg">
