@@ -18,6 +18,7 @@
 <body>
 <div class="page_admin">
     <div class="logo_admin"><a href="{{ route("accueil") }}"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a></div>
+    <h2 class="color-white text-align-center">Bonjour {{ Auth::user()->name }}</h2>
     <nav class="nav" class="wrap">
         <input type="checkbox" name="toggle" id="toggle"/>
         <label for="toggle"><i class="icon-reorder"></i> <i class="fa fa-bars"></i></label>

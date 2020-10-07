@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -70,13 +71,16 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             "name" => "string|required",
             "email" => "email|required|unique:users",
-            "email_verified_at" => "string",
-            "password" => "string|min:8|required"
+            "password" => "string|min:8|required",
+            "role" => "integer|required"
         ]);
 
         if ($validator->passes()) {
-            return response()->json(User::create($request->all()), 200);
+            $request["password"] = Hash::make($request->password);
+
+            return response()->json(User::create($request->all())->roles()->attach(request("role")), 200);
         }
+
 
         return response()->json(['erreur' => $validator->errors()->all()], 422);
     }
@@ -92,12 +96,15 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "name" => "string",
-            "email" => "email|required",
-            "email_verified_at" => "string",
-            "type" => "string"
+            "email" => "email",
+            "role" => "integer"
         ]);
 
         if ($validator->passes()) {
+            $user->assignRole(request("role"));
+            if ($request->password)
+                $request["password"] = Hash::make($request->password);
+
             return response()->json($user->update($request->all()), 200);
         }
 
