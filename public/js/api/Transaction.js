@@ -78,7 +78,7 @@ class Transaction {
      * @returns {Promise<void>}
      */
     destroy(id) {
-        return fetch(`${this._URL_CELLIERS}/${id}`, {
+        return fetch(`${this._URL_TRANSACTION}/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"

@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&display=swap&subset=cyrillic"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href={{ asset("css/style.css") }}>   
+    <link rel="stylesheet" href={{ asset("css/style.css") }}> 
+    <script src={{asset("js/api/Transaction.js")}}></script>  
     <script src={{asset("js/api/User.js")}}></script>
-    <script src={{asset("js/api/Cellier.js")}}></script>
     <script src={{asset("js/modal.js")}}></script>
     <title></title>
 </head>
@@ -42,6 +42,8 @@
 <footer>2020 Vino | Group 1</footer>
 
 </body>
-<script src={{asset("js/api/Transaction.js")}}></script>
+
+<script src={{asset("js/api/Cellier.js")}}></script>
+<script src={{asset("js/api/CellierBouteille.js")}}></script>
 <script src={{asset("js/api/bouteilleDuCellierUtilisateur.js")}}></script>
 </html>

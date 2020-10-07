@@ -35,7 +35,7 @@
         containerBouteille.setAttribute("class", "container_bouteille")
         let eTable = document.createElement("table");
         accueille.appendChild(containerBouteille).appendChild(eTable);
-        var reponse = fetch("http://vino-etu/api/affichageDetails/"+idCellier);
+        var reponse = fetch(`https://${window.location.host}/api/affichageDetails/${idCellier}`);
         var reponseJson = reponse.then(function (res) {
             return res.json();
         });
@@ -109,8 +109,12 @@
                 eBoutonAjouter.addEventListener("click", function () {                    
                     quantite = document.getElementById("quantite"+reponse[i].quantite);
                     quantite = quantite.innerHTML.replace("Quantite: ","");
-                    quantite ++;                    
-                    document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;                
+                    quantite ++;                   
+                    document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;        
+                    let transactionInfo = {quantite:quantite, cellier_id:idCellier,bouteille_id:reponse[i].bouteille_id};
+                    let transac = new Transaction;
+                    console.log(reponse[i].bouteille_id);
+                    transac.update(reponse[i].transaction_id,transactionInfo,).then(data => {console.log(data);});        
                 })
                 eTextAjouter = document.createTextNode("Ajouter")
                 eBoutonAjouter.appendChild(eTextAjouter);
@@ -122,6 +126,15 @@
                     quantite = quantite.innerHTML.replace("Quantite: ","");
                     quantite --;
                     document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;
+                    let transactionInfo = {quantite:quantite, cellier_id:idCellier,bouteille_id:reponse[i].bouteille_id};
+                    let transac = new Transaction;
+                    console.log(reponse[i].bouteille_id);
+                    transac.update(reponse[i].transaction_id,transactionInfo,).then(data => {console.log(data);});
+                  
+                    if(quantite == 0){
+                        console.log(reponse[i].transaction_id);
+                        transac.destroy(reponse[i].transaction_id);
+                    }
                 })
                 eTextBoire = document.createTextNode("Boire")
                 eBoutonBoire.appendChild(eTextBoire);
@@ -130,28 +143,7 @@
                 eDivBouton.appendChild(eBoutonBoire);
                 eTd2.appendChild(eDivBouton);
             }
-            /*
-            <table>
-                <tr>
-                    <div class="img_bouteille">
-                    <td>
-                        <img src="${data.url_image}" alt="bouteille" witdh="150" height="225">
-                    </td>
-                    </div>
-                    <td>
-                    <p>Nom : <b>${data.nom}</b></p>
-                    <p>Pays : <b>${data.pays}</b></p>
-                    <p>Type : <b>${getType(data.type_id)}</b></p>
-                    <a href="${data.url_saq}">Voir SAQ</a>
-                    <div class="btn_bouteille">
-                    <button class="btn btn-modifier inline" btn="modifier_${data.code_saq}">Modifier</button>
-                    <button class="btn btn-ajouter inline" btn="ajouter_${data.code_saq}">Ajouter</button>
-                    <button class="btn btn-boire inline" btn="boire_${data.code_saq}">Boire</button>
-                    </div>
-                </td>
-                </tr>
-            </table>
-            */
+
         })
 
 

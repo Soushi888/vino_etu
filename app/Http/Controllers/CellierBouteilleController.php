@@ -45,4 +45,5 @@ class CellierBouteilleController extends Controller
     {
         return Response::json(TransactionController::store($request))->original;
     }
+ 
 }
