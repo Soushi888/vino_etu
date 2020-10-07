@@ -35,7 +35,7 @@
         containerBouteille.setAttribute("class", "container_bouteille")
         let eTable = document.createElement("table");
         accueille.appendChild(containerBouteille).appendChild(eTable);
-        var reponse = fetch("http://vino-etu/api/affichageDetails/"+idCellier);
+        var reponse = fetch(`http://${window.location.host}/api/affichageDetails/${idCellier}`);
         var reponseJson = reponse.then(function (res) {
             return res.json();
         });
@@ -58,7 +58,6 @@
                 eTextNom = document.createTextNode("Nom: " + reponse[i].nom);
                 ePNom.appendChild(eTextNom);
                 ePQuantite = document.createElement("p");
-                ePQuantite.setAttribute("id","quantite"+reponse[i].quantite)
                 eTextQuantite = document.createTextNode("Quantite: " + reponse[i].quantite);
                 ePQuantite.appendChild(eTextQuantite);
                 ePPays = document.createElement("p");
@@ -106,11 +105,11 @@
                 eBoutonAjouter = document.createElement("button");
                 eBoutonAjouter.setAttribute("class", "btn btn-ajouter inline");
                 eBoutonAjouter.setAttribute("btn", "ajouter_" + reponse.code_saq);
-                eBoutonAjouter.addEventListener("click", function () {                    
-                    quantite = document.getElementById("quantite"+reponse[i].quantite);
-                    quantite = quantite.innerHTML.replace("Quantite: ","");
-                    quantite ++;                    
-                    document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;                
+                eBoutonAjouter.addEventListener("click", function () {
+                    quantite = document.getElementById("quantite" + reponse[i].quantite);
+                    quantite = quantite.innerHTML.replace("Quantite: ", "");
+                    quantite++;
+                    document.getElementById("quantite" + reponse[i].quantite).innerHTML = "Quantite: " + quantite;
                 })
                 eTextAjouter = document.createTextNode("Ajouter")
                 eBoutonAjouter.appendChild(eTextAjouter);
@@ -118,10 +117,10 @@
                 eBoutonBoire.setAttribute("class", "btn btn-boire inline");
                 eBoutonBoire.setAttribute("btn", "boire_" + reponse.code_saq);
                 eBoutonBoire.addEventListener("click", function () {
-                    quantite = document.getElementById("quantite"+reponse[i].quantite);                    
-                    quantite = quantite.innerHTML.replace("Quantite: ","");
-                    quantite --;
-                    document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;
+                    quantite = document.getElementById("quantite" + reponse[i].quantite);
+                    quantite = quantite.innerHTML.replace("Quantite: ", "");
+                    quantite--;
+                    document.getElementById("quantite" + reponse[i].quantite).innerHTML = "Quantite: " + quantite;
                 })
                 eTextBoire = document.createTextNode("Boire")
                 eBoutonBoire.appendChild(eTextBoire);
