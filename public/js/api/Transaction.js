@@ -64,13 +64,11 @@ class Transaction {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-            .then(json => {
-                if (!json.erreur) {
-                    return "Modification effectué";
-                }
-                throw json.erreur;
-            })
-    }
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err));
+    };
+
 
     /**
      * Supprime une transaction

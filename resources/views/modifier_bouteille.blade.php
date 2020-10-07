@@ -18,6 +18,7 @@ $id_transaction = intval($_GET['bouteille']);
   <link rel="stylesheet" href="css/style.css">
   
   <script src="{{ asset('js/api/Transaction.js') }}"></script>
+  <script src="{{ asset('js/api/Bouteille.js') }}"></script>
   <title></title>
 </head>
 
@@ -34,14 +35,12 @@ $id_transaction = intval($_GET['bouteille']);
       </div>
       <aside class="section_deux">
         <nav class="header-nav ajouter">
-          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon cellier</a>
+          <a class="header-nav-link active ajouter" href="{{ route("accueil_utilisateur") }}">Mon celliere</a>
           <a class="header-nav-link active ajouter" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
         </nav>
-        <h2 class="slogan-ajouter" data-id="${id_transaction}">Modifier Bouteille <?php if(isset($id_transaction)) echo intval($id_transaction); ?> </h2>
-        
-
-        
-        <label for="name">Utilisateur: {{ Auth::user()->name }} </label><br><br>
+        <?php echo "<h2 class='slogan-ajouter' data-id='$id_transaction'> Modifier Bouteille $id_transaction </h2>" ?>
+        <button onclick="getValue()" class="btn btn-ajouter-bouteille2" id="modifierBtn"  type="submit" >Modifier la bouteille</button>
+       
 
         <form class="form-ajouter" name="form1" action="/" method="post">  
           <label for="quantite">Modifier Quantité:</label>
@@ -56,10 +55,10 @@ $id_transaction = intval($_GET['bouteille']);
           <span><p class="fail" id="e.millesime" ></p></span>
           <input class="input-ajouter" type="text" id="millesime" name="millesime" ><br><br>
 
-          <input type="hidden" class="input-ajouter" type="text" id="cellierId" name="cellierId" ><br><br>
-          <input type="hidden" class="input-ajouter" type="text" id="bouteilleId" name="bouteilleId" ><br><br>
+          <input type="hidden" class="input-ajouter"  id="cellierId" name="cellierId" ><br><br>
+          <input type="hidden" class="input-ajouter"  id="bouteilleId" name="bouteilleId" ><br><br>
         </form>
-          <button onclick="getValue()" id="modifierBtn">Modifier</button>
+          <button class="btn btn-ajouter-bouteille" type="button" onclick="getValue()" id="modifierBtn" type="submit" >Modifier</button>
           <span><p class="fail" id="b.modification" ></p></span>
     </div>
   </div>
@@ -67,7 +66,7 @@ $id_transaction = intval($_GET['bouteille']);
 <script defer>
 
 
-let id_transaction = document.getElementsByTagName("H2")[0].getAttribute("data-id");
+let id_transaction = document.getElementsByTagName("h2")[0].getAttribute("data-id");
 console.log({id_transaction})
 
 
@@ -77,6 +76,9 @@ console.log({id_transaction})
 //Class Transaction
 let transact = new Transaction;
 
+
+
+
 //Appelle fonction show de class Transaction
 transact.show(1).then(dataT => {
       document.getElementById('quantite').value = dataT.quantite;
@@ -84,10 +86,24 @@ transact.show(1).then(dataT => {
       document.getElementById('millesime').value = dataT.millesime;
       document.getElementById('cellierId').value = dataT.cellier_id;
       document.getElementById('bouteilleId').value = dataT.bouteille_id;
-    
+      b = dataT.bouteille_id;
+      
+
+      let bouteilles = new Bouteille;
+
+      bouteilles.show(b).then(dataB => {
+
+        bouteilleNom = dataB.nom
+        console.log({bouteilleNom});
+        //remplace le titre H2 par le nom de la bouteille.
+        var h2 = document.getElementsByTagName("h2")[0]
+        h2.innerHTML = "Bouteille : " + bouteilleNom;
+        console.log({h2})
+      });
 });
 
- 
+
+  
 function getValue() {
   //Insertion des valeurs récupéré des champ input du serveur
   var quantite = document.getElementById("quantite").value;
@@ -96,11 +112,13 @@ function getValue() {
   var cellierId = document.getElementById("cellierId").value;  
   var bouteilleId = document.getElementById("bouteilleId").value;  
 
-  console.log(quantite);
-  console.log(prix);
-  console.log(millesime);
-  console.log(cellierId);
-  console.log(bouteilleId);
+  console.log({quantite});
+  console.log({prix});
+  console.log({millesime});
+  console.log({cellierId});
+  console.log({bouteilleId});
+
+  
 
 
   // validation du formulaire
@@ -109,57 +127,66 @@ function getValue() {
 
 
   //Quantité
-  msgErr = "";
+  var msgErrQ = "";
   quanti = f.quantite.value.trim();
   if (quanti === "") {
-    msgErr = "Quantité Obligatoire";
+    msgErrQ = "Quantité Obligatoire";
   } else {
     if (!/^[0-9]*$/.test(quanti) ) {
-      msgErr = !/^[0-9]*$/.test(quanti) ?
+      msgErrQ = !/^[0-9]*$/.test(quanti) ?
         "Quantité non valide" :
         ""
     }
   }
   f.quantite.value = quanti;
-  if (msgErr !== "") erreur = true;
-  document.getElementById("e.quantite").innerHTML = msgErr;
+  if (msgErrQ !== "") erreur = true;
+  document.getElementById("e.quantite").innerHTML = msgErrQ;
 
 
 
-  //Millesime
-  msgErr = "";
-    milles = f.millesime.value.trim();
-    if (milles === "") {
-      msgErr = "valeurs obligatoire"
-    } else if (milles.length > 4){
-      msgErr = "entrer 4 valeurs numériques"
-    } else if (!/^\d{4}$/.test(milles)) {
-      msgErr = "Millesime non valide"
-    }
-
-  f.millesime.value = milles;
-      if (msgErr !== "") erreur = true;
-      document.getElementById("e.millesime").innerHTML = msgErr;
 
 
+  
   //Prix
-  msgErr = "";
+  var msgErrP = "";
   prix = f.prix.value.trim();
   if (prix === "") {
-    msgErr = "Prix Obligatoire";
+    msgErrP = "Prix Obligatoire";
   } else {
 
     if (!/^\-?\d+\.\d{2}$/.test(prix) ) {
-      msgErr = !/^\-?\d+\.\d{2}$/.test(prix) ?
+      msgErrP = !/^\-?\d+\.\d{2}$/.test(prix) ?
         "Prix non valide" :
         ""
     }
   }
   f.prix.value = prix;
-  if (msgErr !== "") erreur = true;
-  document.getElementById("e.prix").innerHTML = msgErr;   
+  if (msgErrP !== "") erreur = true;
+  document.getElementById("e.prix").innerHTML = msgErrP;   
 
-  let transactionInfo = {
+
+
+
+  //Millesime
+  var msgErrM = "";
+  milles = f.millesime.value.trim();
+  if (milles === "") {
+    msgErrM = "valeurs obligatoire"
+  } else if (milles.length > 4){
+    msgErrM = "entrer 4 valeurs numériques"
+  } else if (!/^\d{4}$/.test(milles)) {
+    msgErrM = "Millesime non valide"
+  }
+
+  f.millesime.value = milles;
+    if (msgErrM == "" ) erreur = true;
+    document.getElementById("e.millesime").innerHTML = msgErrM;
+  
+
+
+  if(msgErrM == "" && msgErrP == "" &&  msgErrQ == "") { 
+
+    let transactionInfo = {
       quantite:quantite,
       prix:prix,
       millesime:millesime,
@@ -167,16 +194,18 @@ function getValue() {
       bouteille_id:bouteilleId
     }
 
-  transact.update(1, transactionInfo).then(data => {
-    console.log(data);
 
-    // ajouter success
-    document.getElementById("b.modification").innerHTML = "Modification effectué";
-    //refresh la page
-  //   setTimeout(function() {
-  //   location.reload();
-  //   window.location.href = "{{ route("accueil_utilisateur") }}" }, 900);
-  })
+    transact.update(id_transaction, transactionInfo).then(data => {
+      console.log(data);
+
+      //// ajouter success
+      document.getElementById("b.modification").innerHTML = "Modification effectué";
+      //// refresh la page
+      setTimeout(function() {
+      location.reload();
+      window.location.href = "{{ route("accueil_utilisateur") }}" }, 900);
+    })
+  }
 }
   </script>
 </body>

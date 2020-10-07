@@ -35,7 +35,7 @@
         containerBouteille.setAttribute("class", "container_bouteille")
         let eTable = document.createElement("table");
         accueille.appendChild(containerBouteille).appendChild(eTable);
-        var reponse = fetch(`https://${window.location.host}/api/affichageDetails/${idCellier}`);
+        var reponse = fetch(`http://${window.location.host}/api/affichageDetails/${idCellier}`);
         var reponseJson = reponse.then(function (res) {
             return res.json();
         });
@@ -45,6 +45,7 @@
                 //console.log(reponse[i])
 
                 let eTr1 = document.createElement("tr");
+                eTr1.setAttribute("id","trBouteille"+reponse[i].bouteille_id);
                 let eDivImg = document.createElement("div");
                 eDivImg.setAttribute("class", "img_bouteille");
                 eTd1 = document.createElement("td");
@@ -58,7 +59,7 @@
                 eTextNom = document.createTextNode("Nom: " + reponse[i].nom);
                 ePNom.appendChild(eTextNom);
                 ePQuantite = document.createElement("p");
-                ePQuantite.setAttribute("id","quantite"+reponse[i].quantite)
+                ePQuantite.setAttribute("id","quantite"+reponse[i].quantite);
                 eTextQuantite = document.createTextNode("Quantite: " + reponse[i].quantite);
                 ePQuantite.appendChild(eTextQuantite);
                 ePPays = document.createElement("p");
@@ -108,6 +109,7 @@
                 eBoutonAjouter.setAttribute("btn", "ajouter_" + reponse.code_saq);
                 eBoutonAjouter.addEventListener("click", function () {                    
                     quantite = document.getElementById("quantite"+reponse[i].quantite);
+                    console.log(quantite.innerHTML);
                     quantite = quantite.innerHTML.replace("Quantite: ","");
                     quantite ++;                   
                     document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;        
@@ -129,11 +131,15 @@
                     let transactionInfo = {quantite:quantite, cellier_id:idCellier,bouteille_id:reponse[i].bouteille_id};
                     let transac = new Transaction;
                     console.log(reponse[i].bouteille_id);
-                    transac.update(reponse[i].transaction_id,transactionInfo,).then(data => {console.log(data);});
-                  
+                    transac.update(reponse[i].transaction_id,transactionInfo,).then(data => {data;});
+                   
+                    console.log(eTr1);
                     if(quantite == 0){
                         console.log(reponse[i].transaction_id);
                         transac.destroy(reponse[i].transaction_id);
+                        eTr1= document.getElementById("trBouteille"+reponse[i].bouteille_id);
+                        eTr1.innerHTML = "";
+                        
                     }
                 })
                 eTextBoire = document.createTextNode("Boire")
