@@ -86,7 +86,8 @@ class CreateRolesTables extends Migration
         // Association de la capacité au rôle
         \App\Role::find(1)->allowTo("backoffice_access");
 
-        // Association du rôle administrateur au deuxième utilisateur
+        // Association des rôles aux utilisateurs
+        \App\User::find(1)->assignRole("utilisateur");
         \App\User::find(2)->assignRole("administrateur");
     }
 

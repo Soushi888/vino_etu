@@ -51,33 +51,44 @@ function ListeUtilisateurs() {
                 modalContent[0].innerHTML = `<span class="close-button">&times;</span>
                         <h2>Modifier un utilisateur</h2>
                         <form class="form-ajouter" action="/" method="post">
+                          <input type="hidden" name="id" id="id" value="${u.id}">
+                          <span class="fail font-weight-bold" id="mess-nom"></span>
                           <label for="name">Nom : </label>
-                          <input class="input-ajouter" type="text" id="name" name="name" value="${u.name}"><br><br>
+                          <input class="input-ajouter margin-bottom-10px" type="text" id="name" name="name" value="${u.name}"><br>
+                          <span class="fail font-weight-bold" id="mess-email"></span>
                           <label for="email">Adresse courriel : </label>
-                          <input class="input-ajouter" type="text" id="email" name="email" value="${u.email}"><br><br>
+                          <input class="input-ajouter margin-bottom-10px" type="text" id="email" name="email" value="${u.email}"><br>
                           <label for="type">rôle :</label>
-                            <select class="input-ajouter margin-bottom-5px">
-                                <option>Utilisateur</option>
-                                <option ${u.roles[0] ? "selected" : ""}>Administrateur</option>
-                            </select>
+                            <select class="input-ajouter margin-bottom-5px" id="role" name="role">
+                                <option value=2>Utilisateur</option>
+                                <option value=1 ${u.roles[0].name === "administrateur" ? "selected" : ""}>Administrateur</option>
+                            </select><br>
+                          <span class="fail font-weight-bold" id="mess-password"></span>
                           <label for="password">Mot de passe :</label>
-                          <input class="input-ajouter" type="password" id="password" name="password"><br><br>
-                          <label for="password_confirm">Confirmation du Mot de passe :</label>
-                          <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
+                          <input class="input-ajouter margin-bottom-10px" type="password" id="password" name="password"><br>
+                          <span class="fail font-weight-bold" id="mess-confirmation"></span>
+                          <label for="confirmation">Confirmation du Mot de passe :</label>
+                          <input class="input-ajouter margin-bottom-10px" type="password" id="confirmation" name="confirmation"><br>
                           <button class="btn btn-accepter margin-top-30px" id="accepter">Accepter</button>
                         </form>`;
                 Modal.showModal();
 
                 document.getElementById("accepter").addEventListener("click", (evt) => {
                     evt.preventDefault();
-                    console.log("modifier !");
-
-                    Modal.closeModal();
+                    let user = {
+                        id: document.getElementById("id").value,
+                        name: document.getElementById("name").value,
+                        email: document.getElementById("email").value,
+                        role: document.getElementById("role").value,
+                        password: document.getElementById("password").value,
+                        confirmation: document.getElementById("confirmation").value
+                    }
+                    console.log(user);
+                    modifierUtilisateur(user);
                 })
             })
         })
 
-        // TODO : Messages erreurs et ajout
         // Bouton ajouter
         let btnAjouter = document.querySelector(`[btn="ajouter"]`);
 
@@ -87,31 +98,35 @@ function ListeUtilisateurs() {
                         <span class="close-button">&times;</span>
                         <h2>Enregistrer un utilisateur</h2>
                         <form class="form-ajouter" action="/" method="post">
+                          <span class="fail font-weight-bold" id="mess-nom"></span>
                           <label for="name">Nom : </label>
-                          <input class="input-ajouter" type="text" id="name" name="name"><br><br>
+                          <input class="input-ajouter margin-bottom-10px" type="text" id="name" name="name"><br>
+                          <span class="fail font-weight-bold" id="mess-email"></span>
                           <label for="email">Adresse courriel : </label>
-                          <input class="input-ajouter" type="text" id="email" name="email"><br><br>
+                          <input class="input-ajouter margin-bottom-10px" type="text" id="email" name="email"><br>
                           <label for="type">rôle :</label>
                             <select class="input-ajouter margin-bottom-5px" id="role" name="role">
-                                <option value="1">Utilisateur</option>
-                                <option value="2">Administrateur</option>
-                            </select>
+                                <option value=2>Utilisateur</option>
+                                <option value=1>Administrateur</option>
+                            </select><br>
+                          <span class="fail font-weight-bold" id="mess-password"></span>
                           <label for="password">Mot de passe :</label>
-                          <input class="input-ajouter" type="password" id="password" name="password"><br><br>
-                          <label for="password_confirm">Confirmation du Mot de passe :</label>
-                          <input class="input-ajouter" type="password" id="password_confirm" name="password_confirm"><br><br>
+                          <input class="input-ajouter margin-bottom-10px" type="password" id="password" name="password"><br>
+                          <span class="fail font-weight-bold" id="mess-confirmation"></span>
+                          <label for="confirmation">Confirmation du Mot de passe :</label>
+                          <input class="input-ajouter margin-bottom-10px" type="password" id="confirmation" name="confirmation"><br>
                           <button class="btn btn-accepter margin-top-30px" id="accepter">Accepter</button>
                         </form>`;
             Modal.showModal();
 
             document.getElementById("accepter").addEventListener("click", (evt) => {
                 evt.preventDefault();
-                console.log("enregistré !");
                 let user = {
                     name: document.getElementById("name").value,
                     email: document.getElementById("email").value,
                     role: document.getElementById("role").value,
-                    password: document.getElementById("password").value
+                    password: document.getElementById("password").value,
+                    confirmation: document.getElementById("confirmation").value
                 }
                 console.log(user);
                 ajouterUtilisateur(user);
@@ -126,22 +141,59 @@ function ListeUtilisateurs() {
 function ajouterUtilisateur(user) {
     let users = new User();
 
+    let erreurs = validation(user);
+    let messPassword = document.getElementById("mess-password");
+    messPassword.innerText = "";
 
-
-
-    // Validation des données
-    if (!isEmail(user.email)) {
-
+    if (user.password.length < 8) {
+        messPassword.innerText = "Le mot de passe doit faire au moins 8 caractères de long."
+        erreurs.push("password");
     }
 
-    users.store({
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        password: user.password
-    }).then(() => {
-        Modal.closeModal();
-    })
+    if (erreurs.length === 0) {
+        console.log("Enregistrement !")
+
+        users.store(user).then(() => {
+            Modal.closeModal();
+
+            // TODO = Optimiser le rafraichissement
+            ListeUtilisateurs();
+        })
+    }
+}
+
+function modifierUtilisateur(user) {
+    let users = new User();
+
+    let erreurs = validation(user);
+    let messPassword = document.getElementById("mess-password");
+    messPassword.innerText = "";
+
+    if (user.password.length > 0 && user.password.length < 8) {
+        messPassword.innerText = "Le mot de passe doit faire au moins 8 caractères de long."
+        erreurs.push("password");
+    }
+
+    if (erreurs.length === 0) {
+        console.log("Modification !")
+
+        users.update(user.id, {
+            name: user.name,
+            email: user.email,
+            role: user.role
+        }).then(() => {
+            // if (user.password.length > 0) {
+            //     users.update(user.id, {
+            //         password: user.password
+            //     })
+            // }
+
+            Modal.closeModal();
+
+            // TODO = Optimiser le rafraichissement
+            ListeUtilisateurs();
+        })
+    }
 }
 
 function supprimerUtilisateur(id) {
@@ -150,4 +202,35 @@ function supprimerUtilisateur(id) {
         .then(() => {
             Modal.closeModal();
         });
+}
+
+function validation(user) {
+
+    let erreurs = [];
+
+    let messNom = document.getElementById("mess-nom");
+    let messEmail = document.getElementById("mess-email");
+    let messConfirmation = document.getElementById("mess-confirmation");
+
+    messNom.innerText = "";
+    messEmail.innerText = "";
+    messConfirmation.innerText = "";
+
+    // Validation des données
+    if (user.name.length <= 0) {
+        messNom.innerText = "Le nom est requis !";
+        erreurs.push("nom");
+    }
+
+    if (!isEmail(user.email)) {
+        messEmail.innerText = "Adresse courriel non valide !";
+        erreurs.push("email");
+    }
+
+    if (user.password !== user.confirmation) {
+        messConfirmation.innerText = "Les mots de passes ne concordent pas."
+        erreurs.push("confirmation");
+    }
+
+    return erreurs;
 }
