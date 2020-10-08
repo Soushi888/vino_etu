@@ -161,7 +161,7 @@ p {
 
 .header-nav-link {
     margin-left: 1.5rem;
-    color: rgb(0, 0, 0);
+    color: #ffffff;
     font-size: 1.2rem;
     text-decoration: none;
 
@@ -178,6 +178,7 @@ p {
     margin-top: 10px;
     margin-bottom: 40px;
     font-size: 18px;
+    
 
 }
 
@@ -998,13 +999,16 @@ label {
     .slogan {
         display: none;
     }
-
+    .ajouter {
+        font-size: 20px;
+    }
     .accueille {
         font-size: 11px;
         justify-content: space-between;
         margin-bottom: 10px;
         font-weight: 500;
         margin-left: 0.5rem;
+        font-size: 1.0rem;
     }
 
     .message-bienvenu {
@@ -1034,7 +1038,9 @@ label {
     }
 
     .header-nav {
-        display: block;
+        flex-direction: column;
+        display: flex;
+        color: #ffffff;
     }
 
     .img_marg img {
