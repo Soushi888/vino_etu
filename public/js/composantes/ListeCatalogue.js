@@ -286,6 +286,7 @@ function validation(bouteille) {
     let messNom = document.getElementById("mess-nom");
     let messCode = document.getElementById("mess-code");
     let messPays = document.getElementById("mess-pays");
+    let messPrix = document.getElementById("mess-prix");
     let messUrl = document.getElementById("mess-url");
     let messImage = document.getElementById("mess-image");
     let messFormat = document.getElementById("mess-format");
@@ -293,6 +294,7 @@ function validation(bouteille) {
     messNom.innerText = "";
     messCode.innerText = "";
     messPays.innerText = "";
+    messPrix.innerText = "";
     messUrl.innerText = "";
     messImage.innerText = "";
     messFormat.innerText = "";
@@ -306,6 +308,11 @@ function validation(bouteille) {
     if (bouteille.code_saq.length <= 0) {
         messCode.innerText = "Le code est requis !";
         erreurs.push("code_saq");
+    }
+
+    if (bouteille.prix_saq && isNaN(bouteille.prix_saq)) {
+        messPrix.innerText = "Le prix doit être un nombre flottant!";
+        erreurs.push("prix_saq");
     }
 
     if (bouteille.pays.length <= 0) {
