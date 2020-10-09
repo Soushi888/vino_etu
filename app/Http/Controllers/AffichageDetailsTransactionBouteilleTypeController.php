@@ -44,6 +44,7 @@ class AffichageDetailsTransactionBouteilleTypeController extends Controller
         'bouteilles.pays',
         'bouteilles.description',
         'bouteilles.prix_saq',
+        'bouteilles.url_saq',
         'bouteilles.url_image',
         'bouteilles.type_id',
         'types.id AS type_id',
