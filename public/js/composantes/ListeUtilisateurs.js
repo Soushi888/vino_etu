@@ -1,3 +1,7 @@
+/**
+ * Génère la liste des utilisateurs et créer les évènements de clique sur les différents boutons
+ * @constructor
+ */
 function ListeUtilisateurs() {
     let users = new User();
     users.index().then(data => {
@@ -150,6 +154,10 @@ function ListeUtilisateurs() {
     })
 }
 
+/**
+ * Enregistre un utilisateur si il ne contient pas d'erreurs puis ferme le modale
+ * @param user
+ */
 function ajouterUtilisateur(user) {
     let users = new User();
 
@@ -170,6 +178,10 @@ function ajouterUtilisateur(user) {
     }
 }
 
+/**
+ * Modifie un utilisateur si il ne contient pas d'erreurs puis ferme le modale
+ * @param user
+ */
 function modifierUtilisateur(user) {
     let users = new User();
 
@@ -192,6 +204,10 @@ function modifierUtilisateur(user) {
     }
 }
 
+/**
+ * Supprime un utilisateur puis ferme le modale
+ * @param id
+ */
 function supprimerUtilisateur(id) {
     let users = new User();
     users.destroy(id)
@@ -200,6 +216,11 @@ function supprimerUtilisateur(id) {
         });
 }
 
+/**
+ * Valide les données d'un utilisateur, affiche les messages d'erreurs puis retourne le nombre d'erreurs
+ * @param {object} user Objet bouteille à analyser
+ * @returns {array} erreurs Tableau contenant les erreurs de validation
+ */
 function validation(user) {
 
     let erreurs = [];

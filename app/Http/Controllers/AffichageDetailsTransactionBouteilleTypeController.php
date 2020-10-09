@@ -7,10 +7,6 @@ use App\Http\Resources\AffichageDetailsTransactionBouteilleTypeControllerResourc
 
 
 
-/**
- * Gère l'API transactions
- * @package App\Http\Controllers
- */
 class AffichageDetailsTransactionBouteilleTypeController extends Controller
 {
   // retourne tous les transaction, les bouteilles et les types

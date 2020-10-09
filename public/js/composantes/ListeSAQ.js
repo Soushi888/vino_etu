@@ -1,4 +1,9 @@
+/**
+ * Gère le système de recherche, liste les bouteilles SAQ recherchées, vérifie les doublons et enregistre toutes les bouteilles lorsque l'on clique sur le bouton "enregistrer toutes les bouteilles"
+ * @constructor
+ */
 function ListeSAQ() {
+    // Système de recherche
     const urlParams = new URLSearchParams(window.location.search);
     const recherche = {type: urlParams.get("type"), page: urlParams.get("page")};
 
@@ -10,7 +15,7 @@ function ListeSAQ() {
         let tableau = document.querySelector(".info tbody")
         tableau.innerHTML = ""
 
-
+        // Génération de la liste des bouteilles
         data.map(b => {
             let tr = document.createElement("tr")
             tr.innerHTML = `
@@ -30,6 +35,7 @@ function ListeSAQ() {
                 `;
             tableau.appendChild(tr);
 
+            // Vérification de doublons
             document.getElementById(b.code_saq).addEventListener("click", (evt) => {
                 saq.store(b).then((json) => {
                     if (json) {
@@ -45,6 +51,8 @@ function ListeSAQ() {
                 })
             })
         })
+
+        // Événement bouton "enregistrer toutes les bouteilles"
         document.getElementById("ajouter_bouteilles_saq").addEventListener("click", (evt) => {
             saq.storeAll(recherche.type, recherche.page)
                 .then(data => {

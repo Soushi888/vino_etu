@@ -27,67 +27,34 @@ Front end : AJAX
 
 - [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/register)
 - [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/login)
-- [ ] Gérer son profil
-    - [ ] Modifier son mot de passe
-    - [ ] Modifier son nom et son prénom
-    - [ ] Modifier son adresse courriel
-- [ ] Gérer ses celliers
-    - [X] [Afficher tous ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/)
-    - [X] Afficher le contenu d'un cellier
-    - [ ] Créer un nouveau cellier
-    - [ ] Modifier le nom d'un cellier
-    - [ ] Supprimer un cellier
-- [ ] Gérer ses bouteilles
-    - [ ] Afficher une bouteille du cellier
-        - [ ] Historique des transactions
-        - [ ] Quantité totale de bouteilles en stock
-        - [ ] Notes écrites par l'utilisateur 
-    - [ ] Boire une bouteille du cellier 
-        - [ ] Quantité -1 
-        - [ ] Possibilité d'écrire une note
-    - [ ] Créer un modèle de bouteille personnalisé
-    - [X] [Ajouter une ou plusieurs bouteilles à l'un de ses celliers](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/ajouter_bouteille)
-    - [ ] Modifier une transaction du cellier
-    - [ ] Supprimer une transaction du cellier
-- [ ] Consulter le catalogue
-    - [ ] Afficher les bouteilles du catalogue
-    - [ ] Afficher les bouteilles personnalisées
-        - [ ] Supprimer une bouteille personnalisée
-        - [ ] Modifier un modèle de bouteille personnalisée
-    - [ ] Ajouter une bouteille à l'un de ses celliers
-    - [ ] Signaler une erreur dans le catalogue
+- [X] Gérer son profil
+    - [X] Modifier son mot de passe
+    - [X] Modifier son adresse courriel
+- [X] Gérer son cellier
+    - [X] [Afficher le contenu d'un cellier](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/)
+    - [X] Afficher une bouteille du cellier
+        - [X] Quantité totale de bouteilles en stock
+    - [X] Boire une bouteille du cellier 
+        - [X] Quantité -1 
+    - [X] [Ajouter une ou plusieurs bouteilles à son cellier](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/ajouter_bouteille)
+    - [X] Modifier une transaction du cellier
 
 ### Administrateurs
 
-- [ ] Gérer son profil
-    - [ ] Modifier son mot de passe
-    - [ ] Modifier son nom et son prénom
-    - [ ] Modifier son adresse courriel
-- [ ] Gérer les utilisateurs
+- [X] Gérer les utilisateurs
     - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/)
-    - [ ] Afficher les détails d'un utilisateur
-        - [ ] Historique des transactions
-        - [ ] Bouteilles en stock
-        - [ ] Notes écrites par l'utilisateur 
-        - [ ] Bouteilles personnalisées
-    - [ ] Créer un nouvel utilisateur ou administrateur
-    - [ ] Modifier un utilisateur (incluant le type)
+    - [X] Créer un nouvel utilisateur ou administrateur
+    - [X] Modifier un utilisateur (incluant le type)
     - [X] Supprimer un utilisateur
-- [ ] Gérer le catalogue
+- [X] Gérer le catalogue
     - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue)
-    - [ ] Afficher les détails d'une bouteilles
-        - [ ] Liste des utilisateurs qui en possède une ou plusieurs unités
-        - [ ] Liste des celliers dans lesquels elle se trouve
-        - [ ] Nombre total d'unités présentent dans les celliers des utilisateurs
-    - [ ] Afficher les bouteilles personnalisées des utilisateurs
-    - [ ] Ajouter une nouvelle bouteille
+    - [X] Modifier une bouteille
+    - [X] Ajouter une nouvelle bouteille
     - [X] Supprimer une bouteille
     - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue/saq)
         - [X] Recherche par page et par type de vin
         - [X] Importer une bouteille de la SAQ manuellement
         - [X] Importer les bouteilles de toute la page
-- [ ] Consulter les statistiques d'utilisation de l'Application
-    - ...
 
 ## Démo
 
@@ -95,11 +62,15 @@ Front end : AJAX
 
 Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fonctionnalités plus haute.
 
-#### Compte test
+#### Comptes test
 
-- email : test@test.com
-- mot de passe : "12345678"
-
+- utilisateur
+    - email : user@test.com
+    - mot de passe : "12345678"
+- administrateur
+    - email : admin@test.com
+    - mot de passe : 12345678
+    
 ## Installation en local
 
 ### Installation avec le script shell
@@ -167,6 +138,21 @@ Si vous n'utilisez pas `npm`, Vous pouvez mettre vos fichiers HTML dans le dossi
 
 Dans le dossier `public/js/api` se trouve des classes javascript servant d'interface avec l'API.
 
+### Composantes graphiques
+
+Les scripts JavaScript pour gérer dynamiquement les données de certaines composantes graphiques se trouvent dans le dossier `public/js/composantes`.
+
+### Gabarit
+
+Le gabarit HTML qui encadre l'ensemble des pages du site web se trouve dans le fichier `ressources/views/layouts/app.blade.php`.
+
+Les pages utilisent ce gabarit avec les commandes blade suivantes :
+
+- `@extends("layouts.app")` : Appelle le gabarit.
+- `@section("header")` : Section pour intégrer des balises supplémentaire dans la section `<head>`
+- `@section("content")` : Contenu principal de la page qui est intégré dans la balise `<main>`
+- `@endsection` : Cloture une section
+
 ## Routes
 ### Public
 
@@ -175,6 +161,8 @@ Les routes publiques se trouvent en grande partie dans le fichier routes/web.php
 - `/` : Page d'Accueil
 - `/login` : Écran de connexion
 - `/register` : Écran de création de compte
+- `/ajouter_bouteille` : Écran d'ajout de bouteille
+- `/mon_compte` : Écran de modification du compte
 
 - `/admin` : Page Admin - gestion des utilisateurs
 - `/admin/catalogue` : Page Admin - gestion du catalogue

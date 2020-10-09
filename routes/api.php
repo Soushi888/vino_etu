@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// TODO : Authentification de l'API avec JWT Token.
 
 Route::apiResources([
     'users' => 'UserController',

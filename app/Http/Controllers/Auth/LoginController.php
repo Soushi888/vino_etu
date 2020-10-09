@@ -31,7 +31,6 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        // TODO : Bug à corrigé : lorsque qu'un administrateur se connecte après un utilisateur, il est redirigé vers le cellier malgré tout.
         if (auth()->user()->getRoles()[0] === "utilisateur") {
             return route("accueil");
         }

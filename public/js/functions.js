@@ -1,3 +1,4 @@
+
 /**
  * Fonctions utilitaires
  */
@@ -139,7 +140,11 @@ function addZero(number) {
 }
 
 
-//CARACTERES SPECIAUX / KEBAB CASE
+/**
+ * Remplace les caractères spéciaux par des caractères génériques
+ * @param para_str
+ * @returns {string}
+ */
 function kebab_case(para_str) {
     para_str = para_str.toLowerCase();
     para_str = para_str.replace(/[áâàåãä]/gi, 'a');
@@ -197,11 +202,13 @@ function isURL(URL) {
     return regexp.test(String(URL).toLowerCase());
 }
 
-/*bouton inscription page identifier*/
+
+/**
+ * Événement bouton d'inscription
+ */
 function eventInscription() {
     let btnInscription = document.getElementById("inscription");
     btnInscription.addEventListener("click",function(){
-        console.log("je suis un element click");
         window.location.href="./register";
     })
 }

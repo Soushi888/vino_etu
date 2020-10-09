@@ -1,3 +1,6 @@
+/**
+ * Récupère les données d'un utilisateur, les valide puis les envoi à l'API REST pour mise à jour
+ */
 function importeModifierMonCompte() {
     let userId = document.getElementById("idUtilisateur").value;
     let userRole = JSON.parse(document.getElementById("role").value);
@@ -131,10 +134,10 @@ function importeModifierMonCompte() {
 
 
         if (inputEmail == eemailHidden) {
-            //supression utilisateur userId
+            //suppression utilisateur userId
             user.destroy(userId).then(data => {
             })
-            //supression cellier de l'utilisateur
+            //suppression cellier de l'utilisateur
             cell.destroy(userId).then(data => {
                 document.getElementById("b.supprimerBtn").innerHTML = "Suppression effectué";
                 //refresh la page

@@ -1,3 +1,6 @@
+/**
+ * Récupère les données d'une bouteille, les valide puis les envoi à l'API REST pour mise à jour
+ */
 function importeModifierBouteille() {
 
     let id_transaction = document.getElementsByTagName("h2")[0].getAttribute("data-id");
@@ -60,23 +63,15 @@ function importeModifierBouteille() {
 
 
         //Prix
-        var msgErrP = "";
-        prix = f.prix.value.trim();
-        if (prix === "") {
-            msgErrP = "Prix Obligatoire";
-        } else {
-
-            if (!/^\-?\d+\.\d{2}$/.test(prix)) {
-                msgErrP = !/^\-?\d+\.\d{2}$/.test(prix) ?
-                    "Prix non valide" :
-                    ""
-            }
+        if (!/^\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})$/.test(prix)) {
+            msgErrP = /^\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})$/.test(prix) ?
+                "Prix non valide" :
+                ""
         }
+
         f.prix.value = prix;
         if (msgErrP !== "") erreur = true;
         document.getElementById("e.prix").innerHTML = msgErrP;
-
-
 
 
         //Millesime

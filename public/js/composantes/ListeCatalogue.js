@@ -1,5 +1,5 @@
 /**
- *
+ * Génère la liste des bouteilles et créer les évènements de clique sur les différents boutons
  * @constructor
  */
 function ListeBouteilles() {
@@ -11,9 +11,7 @@ function ListeBouteilles() {
         new Modal();
         let modalContent = document.getElementsByClassName("modal-content");
 
-
         data.map(b => {
-
             let date = new Date(b.created_at);
             date = `${date.getDate()} ${nomMois(date.getMonth())} ${date.getFullYear()}`
 
@@ -62,7 +60,6 @@ function ListeBouteilles() {
 
             })
 
-            // TODO : Messages erreurs et modification
             // Bouton modifier
             let btnModifier = document.querySelector(`[btn="modifier_${b.code_saq}"]`);
             // Modal bouton modifier
@@ -144,15 +141,10 @@ function ListeBouteilles() {
                     tr.children[7].innerHTML = `<img class="width-100px" src="${b.url_image ?? "https://www.saq.com/media/wysiwyg/placeholder/category/06.png"}" alt="${b.description}">`;
                     tr.children[8].innerHTML = bouteille.format;
                     tr.children[9].innerHTML = getType(bouteille.type_id);
-
-
-
-                    console.log(getType(bouteille.type_id), bouteille.type_id);
                 })
             })
         })
 
-        // TODO : Messages erreurs et ajout
         // Bouton ajouter
         let btnAjouter = document.querySelector(`[btn="ajouter"]`);
 
@@ -225,7 +217,7 @@ function ListeBouteilles() {
 }
 
 /**
- *
+ * Enregistre une bouteille si elle ne contient pas d'erreurs puis ferme le modale
  * @param bouteille
  */
 function ajouterBouteille(bouteille) {
@@ -234,8 +226,6 @@ function ajouterBouteille(bouteille) {
     let erreurs = validation(bouteille);
 
     if (erreurs.length === 0) {
-        console.log("Enregistrement !")
-
         bouteilles.store(bouteille).then((json) => {
             if (json.erreur && json.erreur[0] === "code saq déjà pris(e).") {
                 document.getElementById("mess-code").innerText = "code saq déjà utilisé par une autre bouteille !";
@@ -247,6 +237,10 @@ function ajouterBouteille(bouteille) {
     }
 }
 
+/**
+ * Modifie une bouteille si elle ne contient pas d'erreurs puis ferme le modale
+ * @param bouteille
+ */
 function modifierBouteille(bouteille) {
     let bouteilles = new Bouteille();
 
@@ -254,9 +248,7 @@ function modifierBouteille(bouteille) {
 
 
     if (erreurs.length === 0) {
-        console.log("Modification !")
         delete bouteille.confirmation;
-        console.log(bouteille);
 
         bouteilles.update(bouteille.id, bouteille).then(() => {
             Modal.closeModal();
@@ -265,7 +257,7 @@ function modifierBouteille(bouteille) {
 }
 
 /**
- *
+ * Supprime une bouteille puis ferme le modale
  * @param id
  */
 function supprimerBouteille(id) {
@@ -275,7 +267,7 @@ function supprimerBouteille(id) {
 }
 
 /**
- *
+ * Valide les données d'une bouteille, affiche les messages d'erreurs puis retourne le nombre d'erreurs
  * @param {object} bouteille Objet bouteille à analyser
  * @returns {array} erreurs Tableau contenant les erreurs de validation
  */
@@ -291,6 +283,7 @@ function validation(bouteille) {
     let messImage = document.getElementById("mess-image");
     let messFormat = document.getElementById("mess-format");
 
+    // Réinitialisation des messages d'erreurs
     messNom.innerText = "";
     messCode.innerText = "";
     messPays.innerText = "";
