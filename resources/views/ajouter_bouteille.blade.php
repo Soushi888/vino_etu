@@ -70,23 +70,14 @@
                 </select><br><br>
                 <label for="notes">Notes:</label>
                 <input class="input-ajouter" name="notes" id="notes"><br><br>
+                <span><p class="fail" id="b.ajouter" style="margin-top: 20px"></p></span>
+                <button class="btn btn-ajouter-bouteille" type="button" id="btnAjouter" type="submit" formaction="#">Ajouter la bouteille
+            </button>
             </form>
 
 
         </aside>
-        <aside class="section_trois">
-            <a class="header-nav-link aj" href={{ route("logout") }}><i class="fa fa-sign-out fa-2x"
-            aria-hidden="true"></i></a>
-            </nav>
-            <div class="img_marg">
-                <img src="img/bouteille3.png" alt="bouteille">
             </div>
-            <span><p class="fail" id="b.ajouter" style="margin-top: 20px"></p></span>
-            <button class="btn btn-ajouter-bouteille" type="button" id="btnAjouter" type="submit" formaction="#">Ajouter la bouteille
-            </button>
-
-        </aside>
-    </div>
 </div>
 <script defer>importeModifierAjouterBouteille()</script>
 @endsection
