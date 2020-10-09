@@ -13,7 +13,7 @@ use App\Http\Resources\AffichageDetailsTransactionBouteilleTypeControllerResourc
  */
 class AffichageDetailsTransactionBouteilleTypeController extends Controller
 {
-  
+  // retourne tous les transaction, les bouteilles et les types
     public function index()
     {
         return DB::table('transactions')
@@ -22,10 +22,9 @@ class AffichageDetailsTransactionBouteilleTypeController extends Controller
                     ->select('*')
                     ->get();
     }
-
+// retourne tous les transaction, les bouteilles et les type d'un cellier utilisateur
     public function show($request)
     {
-        //return TransactionResource::collection(Transaction::where('cellier_id','=', $request)->get());
         return DB::table('transactions')
         ->join('bouteilles', 'bouteilles.id', '=', 'transactions.bouteille_id')
         ->join('types', 'bouteilles.type_id', '=', 'types.id')

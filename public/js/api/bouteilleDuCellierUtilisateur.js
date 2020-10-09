@@ -1,3 +1,4 @@
+    // block de code qui vérifie si un utilisateur a un cellier
     let eDivIndex = document.querySelector(".container-index");
     let listCelliers = document.querySelector("#listCelliers h1");
     let eUl = document.createElement("ul");
@@ -23,7 +24,7 @@
         };
         celliers.store(cellier);
     }
-
+// block de code qui affiche les information des bouteille dans accueil utilisateur
     function bouteilles(evt) {
 
         let idCellier = evt;
@@ -32,6 +33,7 @@
         containerBouteille.setAttribute("class", "container_bouteille")
         let eTable = document.createElement("table");
         accueille.appendChild(containerBouteille).appendChild(eTable);
+        // fetch qui retourne les informations des bouteille de la base de donnée 
         var reponse = fetch(`http://${window.location.host}/api/affichageDetails/${idCellier}`);
         var reponseJson = reponse.then(function (res) {
             return res.json();
@@ -80,6 +82,7 @@
                 eTd2.appendChild(eLien);
                 eDivBouton = document.createElement("div");
                 eDivBouton.setAttribute("class", "btn_bouteille");
+                // bouton modifier dans la page accueil utilisateur créé dynamiquement
                 eBoutonModifier = document.createElement("button");
                 eBoutonModifier.setAttribute("class", "btn btn-modifier inline");
                 eBoutonModifier.setAttribute("btn", "modifier_" + reponse.code_saq);
@@ -92,8 +95,9 @@
                        {dataU};
                     });
                 })
-                eTextModifier = document.createTextNode("Modifier")
+                eTextModifier = document.createTextNode("Modifier")                
                 eBoutonModifier.appendChild(eTextModifier);
+                // bouton ajouter dans la page accueil utilisateur créé dynamiquement
                 eBoutonAjouter = document.createElement("button");
                 eBoutonAjouter.setAttribute("class", "btn btn-ajouter inline");
                 eBoutonAjouter.setAttribute("btn", "ajouter_" + reponse.code_saq);
@@ -114,6 +118,7 @@
                 })
                 eTextAjouter = document.createTextNode("Ajouter")
                 eBoutonAjouter.appendChild(eTextAjouter);
+                // bouton boire dans la page accueil utilisateur créé dynamiquement
                 eBoutonBoire = document.createElement("button");
                 eBoutonBoire.setAttribute("class", "btn btn-boire inline");
                 eBoutonBoire.setAttribute("btn", "boire_" + reponse.code_saq);
