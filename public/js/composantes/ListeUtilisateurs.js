@@ -43,7 +43,6 @@ function ListeUtilisateurs() {
                 })
             })
 
-            // TODO : Messages erreurs et modification
             // Bouton modifier
             let btnModifier = document.querySelector(`[btn="modifier_${u.email}"]`);
             // Modal bouton modifier
@@ -77,14 +76,31 @@ function ListeUtilisateurs() {
                     evt.preventDefault();
                     let user = {
                         id: document.getElementById("id").value,
-                        name: document.getElementById("name").value,
-                        email: document.getElementById("email").value,
                         role: document.getElementById("role").value,
-                        password: document.getElementById("password").value,
-                        confirmation: document.getElementById("confirmation").value
+                        name: document.getElementById("name").value,
+                        email: document.getElementById("email").value
                     }
-                    console.log(user);
+
+                    if (document.getElementById("password").value) {
+                        user.password = document.getElementById("password").value,
+                            user.confirmation = document.getElementById("confirmation").value
+                    }
                     modifierUtilisateur(user);
+
+                    // Modification du noeud HTML
+                    tr.children[1].innerHTML = user.name;
+                    tr.children[2].innerHTML = user.email;
+
+                    let role = "";2
+                    switch (user.role) {
+                        case "1":
+                            role = "administrateur";
+                            break;
+                        case "2":
+                            role = "utilisateur";
+                            break;
+                    }
+                    tr.children[3].innerHTML = role;
                 })
             })
         })
@@ -128,13 +144,9 @@ function ListeUtilisateurs() {
                     password: document.getElementById("password").value,
                     confirmation: document.getElementById("confirmation").value
                 }
-                console.log(user);
                 ajouterUtilisateur(user);
             })
         })
-
-        console.log(data)
-
     })
 }
 
@@ -151,12 +163,8 @@ function ajouterUtilisateur(user) {
     }
 
     if (erreurs.length === 0) {
-        console.log("Enregistrement !")
-
         users.store(user).then(() => {
             Modal.closeModal();
-
-            // TODO = Optimiser le rafraichissement
             ListeUtilisateurs();
         })
     }
@@ -169,29 +177,17 @@ function modifierUtilisateur(user) {
     let messPassword = document.getElementById("mess-password");
     messPassword.innerText = "";
 
-    if (user.password.length > 0 && user.password.length < 8) {
+    if (user.password && user.password.length < 8) {
         messPassword.innerText = "Le mot de passe doit faire au moins 8 caractères de long."
         erreurs.push("password");
     }
 
     if (erreurs.length === 0) {
         console.log("Modification !")
+        delete user.confirmation;
 
-        users.update(user.id, {
-            name: user.name,
-            email: user.email,
-            role: user.role
-        }).then(() => {
-            // if (user.password.length > 0) {
-            //     users.update(user.id, {
-            //         password: user.password
-            //     })
-            // }
-
+        users.update(user.id, user).then(() => {
             Modal.closeModal();
-
-            // TODO = Optimiser le rafraichissement
-            ListeUtilisateurs();
         })
     }
 }

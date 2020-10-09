@@ -4,7 +4,6 @@
     let idUtilisateur = document.getElementById("idUtilisateur").value;
     let userApi = new User;
     userApi.showCellier(idUtilisateur).then((data => {
-        console.log(data);
         if (data.length === 0) {
             creeCellier();
             location.reload();
@@ -28,9 +27,7 @@
     function bouteilles(evt) {
 
         let idCellier = evt;
-        console.log(idCellier);
         let accueille = document.getElementById("accueille")
-        console.log(accueille);
         let containerBouteille = document.createElement("div");
         containerBouteille.setAttribute("class", "container_bouteille")
         let eTable = document.createElement("table");
@@ -40,12 +37,10 @@
             return res.json();
         });
         reponseJson.then(function (reponse) {
-            console.log("je suis dans le fetch de bouteille", reponse);
             for (let i = 0; i < reponse.length; i++) {
-                //console.log(reponse[i])
 
                 let eTr1 = document.createElement("tr");
-                eTr1.setAttribute("id","trBouteille"+reponse[i].bouteille_id);
+                eTr1.setAttribute("id", "trBouteille" + reponse[i].bouteille_id);
                 let eDivImg = document.createElement("div");
                 eDivImg.setAttribute("class", "img_bouteille");
                 eTd1 = document.createElement("td");
@@ -59,7 +54,7 @@
                 eTextNom = document.createTextNode("Nom: " + reponse[i].nom);
                 ePNom.appendChild(eTextNom);
                 ePQuantite = document.createElement("p");
-                ePQuantite.setAttribute("id","quantite"+reponse[i].quantite);
+                ePQuantite.setAttribute("id", "quantite" + reponse[i].quantite);
                 eTextQuantite = document.createTextNode("Quantite: " + reponse[i].quantite);
                 ePQuantite.appendChild(eTextQuantite);
                 ePPays = document.createElement("p");
@@ -89,34 +84,32 @@
                 eBoutonModifier.setAttribute("class", "btn btn-modifier inline");
                 eBoutonModifier.setAttribute("btn", "modifier_" + reponse.code_saq);
                 eBoutonModifier.addEventListener("click", function () {
-                    console.log("transaction " + reponse[i].transaction_id + " millisime " + reponse[i].millesime);
                     var idTransaction = reponse[i].transaction_id;
-
                     document.location.href = `/modifier_bouteille?bouteille=` + idTransaction + '-' + kebab_case(reponse[i].nom);
-
                     let t = new Transaction();
                     t.show(idTransaction).then(dataU => {
-                        console.log({
-                            dataU
-                        });
+                       {dataU};
                     });
-
                 })
                 eTextModifier = document.createTextNode("Modifier")
                 eBoutonModifier.appendChild(eTextModifier);
                 eBoutonAjouter = document.createElement("button");
                 eBoutonAjouter.setAttribute("class", "btn btn-ajouter inline");
                 eBoutonAjouter.setAttribute("btn", "ajouter_" + reponse.code_saq);
-                eBoutonAjouter.addEventListener("click", function () {                    
-                    quantite = document.getElementById("quantite"+reponse[i].quantite);
-                    console.log(quantite.innerHTML);
-                    quantite = quantite.innerHTML.replace("Quantite: ","");
-                    quantite ++;                   
-                    document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;        
-                    let transactionInfo = {quantite:quantite, cellier_id:idCellier,bouteille_id:reponse[i].bouteille_id};
+                eBoutonAjouter.addEventListener("click", function () {
+                    quantite = document.getElementById("quantite" + reponse[i].quantite);
+                    quantite = quantite.innerHTML.replace("Quantite: ", "");
+                    quantite++;
+                    document.getElementById("quantite" + reponse[i].quantite).innerHTML = "Quantite: " + quantite;
+                    let transactionInfo = {
+                        quantite: quantite,
+                        cellier_id: idCellier,
+                        bouteille_id: reponse[i].bouteille_id
+                    };
                     let transac = new Transaction;
-                    console.log(reponse[i].bouteille_id);
-                    transac.update(reponse[i].transaction_id,transactionInfo,).then(data => {console.log(data);});        
+                    transac.update(reponse[i].transaction_id, transactionInfo, ).then(data => {
+                       data;
+                    });
                 })
                 eTextAjouter = document.createTextNode("Ajouter")
                 eBoutonAjouter.appendChild(eTextAjouter);
@@ -124,22 +117,25 @@
                 eBoutonBoire.setAttribute("class", "btn btn-boire inline");
                 eBoutonBoire.setAttribute("btn", "boire_" + reponse.code_saq);
                 eBoutonBoire.addEventListener("click", function () {
-                    quantite = document.getElementById("quantite"+reponse[i].quantite);                    
-                    quantite = quantite.innerHTML.replace("Quantite: ","");
-                    quantite --;
-                    document.getElementById("quantite"+reponse[i].quantite).innerHTML = "Quantite: "+quantite;
-                    let transactionInfo = {quantite:quantite, cellier_id:idCellier,bouteille_id:reponse[i].bouteille_id};
+                    quantite = document.getElementById("quantite" + reponse[i].quantite);
+                    quantite = quantite.innerHTML.replace("Quantite: ", "");
+                    quantite--;
+                    document.getElementById("quantite" + reponse[i].quantite).innerHTML = "Quantite: " + quantite;
+                    let transactionInfo = {
+                        quantite: quantite,
+                        cellier_id: idCellier,
+                        bouteille_id: reponse[i].bouteille_id
+                    };
                     let transac = new Transaction;
-                    console.log(reponse[i].bouteille_id);
-                    transac.update(reponse[i].transaction_id,transactionInfo,).then(data => {data;});
-                   
-                    console.log(eTr1);
-                    if(quantite == 0){
-                        console.log(reponse[i].transaction_id);
+                    transac.update(reponse[i].transaction_id, transactionInfo, ).then(data => {
+                        data;
+                    });
+
+                    if (quantite == 0) {
                         transac.destroy(reponse[i].transaction_id);
-                        eTr1= document.getElementById("trBouteille"+reponse[i].bouteille_id);
+                        eTr1 = document.getElementById("trBouteille" + reponse[i].bouteille_id);
                         eTr1.innerHTML = "";
-                        
+
                     }
                 })
                 eTextBoire = document.createTextNode("Boire")
@@ -151,39 +147,4 @@
             }
 
         })
-
-
-        //CARACTERES SPECIAUX / KEBAB CASE
-        function kebab_case(para_str) {
-            para_str = para_str.toLowerCase();
-            para_str = para_str.replace(/[áâàåãä]/gi, 'a');
-            para_str = para_str.replace(/[æ]/gi, 'ae');
-            para_str = para_str.replace(/[éêèë]/gi, 'e');
-            para_str = para_str.replace(/[íîìï]/gi, 'i');
-            para_str = para_str.replace(/[óôòøõö]/gi, 'o');
-            para_str = para_str.replace(/[œ]/gi, 'oe');
-            para_str = para_str.replace(/[ùûüúûùü]/gi, 'u');
-            para_str = para_str.replace(/[ýÿ]/gi, 'y');
-            para_str = para_str.replace(/[ç¢]/gi, 'c');
-            para_str = para_str.replace(/[Ð]/gi, 'd');
-            para_str = para_str.replace(/[ƒ]/gi, 'f');
-            para_str = para_str.replace(/[ñ]/gi, 'n');
-            para_str = para_str.replace(/[š]/gi, 's');
-            para_str = para_str.replace(/[ß]/gi, 'ss');
-            para_str = para_str.replace(/[\^\\\|\.\{\}\[\]\(\)\?\#\!\+\*]/gi, ''); //caracteres echapees en regex sauf dollar
-            para_str = para_str.replace(/[²&~"`°=¨£¤%µ,;:§]/gi, ''); //autres caracteres speciaux
-            para_str = para_str.replace(/[\$]/gi, '');
-            para_str = para_str.replace(/[€]/gi, 'e');
-            para_str = para_str.replace(/[@]/gi, 'at');
-            para_str = para_str.replace(/  /gi, ' '); //plusieurs espaces
-
-            //remplaces par tirets
-            para_str = para_str.replace(/[ _/']/gi, '-'); //espace
-
-            //enlever les - au debut et a la fin
-            para_str = para_str.replace(/[-]/gi, ' ');
-            para_str = para_str.trim();
-            para_str = para_str.replace(/[ ]/gi, '-'); //espace
-            return para_str;
-        }
     }

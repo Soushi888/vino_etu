@@ -77,13 +77,16 @@ p {
     margin-left: -130px;
 
 }
-.container_bouteille>table{
+
+.container_bouteille>table {
     font-weight: bold;
 }
-.grosseur_img{
-    width:150px;
+
+.grosseur_img {
+    width: 150px;
     height: 225px;
 }
+
 .img_bouteille {
     margin-bottom: 20px;
 }
@@ -179,7 +182,7 @@ p {
     margin-top: 10px;
     margin-bottom: 40px;
     font-size: 18px;
-    
+
 
 }
 
@@ -463,7 +466,6 @@ td.actions {
 
 .footer {
     width: 100%;
-
     position: absolute;
     bottom: 45px;
     left: 0;
@@ -556,6 +558,8 @@ footer {
     padding: 20px 40px;
     background: #ffffff;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 }
 
 .admin {
@@ -604,6 +608,8 @@ footer {
     padding: 20px 40px;
     background: #ffffff;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 }
 
 .img_b {
@@ -651,7 +657,7 @@ footer {
     font-size: 30px;
     font-weight: 600;
     margin-left: 22px;
-    margin-top: -180px;
+    margin-top: auto;
     margin-bottom: 20px;
     color: #ffffff;
 }
@@ -686,6 +692,7 @@ label {
 
 #search {
     width: 222px;
+    text-align: inherit;
 }
 
 /*Mon compte
@@ -697,15 +704,19 @@ label {
 
 .btn-modifier-compte {
     display: block;
-    width: 44%;
+    width: 215px;
     background-color: #028340;
     margin-top: -20px;
 
 }
 
+.header-nav a {
+    margin-bottom: 25px;
+}
+
 .btn-supprimer-compte {
     display: block;
-    width: 44%;
+    width: 215px;
     background-color: #dd0303;
     margin-top: -20px;
 }
@@ -737,7 +748,7 @@ label {
 .titre-compte {
     font-size: 30px;
     font-weight: 600;
-    margin-top: -180px;
+    margin-top: auto;
     color: #ffffff;
 }
 
@@ -797,6 +808,16 @@ label {
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
+
+.fa {
+    color: black
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
 /* Media
 =================*/
 
@@ -819,40 +840,41 @@ label {
     }
 
     /*Mon compte*/
-.form-compte {
-    padding: 20px 0;
-    line-height: 1.1;
-    margin-left: 220px;
-}
+    .form-compte {
+        padding: 20px 0;
+        line-height: 1.1;
+        margin-left: 220px;
+    }
 
-.btn-modifier-compte {
-    display: block;
-    width: 25%;
-    background-color: #028340;
-    margin-top: -20px;
-    margin-left: 220px;
-}
+    .btn-modifier-compte {
+        display: block;
+        width: 215px;
+        background-color: #028340;
+        margin-top: -20px;
+        margin-left: 220px;
+    }
 
-.btn-supprimer-compte {
-    display: block;
-    width: 25%;
-    background-color: #dd0303;
-    margin-top: -20px;
-    margin-left: 220px;
-}
+    .btn-supprimer-compte {
+        display: block;
+        width: 215px;
+        background-color: #dd0303;
+        margin-top: -20px;
+        margin-left: 220px;
+    }
 
-.titre-compte {
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: -90px;
-    color: #ffffff;
-    margin-left: 220px;
-}
+    .titre-compte {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: auto;
+        color: #ffffff;
+        margin-left: 220px;
+    }
 
-.utilisateur {
-    padding-left: 220px;
+    .utilisateur {
+        padding-left: 220px;
 
-}
+    }
+
 
 
 }
@@ -891,6 +913,8 @@ label {
         margin-top: 0px;
     }
 
+
+
     .logo_accueille img {
         margin-left: 40px;
         margin-top: 10px;
@@ -913,7 +937,17 @@ label {
         display: none;
     }
 
+    .miniflex {
+        display: flex;
+        justify-content: center
+    }
 
+    .btn-ajouter-bouteille {
+        text-align: center;
+        width: 200px;
+        margin-left: 30px;
+        margin-bottom: 20px;
+    }
 
     .ajouter {
         margin-bottom: 40px;
@@ -926,41 +960,41 @@ label {
         font-size: 1em;
     }
 
-     /*Mon compte*/
-.form-compte {
-    padding: 20px 0;
-    line-height: 1.1;
-    margin-left: 120px;
-}
+    /*Mon compte*/
+    .form-compte {
+        padding: 20px 0;
+        line-height: 1.1;
+        margin-left: 120px;
+    }
 
-.btn-modifier-compte {
-    display: block;
-    width: 34%;
-    background-color: #028340;
-    margin-top: -20px;
-    margin-left: 120px;
-}
+    .btn-modifier-compte {
+        display: block;
+        width: 215px;
+        background-color: #028340;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
 
-.btn-supprimer-compte {
-    display: block;
-    width: 34%;
-    background-color: #dd0303;
-    margin-top: -20px;
-    margin-left: 120px;
-}
+    .btn-supprimer-compte {
+        display: block;
+        width: 215px;
+        background-color: #dd0303;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
 
-.titre-compte {
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: -90px;
-    color: #ffffff;
-    margin-left: 120px;
-}
+    .titre-compte {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: auto;
+        color: #ffffff;
+        margin-left: 120px;
+    }
 
-.utilisateur {
-    padding-left: 120px;
+    .utilisateur {
+        padding-left: 120px;
 
-}
+    }
 
 }
 
@@ -974,9 +1008,11 @@ label {
     .slogan {
         display: none;
     }
+
     .ajouter {
         font-size: 20px;
     }
+
     .accueille {
         font-size: 11px;
         justify-content: space-between;
@@ -1001,9 +1037,9 @@ label {
     }
 
     .form-ajouter {
-        margin-left: 80px;
-        margin-top: 50px;
-        margin-bottom: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         line-height: 1.3;
     }
 
@@ -1028,7 +1064,7 @@ label {
 
     .btn-modifier-compte {
         display: block;
-        width: 46%;
+        width: 215px;
         background-color: #028340;
         margin-top: -20px;
         margin-left: 120px;
@@ -1036,7 +1072,7 @@ label {
 
     .btn-supprimer-compte {
         display: block;
-        width: 46%;
+        width: 215px;
         background-color: #dd0303;
         margin-top: -20px;
         margin-left: 120px;
@@ -1045,7 +1081,7 @@ label {
     .titre-compte {
         font-size: 30px;
         font-weight: 600;
-        margin-top: -90px;
+        margin-top: auto;
         color: #ffffff;
         margin-left: 120px;
     }
@@ -1243,7 +1279,6 @@ label[for=toggle]:hover {
 
     .fa-sign-out {
         color: white;
-
     }
 }
 
@@ -1320,6 +1355,10 @@ users.blade.php/
 
 .color-white {
     color: white;
+}
+
+.color-black {
+    color: black;
 }
 
 .display-flex {
