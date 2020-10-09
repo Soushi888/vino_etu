@@ -11,9 +11,9 @@
   <div class="container-ajouter">
     <div class="main-content-ajouter">
       <div class="content-wrap-ajouter">
-        <a href="/" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
+        <a href="/" class="logo_ajouter"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
         <div class="img_b">
-          <img src="img/bouteille2.png" alt="bouteille2">
+          <img src={{ asset("img/bouteille2.png") }} alt="bouteille2">
         </div>
       </div>
       <aside class="section_deux">
@@ -35,39 +35,17 @@
           
           <label for="mdp">Modifier Mot de Passe:</label>
           <span><p class="fail" id="e.mdp"></p></span>
-          <input class="input-ajouter" type="text" id="mdp" name="mdp" placeholder="Entrer mot de passe"><br><br>
+          <input class="input-ajouter" type="password" id="mdp" name="mdp" placeholder="Entrer mot de passe"><br><br>
         </form>
           <button id="modifierBtn" class="btn btn-modifier-compte">Modifier</button>
           <span><p class="fail" id="b.modifierBtn"></p></span>
-        
-
-        <form class="form-compte" name="userC" action="/" method="post">
-          <label for="cellier">Modifier Nom Cellier:</label>
-          <span><p class="fail" id="e.cellier"></p></span>
-          <input class="input-ajouter" type="text" id="cellier" name="cellier"><br><br>
-        </form> 
-          <button id="modifierCellierBtn" class="btn btn-modifier-compte">Modifier</button>
-          <span><p class="fail" id="b.modifierCellierBtn"></p></span>
-
-
-        <form class="form-compte" name="suprimerF" action="/" method="delete">
-
-          <label for="suprimer">Supprimer mon compte:</label>
-          <span><p class="fail" id="e.suprimer"></p></span>
-          <input class="input-ajouter" type="text" id="suprimer" name="suprimer" placeholder="Entrer courielle"><br><br>
-        </form>
-        <button id="supprimerBtn" class="btn btn-supprimer-compte">Supprimer mon compte</button>
-        <span><p class="fail" id="b.supprimerBtn"></p></span>
-
-
+          <form class="form-compte" name="suprimerF" action="/" method="delete">
       </aside>
       <aside class="section_trois">
         <a class="header-nav-link aj" href={{ route("logout") }}><i class="fa fa-sign-out fa-2x"
             aria-hidden="true"></i></a>
         </nav>
-        <div class="img_marg">
-          <img src="img/bouteille3.png" alt="bouteille">
-        </div>
+
       </aside>
     </div>
   </div>

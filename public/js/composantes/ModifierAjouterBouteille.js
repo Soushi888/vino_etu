@@ -45,13 +45,9 @@ function importeModifierAjouterBouteille() {
         }
     });
 
-   
-
-   
-
 
     document.getElementById("btnAjouter").addEventListener("click", function () {
-  
+
         // Sélectionner l'élément input et récupérer sa valeur
         var bouteilleId = document.getElementById("search").value;
         var millesime = document.getElementById("millesime").value;
@@ -176,7 +172,7 @@ function importeModifierAjouterBouteille() {
             //refresh la page
             setTimeout(function () {
                 location.reload();
-                window.location.href = "/"
+                window.location.href = "/";
             }, 900);
         });
     })

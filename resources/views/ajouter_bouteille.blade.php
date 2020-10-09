@@ -15,9 +15,9 @@
 <div class="container-ajouter">
     <div class="main-content-ajouter">
         <div class="content-wrap-ajouter">
-            <a href="/" class="logo_ajouter"><img src="img/logo_vino.png" alt="vino"></a>
+            <a href="/" class="logo_ajouter"><img src={{ asset("img/logo_vino.png") }} alt="vino"></a>
             <div class="img_b">
-                <img src="img/bouteille2.png" alt="bouteille2">
+                <img src={{ asset("img/bouteille2.png") }} alt="bouteille2">
             </div>
         </div>
         <aside class="section_deux">
@@ -26,7 +26,7 @@
                 <a class="header-nav-link active ajouter" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
             </nav>
             <h3 class="slogan-ajouter">Ajouter une bouteille?</h3>
-            <button  class="btn btn-ajouter-bouteille2" id="btnA" type="submit" formaction="#">Ajouter la bouteille</button>
+            
 
 
             <form class="form-ajouter" name="form1" action="/" method="post">
@@ -66,27 +66,19 @@
                 <input class="input-ajouter" type="text" id="garde" name="garde" placeholder="2020-09-30"><br><br>
 
                 <label for="cellier">Nom du cellier:</label>
-                <select class="input-ajouter" name="cellier" id="cellier">
-                </select><br><br>
+                <select class="input-ajouter" name="cellier" id="cellier" type="hidden">
+                </select><br><br> 
+                
                 <label for="notes">Notes:</label>
                 <input class="input-ajouter" name="notes" id="notes"><br><br>
+                <span><p class="fail" id="b.ajouter" style="margin-top: 20px"></p></span> 
+                <button class="btn btn-ajouter-bouteille" type="button" id="btnAjouter" type="submit" formaction="#">Ajouter la bouteille
+            </button>
             </form>
 
 
         </aside>
-        <aside class="section_trois">
-            <a class="header-nav-link aj" href={{ route("logout") }}><i class="fa fa-sign-out fa-2x"
-            aria-hidden="true"></i></a>
-            </nav>
-            <div class="img_marg">
-                <img src="img/bouteille3.png" alt="bouteille">
             </div>
-            <span><p class="fail" id="b.ajouter" style="margin-top: 20px"></p></span>
-            <button class="btn btn-ajouter-bouteille" type="button" id="btnAjouter" type="submit" formaction="#">Ajouter la bouteille
-            </button>
-
-        </aside>
-    </div>
 </div>
 <script defer>importeModifierAjouterBouteille()</script>
 @endsection

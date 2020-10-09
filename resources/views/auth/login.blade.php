@@ -1,5 +1,9 @@
 @extends("layouts.app")
 
+@section("header")
+<script src={{asset("js/functions.js")}}></script>
+@endsection
+
 @section("content")
     <div class="page">
         <div class="container">
@@ -45,7 +49,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-cancel" onclick="window.location.href='{{ route('register') }}'">
+                        <button id="inscription" class="btn btn-cancel">
                             S'inscrire
                         </button>
                     </div>
@@ -53,4 +57,5 @@
             </main>
         </div>
     </div>
+    <script>eventInscription();</script>
 @endsection
