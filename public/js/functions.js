@@ -68,3 +68,10 @@ function isEmail(email) {
     // Converting the email to lowercase
     return regexp.test(String(email).toLowerCase());
 }
+
+/*bouton inscription page identifier*/
+let btnInscription = document.getElementById("inscription");
+btnInscription.addEventListener("click",function(){
+    console.log("je suis un element click");
+    window.location.href="/register";
+})

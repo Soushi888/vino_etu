@@ -1,3 +1,4 @@
+@import "ajouterBouteille.css";
 .dimention {
     width: 150px;
     height: 225px;
@@ -387,19 +388,6 @@ td.actions {
     color: #000;
     margin-left: 25px;
 }
-
-.btn-ajouter-bouteille {
-    display: block;
-    width: 50%;
-    background-color: #007236;
-}
-
-.btn-ajouter-bouteille2 {
-    display: block;
-    width: 50%;
-    background-color: #007236;
-}
-
 .btn-accepter {
     display: block;
     width: 75%;
@@ -446,13 +434,7 @@ td.actions {
     background-color: #967b1c;
 }
 
-.btn-ajouter-bouteille:hover {
-    background-color: #05552a;
-}
 
-.btn-ajouter-bouteille2:hover {
-    background-color: #05552a;
-}
 
 .inline {
     display: inline;
@@ -473,9 +455,7 @@ td.actions {
     display: none;
 }
 
-.btn-ajouter-bouteille2 {
-    display: none;
-}
+
 
 
 /* Footer
@@ -933,19 +913,14 @@ label {
         display: none;
     }
 
-    .btn-ajouter-bouteille {
-        display: none;
-    }
+
 
     .ajouter {
         margin-bottom: 40px;
         font-size: 12px;
     }
 
-    .btn-ajouter-bouteille2 {
-        display: inline;
 
-    }
 
     .fa-2x {
         font-size: 1em;
@@ -1032,10 +1007,7 @@ label {
         line-height: 1.3;
     }
 
-    .btn-ajouter-bouteille2 {
-        margin-left: 120px;
-
-    }
+    
 
     .header-nav {
         flex-direction: column;
