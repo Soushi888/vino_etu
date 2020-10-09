@@ -40,7 +40,7 @@ class AffichageDetailsTransactionBouteilleTypeController extends Controller
         'millesime',
         'bouteilles.id AS bouteille_id',
         'bouteilles.nom',
-        'bouteilles.code_saq',
+        'bouteilles.code_saq',        
         'bouteilles.pays',
         'bouteilles.description',
         'bouteilles.prix_saq',

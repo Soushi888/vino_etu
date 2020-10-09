@@ -1,5 +1,9 @@
 @extends("layouts.app")
 
+@section("header")
+<script src={{asset("js/functions.js")}}></script>
+@endsection
+
 @section("content")
     <div class="page">
         <div class="container">
@@ -53,5 +57,5 @@
             </main>
         </div>
     </div>
-    <script src="js/functions.js"></script>
+    <script>eventInscription();</script>
 @endsection

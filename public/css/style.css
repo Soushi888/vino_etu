@@ -1,3 +1,1329 @@
+
+.column_left {
+    float: left;
+    width: 60%;
+    /* height: 3240px; */
+    background-color: #5d70e1;
+
+}
+
+.column_right {
+    float: left;
+    width: 40%;
+    /* height: 3240px; */
+    background-color: #ffffff;
+}
+
+.slogan {
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 80px;
+    margin-top: 250px;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.container_bouteille {
+    font-size: 12px;
+    line-height: 1;
+    padding-bottom: 20px;
+    margin-left: -130px;
+
+}
+
+.container_bouteille>table {
+    font-weight: bold;
+}
+
+.grosseur_img {
+    width: 150px;
+    height: 225px;
+}
+
+.img_bouteille {
+    margin-bottom: 20px;
+}
+
+.fa-sign-out {
+    margin-top: 3px;
+}
+
+.fa-sign-out:hover {
+    color: #eac131;
+}
+
+/* Page
+=================*/
+
+.page {
+    width: 100%;
+    /*height: 100vh;*/
+    min-height: 770px;
+    position: relative;
+    /*overflow: hidden;*/
+
+    background: #000 url("../img/bg.jpg") no-repeat fixed center;
+    background-size: cover;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.page_admin {
+    width: 100%;
+    /*height: 100vh;*/
+    min-height: 770px;
+    position: relative;
+    /*overflow: hidden;*/
+
+    background: #000 url("../img/bg.jpg") fixed center;
+    background-size: 100%;
+
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+
+/* Header
+=================*/
+
+.header {
+    padding: 1rem 0;
+    background: #ed1c24;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.header-brand {
+    font-size: 1.6rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.header-logo img {
+    display: block;
+}
+
+.header-nav {
+    display: flex;
+
+}
+
+.header-nav-link {
+    margin-left: 1.5rem;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-decoration: none;
+
+    transition: color .2s linear;
+}
+
+.header-nav-link:hover {
+    color: #b2e3fd;
+}
+
+.accueille {
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-size: 18px;
+
+
+}
+
+.message-bienvenu {
+    text-align: center;
+}
+
+.accueille.active:hover {
+    background-color: #eac131;
+    color: #000;
+
+}
+
+
+/* Content
+=================*/
+
+.content {
+    height: 100%;
+    width: 100%;
+    max-width: 565px;
+    margin: 0 auto;
+
+
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, .6);
+    font-weight: 300;
+}
+
+.title {
+    margin-bottom: 10px;
+
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.title span {
+    color: #2B7DED;
+}
+
+.text {
+    margin-bottom: 50px;
+
+    font-size: 1rem;
+    color: #fff;
+}
+
+/*Logo
+================*/
+
+.logo {
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.logo_admin {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.logo_accueille img {
+    margin-left: 80px;
+    margin-top: 10px;
+
+
+}
+
+/*Table
+================*/
+
+table.info {
+    width: 100%;
+    border: 0px;
+    border-collapse: collapse;
+    color: #fff;
+
+
+}
+
+table.info thead {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.281);
+
+}
+
+table.info td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #e8e9eb;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table.info td>a {
+    color: #27c474;
+}
+
+table.info td>a:visited {
+    color: #008134;
+}
+
+
+td.actions {
+    display: flex;
+}
+
+
+/* Succes et Fail
+=================*/
+
+.success {
+    color: #05552a;
+}
+
+.fail {
+    color: #dd0303;
+}
+
+
+.invalid-feedback {
+    display: block;
+    margin-top: 20px;
+}
+
+/* Btn
+=================*/
+
+.btn {
+    display: inline-block;
+    padding: 12px 35px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.1;
+    color: #fff;
+    font-weight: bolder;
+    text-decoration: none;
+
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+
+    transition: background .2s linear;
+
+    margin-bottom: -12px;
+}
+
+.btn-enter {
+    display: block;
+    width: 100%;
+    background-color: #5d70e2;
+}
+
+.btn-cancel {
+    display: block;
+    width: 100%;
+    background-color: #ff0000;
+}
+
+.btn-register {
+    display: block;
+    width: 100%;
+    background-color: #00a651;
+}
+
+.btn-modifier {
+    display: block;
+    width: 30%;
+    background-color: #ed1c24;
+}
+
+.btn-ajouter {
+    display: block;
+    width: 30%;
+    background-color: #007236;
+}
+
+.btn-boire {
+    display: block;
+    width: 30%;
+    background-color: #37469f;
+}
+
+.btn-supprimer {
+    display: block;
+    width: 35%;
+    background-color: #c514b6;
+}
+
+.btn-update {
+    display: block;
+    width: 45%;
+    background-color: #eac131;
+    color: #000;
+    font-size: 18px;
+}
+
+.btn-update2 {
+    display: block;
+    background-color: #eac131;
+    color: #000;
+    margin-left: 25px;
+}
+.btn-accepter {
+    display: block;
+    width: 75%;
+    background-color: #dd0303;
+
+}
+
+.btn-annuler {
+    display: block;
+    width: 75%;
+    background-color: #007236;
+
+}
+
+.btn-enter:hover {
+    background-color: #1461cb;
+}
+
+.btn-cancel:hover {
+    background-color: #dd0303;
+}
+
+.btn-register:hover {
+    background-color: #028340;
+}
+
+.btn-modifier:hover {
+    background-color: #c0151b;
+}
+
+.btn-ajouter:hover {
+    background-color: #05552a;
+}
+
+.btn-boire:hover {
+    background-color: #27347e;
+}
+
+.btn-supprimer:hover {
+    background-color: #85117b;
+}
+
+.btn-update:hover {
+    background-color: #967b1c;
+}
+
+
+
+.inline {
+    display: inline;
+    padding: 8px 9px;
+
+}
+
+.btn_bouteille {
+    margin-top: 15px;
+
+}
+
+.btn-admin {
+    margin-left: 80px;
+}
+
+.btn-admin2 {
+    display: none;
+}
+
+
+
+
+/* Footer
+=================*/
+
+.footer {
+    width: 100%;
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+}
+
+
+/* Form
+=================*/
+
+.form {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input,
+.textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #fff;
+    text-align: center;
+
+    border: 0;
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+
+    margin-bottom: -12px;
+}
+
+.textarea {
+    height: 100px;
+    resize: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: #fff;
+}
+
+.input:hover {
+    background-color: rgba(243, 234, 234, 0.068);
+}
+
+.mod {
+    color: #fff;
+}
+
+/*******accueil_utilisateur*****/
+
+.container-index {
+    display: table;
+    border-collapse: separate;
+    width: 100%;
+    min-height: 1080px;
+
+}
+
+.main-content {
+    display: table-row;
+
+}
+
+.content-wrap {
+    background: #5d70e1;
+
+}
+
+aside {
+    width: 600px;
+
+}
+
+.content-wrap,
+aside {
+    display: table-cell;
+
+}
+
+footer {
+    padding: 20px 40px;
+    background: #ffffff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.admin {
+    background: #000 url("../img/bg.jpg") center no-repeat fixed;
+    background-size: cover;
+}
+
+
+/*Ajouter_bouteille
+==================*/
+
+.container-ajouter {
+    display: table;
+    border-collapse: separate;
+    width: 100%;
+
+}
+
+.main-content-ajouter {
+    display: table-row;
+
+}
+
+.content-wrap-ajouter {
+    background: #5d70e1;
+
+}
+
+.section_deux {
+    width: 511px;
+    background: #5d70e1;
+}
+
+.section_trois {
+    /* width: 500px; */
+    background: #5d70e1;
+}
+
+.content-wrap-ajouter,
+aside {
+    display: table-cell;
+
+}
+
+footer {
+    padding: 20px 40px;
+    background: #ffffff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.img_b {
+    margin-top: 350px;
+    margin-bottom: -5px;
+}
+
+.img_marg {
+    margin-top: 200px;
+    margin-left: 20px;
+}
+
+.aj {
+    margin-left: 370px;
+    color: #ffffff;
+}
+
+.aj.active:hover {
+    background-color: #eac131;
+    color: #000000;
+}
+
+.logo_ajouter img {
+    margin-left: 80px;
+    margin-top: 10px;
+
+}
+
+.ajouter {
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    font-size: 16px;
+
+}
+
+.ajouter.active:hover {
+    background-color: #eac131;
+    color: #000000;
+
+}
+
+.slogan-ajouter {
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 22px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.input-ajouter,
+.textarea {
+
+    padding: 12px 18px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 200;
+    color: rgb(0, 0, 0);
+    text-align: right;
+    border: 0;
+    border-radius: 5px;
+    margin-bottom: -12px;
+    text-align: center;
+}
+
+label {
+    display: table-cell;
+    color: #ffffff;
+    font-weight: 600;
+
+}
+
+.form-ajouter {
+    padding: 20px 0;
+    margin-left: 26px;
+    line-height: 1.1;
+}
+
+#search {
+    width: 222px;
+    text-align: inherit;
+}
+
+/*Mon compte
+==================*/
+.form-compte {
+    padding: 20px 0;
+    line-height: 1.1;
+}
+
+.btn-modifier-compte {
+    display: block;
+    width: 215px;
+    background-color: #028340;
+    margin-top: -20px;
+
+}
+
+.header-nav a {
+    margin-bottom: 25px;
+}
+
+.btn-supprimer-compte {
+    display: block;
+    width: 215px;
+    background-color: #dd0303;
+    margin-top: -20px;
+}
+
+.btn-modifier-compte:hover {
+    background-color: #0a4d2a;
+}
+
+.btn-supprimer-compte:hover {
+    background-color: #c0151b;
+}
+
+.img_b {
+    margin-top: 390px;
+    margin-bottom: -7px;
+}
+
+.compte {
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    font-size: 16px;
+    margin-left: 0px;
+    margin-right: 20px;
+
+}
+
+.titre-compte {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: auto;
+    color: #ffffff;
+}
+
+/* Modal
+=================*/
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #5d70e2;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.modal-content label {
+    width: max-content;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: #324198;
+}
+
+.close-button:hover {
+    background-color: #23318d;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    transform: scale(1);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* Media
+=================*/
+
+@media (max-width: 1000px) {
+
+    .slogan {
+        display: none;
+    }
+
+    .content-wrap-ajouter {
+        display: none;
+    }
+
+    .modal .modal_content {
+        background-color: #5d70e2;
+        margin: none;
+        padding: 0px;
+        width: 50%;
+        z-index: 99999;
+    }
+
+    /*Mon compte*/
+    .form-compte {
+        padding: 20px 0;
+        line-height: 1.1;
+        margin-left: 220px;
+    }
+
+    .btn-modifier-compte {
+        display: block;
+        width: 215px;
+        background-color: #028340;
+        margin-top: -20px;
+        margin-left: 220px;
+    }
+
+    .btn-supprimer-compte {
+        display: block;
+        width: 215px;
+        background-color: #dd0303;
+        margin-top: -20px;
+        margin-left: 220px;
+    }
+
+    .titre-compte {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: auto;
+        color: #ffffff;
+        margin-left: 220px;
+    }
+
+    .utilisateur {
+        padding-left: 220px;
+
+    }
+
+
+
+}
+
+@media (max-width: 760px) {
+
+    .page {
+        min-height: 100vh;
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    /* Header */
+    .header {
+        margin-bottom: 50px;
+    }
+
+    .header-logo {
+        display: none;
+    }
+
+
+    /* Content */
+    .content {
+        max-width: none;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    /* Form */
+    .form {
+        margin: 0 auto;
+    }
+
+    .fa-sign-out {
+        margin-top: 0px;
+    }
+
+
+
+    .logo_accueille img {
+        margin-left: 40px;
+        margin-top: 10px;
+
+    }
+
+    .btn-admin {
+        display: none;
+    }
+
+    .btn-admin2 {
+        display: inline;
+    }
+
+    .content-wrap-ajouter {
+        display: none;
+    }
+
+    .slogan-ajouter {
+        display: none;
+    }
+
+    .miniflex {
+        display: flex;
+        justify-content: center
+    }
+
+    .btn-ajouter-bouteille {
+        text-align: center;
+        width: 200px;
+        margin-left: 30px;
+        margin-bottom: 20px;
+    }
+
+    .ajouter {
+        margin-bottom: 40px;
+        font-size: 12px;
+    }
+
+
+
+    .fa-2x {
+        font-size: 1em;
+    }
+
+    /*Mon compte*/
+    .form-compte {
+        padding: 20px 0;
+        line-height: 1.1;
+        margin-left: 120px;
+    }
+
+    .btn-modifier-compte {
+        display: block;
+        width: 215px;
+        background-color: #028340;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
+
+    .btn-supprimer-compte {
+        display: block;
+        width: 215px;
+        background-color: #dd0303;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
+
+    .titre-compte {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: auto;
+        color: #ffffff;
+        margin-left: 120px;
+    }
+
+    .utilisateur {
+        padding-left: 120px;
+
+    }
+
+}
+
+@media (max-width: 565px) {
+
+    /* Header */
+    .header-inner {
+        flex-direction: column;
+    }
+
+    .slogan {
+        display: none;
+    }
+
+    .ajouter {
+        font-size: 20px;
+    }
+
+    .accueille {
+        font-size: 11px;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-weight: 500;
+        margin-left: 0.5rem;
+        font-size: 1.0rem;
+    }
+
+    .message-bienvenu {
+        text-align: center;
+
+    }
+
+    .inline {
+        padding: 5px 1px;
+        font-size: 10px;
+    }
+
+    .aj {
+        margin-left: 30px;
+    }
+
+    .form-ajouter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.3;
+    }
+
+    
+
+    .header-nav {
+        flex-direction: column;
+        display: flex;
+        color: #ffffff;
+    }
+
+    .img_marg img {
+        display: none;
+    }
+
+    /* Mon compte media */
+    .form-compte {
+        padding: 20px 0;
+        line-height: 1.1;
+        margin-left: 120px;
+    }
+
+    .btn-modifier-compte {
+        display: block;
+        width: 215px;
+        background-color: #028340;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
+
+    .btn-supprimer-compte {
+        display: block;
+        width: 215px;
+        background-color: #dd0303;
+        margin-top: -20px;
+        margin-left: 120px;
+    }
+
+    .titre-compte {
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: auto;
+        color: #ffffff;
+        margin-left: 120px;
+    }
+
+    .utilisateur {
+        padding-left: 120px;
+
+    }
+
+}
+
+
+@media (max-width: 320px) {
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .inline {
+        font-size: 7px;
+
+    }
+
+
+}
+
+.sign {
+    color: white;
+}
+
+/***Menu hamburger*****/
+
+.wrap {
+    margin: 15px auto;
+}
+
+.nav {
+    width: 1030px;
+    background: #ed1c24;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 2px;
+    margin: 15px auto;
+}
+
+.nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav ul li,
+label[for=toggle] {
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(251, 244, 244);
+    margin: 10px 10px 10px 10px;
+    font-weight: 400;
+    margin-right: 10px;
+
+}
+
+.nav ul li:hover,
+label[for=toggle]:hover {
+    color: rgb(245, 239, 239);
+    text-shadow: 0 0 1px #f7f4f4;
+    transition: 0.5s;
+    box-shadow: 0px 2px 0px 0px rgba(251, 251, 251, 0.79);
+    margin-right: 10px;
+}
+
+
+
+@media only screen and (min-width: 1025px) {
+
+    input[type=checkbox]#toggle,
+    label[for=toggle] {
+        display: none;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 679px) {
+    .nav {
+        width: 99%;
+    }
+
+    input[type=checkbox]#toggle {
+        position: absolute;
+        z-index: -9999px;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    i.icon-menu-1 {
+        margin: 0 10px 0 0;
+    }
+
+    label[for=toggle] {
+        width: 90%;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    input[type=checkbox]#toggle:checked~.menu {
+        display: block;
+    }
+
+    input[type=checkbox]#toggle:checked~.menu li {
+        display: block;
+
+    }
+
+    .fa-sign-out {
+        margin-top: 30px;
+        margin-left: -12px;
+        font-size: larger;
+        color: white;
+
+    }
+
+
+}
+
+@media only screen and (min-width: 680px) and (max-width: 702px) {
+    .nav {
+        width: 80%;
+        font-size: 11px;
+    }
+
+    input[type=checkbox]#toggle,
+    label[for=toggle] {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 703px) and (max-width: 728px) {
+    .nav {
+        width: 80%;
+        font-size: 12px;
+    }
+
+    input[type=checkbox]#toggle,
+    label[for=toggle] {
+        display: none;
+    }
+
+
+}
+
+@media only screen and (min-width: 728px) and (max-width: 1024px) {
+    .nav {
+        width: 80%;
+        font-size: 13px;
+    }
+
+    input[type=checkbox]#toggle,
+    label[for=toggle] {
+        display: none;
+    }
+
+
+}
+
+/*****Table media**************/
+
+@media screen and (max-width: 800px) {
+    table.info thead {
+        display: none;
+    }
+
+    table.info tr {
+        display: block;
+        margin-bottom: 5rem;
+        border-bottom: 2px solid #e8e9eb;
+        border-top: 2px solid #e8e9eb;
+    }
+
+    table.info td {
+        display: block;
+        text-align: right;
+    }
+
+    table.info td:before {
+        content: attr(aria-label);
+        float: left;
+        font-weight: bold;
+    }
+
+    .fa-sign-out {
+        color: white;
+    }
+}
+
+/*
+catalogue.blade.php/
+saq.blade.php/ 
+stats.blade.php/
+users.blade.php/
+
+=====================*/
+.margin-bottom-5px {
+    margin-bottom: 5px;
+}
+
+.margin-bottom-10px {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-20px {
+    margin-bottom: 20px;
+}
+
+.margin-bottom-50px {
+    margin-bottom: 50px;
+}
+
+.margin-top-20px {
+    margin-top: 20px;
+}
+
+.margin-top-30px {
+    margin-top: 30px;
+}
+
+.margin-left-20px {
+    margin-left: 20px;
+}
+
+.margin-left-54px {
+    margin-left: 54px;
+}
+
+.margin-right-20 {
+    margin-right: 20px;
+}
+
+.padding-8px {
+    padding: 8px;
+}
+
+.padding-bottom-18px {
+    padding-bottom: 18px;
+}
+
+.width-50px {
+    width: 50px;
+}
+
+.width-80px {
+    width: 80px;
+}
+
+.width-100px {
+    width: 100px;
+}
+
+.width-max-content {
+    width: max-content;
+}
+
+.height-50 {
+    height: 50%;
+}
+
+.color-white {
+    color: white;
+}
+
+.color-black {
+    color: black;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.text-align-center {
+    text-align: center;
+/* ======= */
 @import "ajouterBouteille.css";
 .dimention {
     width: 150px;
@@ -108,10 +1434,8 @@ p {
     min-height: 770px;
     position: relative;
     /*overflow: hidden;*/
-
-    background: #000 url("../img/bg.jpg") no-repeat fixed center;
+    background: #000 url("../img/bg-login.jpg") no-repeat fixed center;
     background-size: cover;
-
     display: flex;
     flex-wrap: wrap;
     align-content: center;

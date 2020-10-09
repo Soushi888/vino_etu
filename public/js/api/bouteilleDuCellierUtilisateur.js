@@ -38,7 +38,6 @@
         });
         reponseJson.then(function (reponse) {
             for (let i = 0; i < reponse.length; i++) {
-
                 let eTr1 = document.createElement("tr");
                 eTr1.setAttribute("id", "trBouteille" + reponse[i].bouteille_id);
                 let eDivImg = document.createElement("div");
@@ -68,6 +67,7 @@
                 ePMillesime.appendChild(eTextMillesime);
                 eLien = document.createElement("a");
                 eLien.setAttribute("href", reponse[i].url_saq);
+                
                 eLien.setAttribute("alt", "lien ver la bouteille " + reponse[i].nom + "du site SAQ");
                 eTextSaq = document.createTextNode("Voir SAQ");
                 eLien.appendChild(eTextSaq);
@@ -85,6 +85,7 @@
                 eBoutonModifier.setAttribute("btn", "modifier_" + reponse.code_saq);
                 eBoutonModifier.addEventListener("click", function () {
                     var idTransaction = reponse[i].transaction_id;
+                    
                     document.location.href = `/modifier_bouteille?bouteille=` + idTransaction + '-' + kebab_case(reponse[i].nom);
                     let t = new Transaction();
                     t.show(idTransaction).then(dataU => {

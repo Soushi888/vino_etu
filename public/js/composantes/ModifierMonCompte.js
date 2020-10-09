@@ -63,7 +63,8 @@ function importeModifierMonCompte() {
         // information pour le serveur
         let userInfo = {
             email: eemail,
-            password: mdp
+            password: mdp,
+            role: 2
         }
 
         if (msgErrE == "" && msgErrM == "") {
