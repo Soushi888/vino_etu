@@ -108,7 +108,7 @@ p {
     position: relative;
     /*overflow: hidden;*/
 
-    background: #000 url("../img/bg.jpg") no-repeat fixed center;
+    background: #000 url("../img/bg-login.jpg") no-repeat fixed center;
     background-size: cover;
 
     display: flex;
