@@ -50,7 +50,7 @@ class TransactionController extends Controller
             "cellier_id" => "integer|required",
             "quantite" => "integer|required",
             "date_achat" => "date",
-            "garde_jusqua" => "date",
+            "garde_jusqua" => "string",
             "notes" => "string",
             "prix" => "numeric",
             "millesime" => "integer"

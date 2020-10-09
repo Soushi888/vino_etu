@@ -1,5 +1,13 @@
+/**
+ * Récupère le données des bouteilles pour l'auto-complétion, valide les données et les enregistre dans la BDD en passant pas L'API REST
+ */
 function importeModifierAjouterBouteille() {
     let bouteilles = new Bouteille();
+
+    // Formatage de la date du jour
+    let date = new Date();
+    date = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(date.getDate())}`
+    document.getElementById("date").value = date;
 
     bouteilles.index().then(dataB => {
         var sel = document.getElementById('search');
@@ -32,17 +40,7 @@ function importeModifierAjouterBouteille() {
 
     //recupere les cellier de l'utilisateur
     cellier.showCellier(userId).then(dataC => {
-
-        var sel = document.getElementById('cellier');
-        var opt = null;
-
-        for (i = 0; i < dataC.length; i++) {
-            opt = document.createElement('option');
-            opt.setAttribute("value", dataC[i].id);
-            opt.nom = dataC[i].nom;
-            opt.innerHTML = dataC[i].nom
-            sel.appendChild(opt);
-        }
+        document.getElementById("cellier").value = dataC[0].id;
     });
 
 
@@ -61,23 +59,6 @@ function importeModifierAjouterBouteille() {
         // validation du formulaire
         var f = document.form1;
         var msgErr;
-
-        //Millesime
-        msgErr = "";
-        milles = f.millesime.value.trim();
-        if (milles === "") {
-            msgErr = "valeurs obligatoire"
-        } else if (milles.length > 4) {
-            msgErr = "entrer 4 valeurs numériques"
-        } else if (!/^\d{4}$/.test(milles)) {
-            msgErr = "Millesime non valide"
-        }
-
-
-        f.millesime.value = milles;
-        if (msgErr !== "") erreur = true;
-        document.getElementById("b.millesime").innerHTML = msgErr;
-
 
         //Quantité
         msgErr = "";
@@ -100,16 +81,14 @@ function importeModifierAjouterBouteille() {
         //Prix
         msgErr = "";
         prix = f.price.value.trim();
-        if (prix === "") {
-            msgErr = "Prix Obligatoire";
-        } else {
 
-            if (!/^\-?\d+\.\d{2}$/.test(prix)) {
-                msgErr = !/^\-?\d+\.\d{2}$/.test(prix) ?
-                    "Prix non valide" :
-                    ""
-            }
+
+        if (!/^\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})$/.test(prix)) {
+            msgErr = /^\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})$/.test(prix) ?
+                "Prix non valide" :
+                ""
         }
+
         f.price.value = prix;
         if (msgErr !== "") erreur = true;
         document.getElementById("b.prix").innerHTML = msgErr;
@@ -120,46 +99,30 @@ function importeModifierAjouterBouteille() {
         dateAchat = f.date.value.trim();
         if (dateAchat === "") {
             msgErr = "date d'achat Obligatoire";
-        } else {
-
-            if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(dateAchat)) {
-                msgErr = !/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(dateAchat) ?
-                    "date d'achat non valide" :
-                    ""
-            }
         }
+
         f.date.value = dateAchat;
         if (msgErr !== "") erreur = true;
         document.getElementById("b.dateAchatPasValide").innerHTML = msgErr;
-
-
-        //Garde justequa
-        msgErr = "";
-        gardeJusqua = f.garde.value.trim();
-        if (gardeJusqua === "") {
-            msgErr = "Date de Garde Obligatoire";
-        } else {
-
-            if (!/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(gardeJusqua)) {
-                msgErr = !/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(gardeJusqua) ?
-                    "date d'achat non valide" :
-                    ""
-            }
-        }
-        f.garde.value = gardeJusqua;
-        if (msgErr !== "") erreur = true;
-        document.getElementById("b.gardeJustequa").innerHTML = msgErr;
-
 
         let bouteille = {
             bouteille_id: bouteilleId,
             cellier_id: cellier,
             quantite: quantite,
-            date_achat: date,
-            garde_jusqua: garde,
-            notes: notes,
-            prix: price,
-            millesime: millesime
+            date_achat: date
+        }
+
+        if (garde) {
+            bouteille.garde_jusqua = garde;
+        }
+        if (notes) {
+            bouteille.notes = notes;
+        }
+        if (price) {
+            bouteille.prix = price;
+        }
+        if (millesime) {
+            bouteille.millesime = millesime;
         }
 
         //transaction

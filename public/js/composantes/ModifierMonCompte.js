@@ -1,10 +1,12 @@
 function importeModifierMonCompte() {
-    var userId = document.getElementById("idUtilisateur").value;
+    let userId = document.getElementById("idUtilisateur").value;
+    let userRole = JSON.parse(document.getElementById("role").value);
+    console.log(userRole[0].name);
 
     let user = new User();
     user.show(userId).then(dataU => {
 
-        var eemail;
+        let eemail;
         eemail = dataU.email
         document.getElementById('email').value = eemail;
         document.getElementById('emailHidden').value = eemail;
@@ -12,7 +14,7 @@ function importeModifierMonCompte() {
 
     let cell = new Cellier;
     cell.show(userId).then(dataC => {
-        var cellier;
+        let cellier;
         cellier = dataC.nom
         document.getElementById('cellier').value = cellier;
     });
@@ -20,11 +22,11 @@ function importeModifierMonCompte() {
 
     document.getElementById("modifierBtn").addEventListener("click", function () {
 
-        var eemail = document.getElementById("email").value;
-        var mdp = document.getElementById("mdp").value;
-        var f = document.userF;
+        let eemail = document.getElementById("email").value;
+        let mdp = document.getElementById("mdp").value;
+        let f = document.userF;
 
-        var msgErrE;
+        let msgErrE;
         //Regex Email
         msgErrE = "";
         e = f.email.value.trim();
@@ -44,7 +46,7 @@ function importeModifierMonCompte() {
 
 
         //Regex Mot de passe
-        var msgErrM = "";
+        let msgErrM = "";
         m = f.mdp.value.trim();
         if (m === "") {
             msgErrM = "Mot de passe Obligatoire";
@@ -52,7 +54,7 @@ function importeModifierMonCompte() {
 
             if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(m)) {
                 msgErrM = !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(m) ?
-                    "8 caractères minimum et un nombre numérique" :
+                    "8 caractères minimum et au moins un nombre numérique et une lettre" :
                     ""
             }
         }
@@ -60,11 +62,14 @@ function importeModifierMonCompte() {
         if (msgErrM !== "") erreur = true;
         document.getElementById("e.mdp").innerHTML = msgErrM;
 
+        let role = 2;
+        if (userRole[0].name == "administrateur") role = 1;
+
         // information pour le serveur
         let userInfo = {
             email: eemail,
             password: mdp,
-            role: 2
+            role: role
         }
 
         if (msgErrE == "" && msgErrM == "") {
@@ -81,11 +86,11 @@ function importeModifierMonCompte() {
 
     document.getElementById("modifierCellierBtn").addEventListener("click", function () {
 
-        var f = document.userC;
-        var cellier = document.getElementById("cellier").value;
+        let f = document.userC;
+        let cellier = document.getElementById("cellier").value;
 
         // Regex Nom cellier
-        var msgErrC = "";
+        let msgErrC = "";
         c = f.cellier.value.trim();
         if (c === "") {
             msgErrC = "Cellier Obligatoire";
@@ -119,10 +124,10 @@ function importeModifierMonCompte() {
 
     document.getElementById("supprimerBtn").addEventListener("click", function () {
 
-        var f = document.suprimerF;
+        let f = document.suprimerF;
 
-        var eemailHidden = document.getElementById("emailHidden").value;
-        var inputEmail = document.getElementById("suprimer").value;
+        let eemailHidden = document.getElementById("emailHidden").value;
+        let inputEmail = document.getElementById("suprimer").value;
 
 
         if (inputEmail == eemailHidden) {

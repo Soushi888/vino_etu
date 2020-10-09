@@ -25,6 +25,7 @@
 
 
         <input type="hidden" id="idUtilisateur" value="{{ Auth::user()->id }}">
+        <input type="hidden" id="role" value="{{ Auth::user()->roles }}">
         <label for="name" class="utilisateur">Utilisateur: {{ Auth::user()->name }} </label><br><br>
 
         <form class="form-compte" name="userF" action="/" method="post">

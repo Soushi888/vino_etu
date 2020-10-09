@@ -18,11 +18,11 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('bouteille_id')->references("id")->on("bouteilles")->cascadeOnDelete();
             $table->foreignId('cellier_id')->references("id")->on("celliers")->cascadeOnDelete();
             $table->bigInteger("quantite");
-            $table->timestamp("date_achat")->nullable();
-            $table->timestamp("garde_jusqua")->nullable();
+            $table->timestamp("date_achat");
+            $table->string("garde_jusqua")->nullable();
             $table->text("notes")->nullable();
-            $table->float("prix");
-            $table->bigInteger("millesime");
+            $table->float("prix")->nullable();
+            $table->bigInteger("millesime")->nullable();
             $table->timestamps();
         });
 
