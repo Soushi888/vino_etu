@@ -1,3 +1,4 @@
+// block de code qui vérifie si l'utilisateur a un cellier
 let eDivIndex = document.querySelector(".container-index");
 let listCelliers = document.querySelector("#listCelliers h1");
 let eUl = document.createElement("ul");
@@ -23,7 +24,7 @@ function creeCellier() {
     };
     celliers.store(cellier);
 }
-
+// block de code bouteille qui affiche le cellier de l'utilisateur apres qu'il ce soit connecter
 function bouteilles(evt) {
     let idCellier = evt;
     let accueille = document.getElementById("accueille")
@@ -31,6 +32,7 @@ function bouteilles(evt) {
     containerBouteille.setAttribute("class", "container_bouteille")
     let eTable = document.createElement("table");
     accueille.appendChild(containerBouteille).appendChild(eTable);
+    // block de code bouteille qui affiche les bouteille du cellier
     let reponse = fetch(`http://${window.location.host}/api/affichageDetails/${idCellier}`);
     let reponseJson = reponse.then(function (res) {
         return res.json();
@@ -66,7 +68,6 @@ function bouteilles(evt) {
             ePMillesime.appendChild(eTextMillesime);
             eLien = document.createElement("a");
             eLien.setAttribute("href", reponse[i].url_saq);
-
             eLien.setAttribute("alt", "lien ver la bouteille " + reponse[i].nom + "du site SAQ");
             eTextSaq = document.createTextNode("Voir SAQ");
             eLien.appendChild(eTextSaq);
@@ -79,18 +80,19 @@ function bouteilles(evt) {
             eTd2.appendChild(eLien);
             eDivBouton = document.createElement("div");
             eDivBouton.setAttribute("class", "btn_bouteille");
+            // block de code qui affiche le bouton modifier de façon dynamique
             eBoutonModifier = document.createElement("button");
             eBoutonModifier.setAttribute("class", "btn btn-modifier inline");
             eBoutonModifier.setAttribute("btn", "modifier_" + reponse.code_saq);
             eBoutonModifier.addEventListener("click", function () {
                 let idTransaction = reponse[i].transaction_id;
-
                 document.location.href = `/modifier_bouteille?bouteille=` + idTransaction + '-' + kebab_case(reponse[i].nom);
                 let t = new Transaction();
                 t.show(idTransaction).then(dataU => dataU);
             })
             eTextModifier = document.createTextNode("Modifier")
             eBoutonModifier.appendChild(eTextModifier);
+            // block de code qui affiche le bouton Ajouter de façon dynamique
             eBoutonAjouter = document.createElement("button");
             eBoutonAjouter.setAttribute("class", "btn btn-ajouter inline");
             eBoutonAjouter.setAttribute("btn", "ajouter_" + reponse.code_saq);
@@ -109,6 +111,7 @@ function bouteilles(evt) {
             })
             eTextAjouter = document.createTextNode("Ajouter")
             eBoutonAjouter.appendChild(eTextAjouter);
+            // block de code qui affiche le bouton Boire de façon dynamique
             eBoutonBoire = document.createElement("button");
             eBoutonBoire.setAttribute("class", "btn btn-boire inline");
             eBoutonBoire.setAttribute("btn", "boire_" + reponse.code_saq);
