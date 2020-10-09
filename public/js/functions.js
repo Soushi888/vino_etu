@@ -66,6 +66,79 @@ function getType(type_id) {
     return type;
 }
 
+/**
+ * Si le nombre donné en paramètre (qu'il soit sous forme d'entier ou de caractère) est inclusivement compris entre 1 et 9, ajoute un zéro devant.
+ * @param {number} number
+ * @returns {string}
+ */
+function addZero(number) {
+    switch (number) {
+        case 0:
+            number = "00";
+            break;
+        case "0":
+            number = "00";
+            break;
+        case 1:
+            number = "01";
+            break;
+        case "1":
+            number = "01";
+            break;
+        case 2:
+            number = "02";
+            break;
+        case "2":
+            number = "02";
+            break;
+        case 3:
+            number = "03";
+            break;
+        case "3":
+            number = "03";
+            break;
+        case 4:
+            number = "04";
+            break;
+        case "4":
+            number = "04";
+            break;
+        case 5:
+            number = "05";
+            break;
+        case "5":
+            number = "05";
+            break;
+        case 6:
+            number = "06";
+            break;
+        case "6":
+            number = "06";
+            break;
+        case 7:
+            number = "07";
+            break;
+        case "7":
+            number = "07";
+            break;
+        case 8:
+            number = "08";
+            break;
+        case "8":
+            number = "08";
+            break;
+        case 9:
+            number = "09";
+            break;
+        case "9":
+            number = "09";
+            break;
+    }
+
+    return number;
+}
+
+
 //CARACTERES SPECIAUX / KEBAB CASE
 function kebab_case(para_str) {
     para_str = para_str.toLowerCase();
@@ -113,15 +186,6 @@ function isEmail(email) {
     return regexp.test(String(email).toLowerCase());
 }
 
-/*bouton inscription page identifier*/
-function eventInscription() {
-let btnInscription = document.getElementById("inscription");
-btnInscription.addEventListener("click",function(){
-    console.log("je suis un element click");
-    window.location.href="./register";
-})
-}
-
 /**
  * Vérifie si la chaîne de caractère donnée correspond à une URL valide
  * @param URL
@@ -131,4 +195,13 @@ function isURL(URL) {
     let regexp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
 
     return regexp.test(String(URL).toLowerCase());
+}
+
+/*bouton inscription page identifier*/
+function eventInscription() {
+    let btnInscription = document.getElementById("inscription");
+    btnInscription.addEventListener("click",function(){
+        console.log("je suis un element click");
+        window.location.href="./register";
+    })
 }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Cellier;
 
 class CreateCelliersTable extends Migration
 {
@@ -22,6 +23,14 @@ class CreateCelliersTable extends Migration
 
         // Génère des données de test
         factory(App\Cellier::class, 2)->create();
+
+        $cellier = Cellier::find(1);
+        $cellier->user_id = 1;
+        $cellier->save();
+
+        $cellier = Cellier::find(2);
+        $cellier->user_id = 2;
+        $cellier->save();
 
     }
 
