@@ -47,7 +47,7 @@ class User {
                 }
             })
             .then(response => response.json())
-            .catch(err => console.log(err));
+            .catch(err => err);
     }
 
     /**
@@ -65,7 +65,7 @@ class User {
                 }
             })
             .then(response => response.json())
-            .catch(err => console.log(err));
+            .catch(err => err);
     }
 
     /**
@@ -80,6 +80,6 @@ class User {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
     }
 }

@@ -65,7 +65,7 @@ class Transaction {
                 }
             })
             .then(response => response.json())
-            .catch(err => console.log(err));
+            .catch(err => err);
     };
 
 
@@ -81,6 +81,6 @@ class Transaction {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
     }
 }

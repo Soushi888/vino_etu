@@ -6,7 +6,6 @@
     <script src="{{ asset('js/api/Transaction.js') }}"></script>
     <script src="{{ asset('js/api/User.js') }}"></script>
     <script src="{{ asset('js/composantes/ModifierAjouterBouteille.js') }}"></script>
-
     <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
 
     <title>Ajouter une bouteille - Vino</title>
@@ -24,11 +23,10 @@
         <aside class="section_deux">
             <nav class="header-nav ajouter">
                 <a class="header-nav-link active ajouter" href="{{ route("accueil") }}">Mon cellier</a>
+                <a class="header-nav-link active ajouter" href="{{ route("ajouter_bouteille") }}">Ajouter une bouteille au cellier</a>
             </nav>
             <h3 class="slogan-ajouter">Ajouter une bouteille?</h3>
-            <button onclick="getValue()" class="btn btn-ajouter-bouteille2" type="submit" formaction="#">Ajouter la
-                bouteille
-            </button>
+            <button  class="btn btn-ajouter-bouteille2" id="btnA" type="submit" formaction="#">Ajouter la bouteille</button>
 
 
             <form class="form-ajouter" name="form1" action="/" method="post">
@@ -78,14 +76,13 @@
         </aside>
         <aside class="section_trois">
             <a class="header-nav-link aj" href={{ route("logout") }}><i class="fa fa-sign-out fa-2x"
-                                                                        aria-hidden="true"></i></a>
+            aria-hidden="true"></i></a>
             </nav>
             <div class="img_marg">
                 <img src="img/bouteille3.png" alt="bouteille">
             </div>
             <span><p class="fail" id="b.ajouter" style="margin-top: 20px"></p></span>
-            <button class="btn btn-ajouter-bouteille" type="button" id="btnAjouter" type="submit" formaction="#">Ajouter
-                la bouteille
+            <button class="btn btn-ajouter-bouteille" type="button" id="btnAjouter" type="submit" formaction="#">Ajouter la bouteille
             </button>
 
         </aside>

@@ -218,8 +218,6 @@ function ListeBouteilles() {
                 if (document.getElementById("url_image").value) {
                     bouteille.url_image = document.getElementById("url_image").value
                 }
-
-                console.log(bouteille);
                 ajouterBouteille(bouteille);
             })
         })
@@ -244,8 +242,6 @@ function ajouterBouteille(bouteille) {
                 return
             }
             Modal.closeModal();
-
-            // TODO = Optimiser le rafraichissement
             ListeBouteilles();
         })
     }

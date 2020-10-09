@@ -85,7 +85,6 @@ function ListeUtilisateurs() {
                         user.password = document.getElementById("password").value,
                             user.confirmation = document.getElementById("confirmation").value
                     }
-
                     modifierUtilisateur(user);
 
                     // Modification du noeud HTML
@@ -145,13 +144,9 @@ function ListeUtilisateurs() {
                     password: document.getElementById("password").value,
                     confirmation: document.getElementById("confirmation").value
                 }
-                console.log(user);
                 ajouterUtilisateur(user);
             })
         })
-
-        console.log(data)
-
     })
 }
 
@@ -168,12 +163,8 @@ function ajouterUtilisateur(user) {
     }
 
     if (erreurs.length === 0) {
-        console.log("Enregistrement !")
-
         users.store(user).then(() => {
             Modal.closeModal();
-
-            // TODO = Optimiser le rafraichissement
             ListeUtilisateurs();
         })
     }
@@ -194,7 +185,6 @@ function modifierUtilisateur(user) {
     if (erreurs.length === 0) {
         console.log("Modification !")
         delete user.confirmation;
-        console.log(user);
 
         users.update(user.id, user).then(() => {
             Modal.closeModal();

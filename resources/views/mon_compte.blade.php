@@ -3,9 +3,7 @@
 @section("header")
   <script src="{{ asset('js/api/User.js') }}"></script>
   <script src="{{ asset('js/api/Cellier.js') }}"></script>
-
   <script src="{{ asset('js/composantes/ModifierMonCompte.js') }}"></script>
-
   <title>Mon compte - Vino</title>
 @endsection
 
@@ -73,6 +71,5 @@
       </aside>
     </div>
   </div>
-
   <script defer>importeModifierMonCompte()</script>
 @endsection

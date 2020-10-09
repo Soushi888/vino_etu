@@ -1,10 +1,7 @@
 function importeModifierAjouterBouteille() {
-    console.log(Autocomplete);
     let bouteilles = new Bouteille();
 
     bouteilles.index().then(dataB => {
-        console.log(dataB);
-
         var sel = document.getElementById('search');
         var opt = null;
 
@@ -35,13 +32,11 @@ function importeModifierAjouterBouteille() {
 
     //recupere les cellier de l'utilisateur
     cellier.showCellier(userId).then(dataC => {
-        console.log(dataC);
 
         var sel = document.getElementById('cellier');
         var opt = null;
 
         for (i = 0; i < dataC.length; i++) {
-            // console.log(dataC[i]);
             opt = document.createElement('option');
             opt.setAttribute("value", dataC[i].id);
             opt.nom = dataC[i].nom;
@@ -50,7 +45,13 @@ function importeModifierAjouterBouteille() {
         }
     });
 
+   
+
+   
+
+
     document.getElementById("btnAjouter").addEventListener("click", function () {
+  
         // Sélectionner l'élément input et récupérer sa valeur
         var bouteilleId = document.getElementById("search").value;
         var millesime = document.getElementById("millesime").value;
@@ -60,9 +61,6 @@ function importeModifierAjouterBouteille() {
         var cellier = document.getElementById("cellier").value;
         var notes = document.getElementById("notes").value;
         var price = document.getElementById("price").value;
-        // Afficher la valeur
-        // alert(bouteilleId + millesime + quantite + price + date + garde +  cellier + notes);
-
 
         // validation du formulaire
         var f = document.form1;
@@ -172,7 +170,6 @@ function importeModifierAjouterBouteille() {
         let transaction = new Transaction();
 
         transaction.store(bouteille).then(data => {
-            console.log(data);
 
             //ajouter success
             document.getElementById("b.ajouter").innerHTML = "Ajout effectué";
@@ -183,4 +180,4 @@ function importeModifierAjouterBouteille() {
             }, 900);
         });
     })
-}
+}    

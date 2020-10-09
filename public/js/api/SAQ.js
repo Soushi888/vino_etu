@@ -37,7 +37,7 @@ class SAQ {
                 }
                 return true;
             })
-            .catch(err => console.log(err));
+            .catch(err => err);
     };
 
     /**
@@ -48,8 +48,7 @@ class SAQ {
     // TODO: Optimiser le nombre de requêtes (ne plus passer pas this.index)
     async storeAll(type, page) {
         let nbr_ajout = 0;
-        this.index(type, page).then(async data => {
-            console.log(data);
+        let index = this.index(type, page).then(async data => {
             data.map(async b => {
                 let store = this.store(b)
               return  store.then(json => {
@@ -57,7 +56,7 @@ class SAQ {
                         nbr_ajout++;
                     }
                     document.getElementById("message").innerText = `${nbr_ajout} bouteilles ajoutées.`
-                }).catch(err => console.log(err));
+                }).catch(err => err);
             });
         })
     };
