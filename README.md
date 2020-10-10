@@ -25,40 +25,40 @@ Front end : AJAX
 
 ### Utilisateurs
 
-- [X] [Se créer un compte](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/register)
-- [X] [Se connecter](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/login)
+- [X] [Se créer un compte](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/register)
+- [X] [Se connecter](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/login)
 - [X] Gérer son profil
     - [X] Modifier son mot de passe
     - [X] Modifier son adresse courriel
 - [X] Gérer son cellier
-    - [X] [Afficher le contenu d'un cellier](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/)
+    - [X] [Afficher le contenu d'un cellier](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/)
     - [X] Afficher une bouteille du cellier
         - [X] Quantité totale de bouteilles en stock
     - [X] Boire une bouteille du cellier 
         - [X] Quantité -1 
-    - [X] [Ajouter une ou plusieurs bouteilles à son cellier](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/ajouter_bouteille)
+    - [X] [Ajouter une ou plusieurs bouteilles à son cellier](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/ajouter_bouteille)
     - [X] Modifier une transaction du cellier
 
 ### Administrateurs
 
 - [X] Gérer les utilisateurs
-    - [X] [Afficher tous les utilisateurs](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/)
+    - [X] [Afficher tous les utilisateurs](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/admin/)
     - [X] Créer un nouvel utilisateur ou administrateur
     - [X] Modifier un utilisateur (incluant le type)
     - [X] Supprimer un utilisateur
 - [X] Gérer le catalogue
-    - [X] [Afficher toutes les bouteilles](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue)
+    - [X] [Afficher toutes les bouteilles](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue)
     - [X] Modifier une bouteille
     - [X] Ajouter une nouvelle bouteille
     - [X] Supprimer une bouteille
-    - [X] [Afficher le catalogue de la SAQ](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue/saq)
+    - [X] [Afficher le catalogue de la SAQ](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public/admin/catalogue/saq)
         - [X] Recherche par page et par type de vin
         - [X] Importer une bouteille de la SAQ manuellement
         - [X] Importer les bouteilles de toute la page
 
 ## Démo
 
-[Site web de la démo](https://e1995086.webdev.cmaisonneuve.qc.ca/vino/public)
+[Site web de la démo](https://e1995669.webdev.cmaisonneuve.qc.ca/vino/public)
 
 Vous pouvez essayer les fonctionnalités en cliquant dessus dans la liste des fonctionnalités plus haute.
 
